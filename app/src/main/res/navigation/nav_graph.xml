@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loggedOutFragment">
+    <fragment
+        android:id="@+id/loggedOutFragment"
+        android:name="com.changs.pipi.src.fragment.logged_out.LoggedOutFragment"
+        android:label="fragment_logged_out"
+        tools:layout="@layout/fragment_logged_out" >
+        <action
+            android:id="@+id/action_loggedOutFragment_to_registerStep1Fragment"
+            app:destination="@id/registerStep1Fragment" />
+        <action
+            android:id="@+id/action_loggedOutFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.changs.pipi.src.fragment.logged_out.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/registerStep1Fragment"
+        android:name="com.changs.pipi.src.fragment.logged_out.join.register_step1.RegisterStep1Fragment"
+        android:label="fragment_register_step1"
+        tools:layout="@layout/fragment_register_step1" >
+        <action
+            android:id="@+id/action_registerStep1Fragment_to_registerStep2Fragment"
+            app:destination="@id/registerStep2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerStep2Fragment"
+        android:name="com.changs.pipi.src.fragment.logged_out.join.register_step2.RegisterStep2Fragment"
+        android:label="fragment_register_step2"
+        tools:layout="@layout/fragment_register_step2" />
 </navigation>

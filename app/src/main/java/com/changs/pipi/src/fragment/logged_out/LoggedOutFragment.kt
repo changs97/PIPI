@@ -12,6 +12,7 @@ class LoggedOutFragment : BaseFragment<FragmentLoggedOutBinding>(FragmentLoggedO
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val loginBtn = binding.loggedOutBtnLogin
         val joinBtn = binding.loggedOutBtnJoin
 

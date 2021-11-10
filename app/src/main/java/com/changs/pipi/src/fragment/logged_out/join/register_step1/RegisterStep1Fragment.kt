@@ -14,7 +14,6 @@ class RegisterStep1Fragment : BaseFragment<FragmentRegisterStep1Binding>(Fragmen
         super.onViewCreated(view, savedInstanceState)
 
         val nextBtn = binding.registerStep1BtnNext
-
         val back = binding.registerStep1ImgbtnBack
 
         nextBtn.setOnClickListener {

@@ -27,7 +27,7 @@
         android:id="@+id/logged_out_btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/join"
+        android:text="@string/login"
         android:textColor="@drawable/custom_btn1_textcolor"
         android:textStyle="bold"
         android:paddingHorizontal="70dp"

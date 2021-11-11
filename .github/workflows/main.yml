@@ -42,7 +42,6 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       
-#       - run: bash curl https://slack.com/api/files.upload -F token=xoxb-2457028323393-2709709962517-T9c4teVSXYXy77hUrlEfyUdB -F channels=apk -F file=@app/build/outputs/apk/debug/app-debug.apk 
       - run: './gradlew assembleDebug'
       - uses: MeilCli/slack-upload-file@v1
         with:

@@ -37,7 +37,7 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
           
       - name: Build APK
-        run: bash ./gradlew assembleRelease --stacktrace
+        run: bash ./gradlew assembleDebug --stacktrace
           
       - run: './gradlew assembleDebug'
       - uses: MeilCli/slack-upload-file@v1
@@ -48,6 +48,20 @@ jobs:
               file_name: 'app-debug.apk'
               file_type: 'apk'
               initial_comment: '${{ github.ref }} 테스트 앱 슬랙 배포 성공'
+              
+      - name: 테스트용 apk artifact 업로드
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          
+      - name: action-slack
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          status: ${{ job.status }}
+          author_name: 빌드 알림
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 #       # Runs a single command using the runners shell
 #       - name: Run a one-line script

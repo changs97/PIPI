@@ -39,6 +39,7 @@ jobs:
       - name: Build APK
         run: bash ./gradlew assembleDebug --stacktrace
           
+      - run: 'gradle wrapper'
       - run: 'chmod +x ./gradlew assembleDebug'
       - uses: MeilCli/slack-upload-file@v1
         with:

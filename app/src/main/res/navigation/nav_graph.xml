@@ -34,5 +34,14 @@
         android:id="@+id/registerStep2Fragment"
         android:name="com.changs.pipi.src.fragment.logged_out.join.register_step2.RegisterStep2Fragment"
         android:label="fragment_register_step2"
-        tools:layout="@layout/fragment_register_step2" />
+        tools:layout="@layout/fragment_register_step2" >
+        <action
+            android:id="@+id/action_registerStep2Fragment_to_insertFragment"
+            app:destination="@id/insertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/insertFragment"
+        android:name="com.changs.pipi.src.fragment.insertPerson.InsertFragment"
+        android:label="fragment_insert"
+        tools:layout="@layout/fragment_insert" />
 </navigation>

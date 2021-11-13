@@ -11,5 +11,6 @@ class DiscoverFragment : BaseFragment<FragmentDiscoverBinding>(FragmentDiscoverB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        
     }
 }

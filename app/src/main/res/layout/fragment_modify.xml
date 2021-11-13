@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".src.fragment.modify.ModifyFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/modify_imgbtn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/transparency"
+                android:src="@drawable/back" />
+
+            <TextView
+                style="@style/BoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/modify" />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginVertical="20dp"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"/>
+
+            <EditText
+                android:id="@+id/modify_edittext_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext"
+                android:hint="@string/input_name"
+                android:paddingVertical="13dp"
+                android:paddingStart="15dp"
+                android:textCursorDrawable="@drawable/custom_cursor" />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginVertical="20dp"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/age"/>
+
+
+
+
+            <EditText
+                android:id="@+id/modify_edittext_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext"
+                android:hint="@string/input_age"
+                android:inputType="textPassword"
+                android:paddingVertical="13dp"
+                android:paddingStart="15dp"
+                android:textCursorDrawable="@drawable/custom_cursor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/gender"
+                style="@style/NormalText"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/modify_btn_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn1"
+                    android:paddingHorizontal="80dp"
+                    android:text="@string/male"
+                    android:textColor="@drawable/custom_btn1_textcolor"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/modify_btn_female"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/modify_btn_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn1"
+                    android:paddingHorizontal="80dp"
+                    android:text="@string/female"
+                    android:textColor="@drawable/custom_btn1_textcolor"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/modify_btn_male"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.506" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginVertical="20dp"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address"/>
+            <EditText
+                android:id="@+id/modify_edittext_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext"
+                android:hint="@string/input_address"
+                android:inputType="textPassword"
+                android:paddingVertical="13dp"
+                android:paddingStart="15dp"
+                android:textCursorDrawable="@drawable/custom_cursor" />
+
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginVertical="20dp"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/photo"/>
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginVertical="20dp"
+                style="@style/NormalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/modify_btn_mon"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn3"
+                    android:textColor="@drawable/custom_btn3_textcolor"
+                    android:text="@string/mon"/>
+                <Button
+                    android:id="@+id/modify_btn_tue"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn3"
+                    android:textColor="@drawable/custom_btn3_textcolor"
+                    android:text="@string/tue"/>
+                <Button
+                    android:id="@+id/modify_btn_wed"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn3"
+                    android:textColor="@drawable/custom_btn3_textcolor"
+                    android:text="@string/wed"/>
+                <Button
+                    android:id="@+id/modify_btn_thu"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn3"
+                    android:textColor="@drawable/custom_btn3_textcolor"
+                    android:text="@string/thu"/>
+                <Button
+                    android:id="@+id/modify_btn_fri"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn3"
+                    android:textColor="@drawable/custom_btn3_textcolor"
+                    android:text="@string/fri"/>
+                <Button
+                    android:id="@+id/modify_btn_set"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn3"
+                    android:textColor="@drawable/custom_btn3_textcolor"
+                    android:text="@string/set"/>
+                <Button
+                    android:id="@+id/modify_btn_sun"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_btn3"
+                    android:textColor="@drawable/custom_btn3_textcolor"
+                    android:text="@string/sun"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

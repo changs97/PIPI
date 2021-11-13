@@ -8,4 +8,26 @@
     <string name="join_input_id">사용하실 아이디</string>
     <string name="join_input_password">사용하실 비밀번호</string>
     <string name="join_input_name">이름</string>
+    <string name="input_name">이름을 입력하세요</string>
+    <string name="input_address">주소를 입력하세요</string>
+    <string name="input_age">나이를 입력하세요</string>
+    <string name="male">남</string>
+    <string name="female">여</string>
+    <string name="address">주소</string>
+    <string name="name">이름</string>
+    <string name="age">나이</string>
+    <string name="photo">사진</string>
+    <string name="date">방문날짜</string>
+    <string name="plus">추가하기</string>
+    <string name="gender">성별</string>
+    <string name="modify">수정하기</string>
+    <string name="search">검색</string>
+    <string name="mon">월</string>
+    <string name="tue">화</string>
+    <string name="wed">수</string>
+    <string name="thu">목</string>
+    <string name="fri">금</string>
+    <string name="set">토</string>
+    <string name="sun">일</string>
+
 </resources>

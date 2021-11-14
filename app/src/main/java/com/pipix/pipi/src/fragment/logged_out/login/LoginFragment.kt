@@ -2,6 +2,7 @@ package com.pipix.pipi.src.fragment.logged_out.login
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.pipix.pipi.R
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.databinding.FragmentLoginBinding
@@ -12,7 +13,6 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
         super.onViewCreated(view, savedInstanceState)
 
         val back = binding.loginImgbtnBack
-
 
     }
 }

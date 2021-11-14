@@ -8,7 +8,7 @@
     <string name="join_input_id">사용하실 아이디</string>
     <string name="join_input_password">사용하실 비밀번호</string>
     <string name="join_input_name">이름</string>
-
+    <string name="search">검색</string>
     <string name="insert_name">이름을 입력하세요</string>
     <string name="insert_age">나이을 입력하세요</string>
     <string name="insert_address">주소을 입력하세요</string>

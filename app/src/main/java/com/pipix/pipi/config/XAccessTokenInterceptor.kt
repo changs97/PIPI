@@ -1,7 +1,7 @@
-package com.changs.pipi.config
+package com.pipix.pipi.config
 
-import com.changs.pipi.config.ApplicationClass.Companion.X_ACCESS_TOKEN
-import com.changs.pipi.config.ApplicationClass.Companion.sSharedPreferences
+import com.pipix.pipi.config.ApplicationClass.Companion.X_ACCESS_TOKEN
+import com.pipix.pipi.config.ApplicationClass.Companion.sSharedPreferences
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

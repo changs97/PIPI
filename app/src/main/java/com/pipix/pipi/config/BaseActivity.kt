@@ -1,4 +1,4 @@
-package com.changs.pipi.config
+package com.pipix.pipi.config
 
 import android.os.Bundle
 import android.view.LayoutInflater

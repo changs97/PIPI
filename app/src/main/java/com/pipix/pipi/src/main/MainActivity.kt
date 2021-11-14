@@ -1,13 +1,10 @@
-package com.changs.pipi.src.main
+package com.pipix.pipi.src.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import com.changs.pipi.R
-import com.changs.pipi.config.BaseActivity
-import com.changs.pipi.databinding.ActivityMainBinding
+import com.pipix.pipi.R
+import com.pipix.pipi.config.BaseActivity
+import com.pipix.pipi.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {

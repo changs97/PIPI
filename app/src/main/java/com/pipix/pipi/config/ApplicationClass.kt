@@ -1,4 +1,4 @@
-package com.changs.pipi.config
+package com.pipix.pipi.config
 
 import android.app.Application
 import android.content.SharedPreferences

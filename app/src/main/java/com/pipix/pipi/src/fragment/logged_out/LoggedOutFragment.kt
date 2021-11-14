@@ -1,11 +1,11 @@
-package com.changs.pipi.src.fragment.logged_out
+package com.pipix.pipi.src.fragment.logged_out
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.changs.pipi.R
-import com.changs.pipi.config.BaseFragment
-import com.changs.pipi.databinding.FragmentLoggedOutBinding
+import com.pipix.pipi.R
+import com.pipix.pipi.config.BaseFragment
+import com.pipix.pipi.databinding.FragmentLoggedOutBinding
 
 
 class LoggedOutFragment : BaseFragment<FragmentLoggedOutBinding>(FragmentLoggedOutBinding::bind, R.layout.fragment_logged_out) {

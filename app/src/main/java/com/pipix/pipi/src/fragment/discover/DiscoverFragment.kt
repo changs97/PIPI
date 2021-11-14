@@ -1,10 +1,10 @@
-package com.changs.pipi.src.fragment.discover
+package com.pipix.pipi.src.fragment.discover
 
 import android.os.Bundle
 import android.view.View
-import com.changs.pipi.R
-import com.changs.pipi.config.BaseFragment
-import com.changs.pipi.databinding.FragmentDiscoverBinding
+import com.pipix.pipi.R
+import com.pipix.pipi.config.BaseFragment
+import com.pipix.pipi.databinding.FragmentDiscoverBinding
 
 class DiscoverFragment : BaseFragment<FragmentDiscoverBinding>(FragmentDiscoverBinding::bind, R.layout.fragment_discover) {
 

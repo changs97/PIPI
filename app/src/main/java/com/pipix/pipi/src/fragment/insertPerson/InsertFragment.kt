@@ -1,10 +1,10 @@
-package com.changs.pipi.src.fragment.insertPerson
+package com.pipix.pipi.src.fragment.insertPerson
 
 import android.os.Bundle
 import android.view.View
-import com.changs.pipi.R
-import com.changs.pipi.config.BaseFragment
-import com.changs.pipi.databinding.FragmentInsertBinding
+import com.pipix.pipi.R
+import com.pipix.pipi.config.BaseFragment
+import com.pipix.pipi.databinding.FragmentInsertBinding
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding::bind, R.layout.fragment_insert) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

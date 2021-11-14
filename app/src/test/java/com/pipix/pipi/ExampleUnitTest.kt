@@ -1,4 +1,4 @@
-package com.changs.pipi
+package com.pipix.pipi
 
 import org.junit.Test
 

@@ -1,11 +1,11 @@
-package com.changs.pipi.src.fragment.logged_out.join.register_step1
+package com.pipix.pipi.src.fragment.logged_out.join.register_step1
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.changs.pipi.R
-import com.changs.pipi.config.BaseFragment
-import com.changs.pipi.databinding.FragmentRegisterStep1Binding
+import com.pipix.pipi.R
+import com.pipix.pipi.config.BaseFragment
+import com.pipix.pipi.databinding.FragmentRegisterStep1Binding
 
 
 class RegisterStep1Fragment : BaseFragment<FragmentRegisterStep1Binding>(FragmentRegisterStep1Binding::bind, R.layout.fragment_register_step1) {

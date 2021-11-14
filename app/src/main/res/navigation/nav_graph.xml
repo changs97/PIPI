@@ -6,7 +6,7 @@
     app:startDestination="@id/loggedOutFragment">
     <fragment
         android:id="@+id/loggedOutFragment"
-        android:name="com.changs.pipi.src.fragment.logged_out.LoggedOutFragment"
+        android:name="com.pipix.pipi.src.fragment.logged_out.LoggedOutFragment"
         android:label="fragment_logged_out"
         tools:layout="@layout/fragment_logged_out" >
         <action
@@ -18,12 +18,12 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.changs.pipi.src.fragment.logged_out.login.LoginFragment"
+        android:name="com.pipix.pipi.src.fragment.logged_out.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/registerStep1Fragment"
-        android:name="com.changs.pipi.src.fragment.logged_out.join.register_step1.RegisterStep1Fragment"
+        android:name="com.pipix.pipi.src.fragment.logged_out.join.register_step1.RegisterStep1Fragment"
         android:label="fragment_register_step1"
         tools:layout="@layout/fragment_register_step1" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerStep2Fragment"
-        android:name="com.changs.pipi.src.fragment.logged_out.join.register_step2.RegisterStep2Fragment"
+        android:name="com.pipix.pipi.src.fragment.logged_out.join.register_step2.RegisterStep2Fragment"
         android:label="fragment_register_step2"
         tools:layout="@layout/fragment_register_step2" >
         <action
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/insertFragment"
-        android:name="com.changs.pipi.src.fragment.insertPerson.InsertFragment"
+        android:name="com.pipix.pipi.src.fragment.insertPerson.InsertFragment"
         android:label="fragment_insert"
         tools:layout="@layout/fragment_insert" />
 </navigation>

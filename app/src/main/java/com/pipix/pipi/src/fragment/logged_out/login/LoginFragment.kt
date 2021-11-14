@@ -1,10 +1,10 @@
-package com.changs.pipi.src.fragment.logged_out.login
+package com.pipix.pipi.src.fragment.logged_out.login
 
 import android.os.Bundle
 import android.view.View
-import com.changs.pipi.R
-import com.changs.pipi.config.BaseFragment
-import com.changs.pipi.databinding.FragmentLoginBinding
+import com.pipix.pipi.R
+import com.pipix.pipi.config.BaseFragment
+import com.pipix.pipi.databinding.FragmentLoginBinding
 
 class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login) {
 

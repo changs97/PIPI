@@ -20,7 +20,11 @@
         android:id="@+id/loginFragment"
         android:name="com.pipix.pipi.src.fragment.logged_out.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_pureFragment2"
+            app:destination="@id/pureFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/registerStep1Fragment"
         android:name="com.pipix.pipi.src.fragment.logged_out.join.register_step1.RegisterStep1Fragment"
@@ -44,4 +48,9 @@
         android:name="com.pipix.pipi.src.fragment.insertPerson.InsertFragment"
         android:label="fragment_insert"
         tools:layout="@layout/fragment_insert" />
+    <fragment
+        android:id="@+id/pureFragment2"
+        android:name="com.pipix.pipi.src.fragment.hearingTest.PureFragment2"
+        android:label="fragment_pure2"
+        tools:layout="@layout/fragment_pure2" />
 </navigation>

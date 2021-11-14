@@ -9,19 +9,22 @@
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable-v24/custom_cursor.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable-v24/custom_edittext.xml" value="0.146875" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable-v24/custom_view2.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable/custom_bottom_navigation.xml" value="0.2" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable/custom_btn.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable/custom_btn1.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable/custom_btn1_textcolor.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable/custom_btn_textcolor.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable/custom_view1.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable/custom_view1_textcolor.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/activity_logged_out.xml" value="0.176" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/activity_login.xml" value="0.152" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/activity_register_step1.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/activity_register_step2.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/fragment_discover.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/fragment_discover.xml" value="0.264" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/fragment_discover2.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/fragment_home.xml" value="0.2390625" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/fragment_logged_out.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/fragment_login.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pck49/Desktop/ICT/PIPI/app/src/main/res/layout/fragment_modify.xml" value="0.25364583333333335" />

@@ -3,7 +3,7 @@
     package="com.pipix.pipi">
 
     <application
-        android:name="com.pipix.pipi.config.ApplicationClass"
+        android:name=".config.ApplicationClass"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PIPI">
         <activity
-            android:name="com.pipix.pipi.src.main.MainActivity"
+            android:name=".src.discover.DiscoverActiviy"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".src.main.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -20,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

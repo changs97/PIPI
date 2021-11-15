@@ -15,7 +15,9 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
 
         val back = binding.registerStep2ImgbtnBack
         val t = binding.registerStep2BtnJoin
-        t.setOnClickListener { findNavController().navigate(R.id.action_registerStep2Fragment_to_second_graph)}
+        t.setOnClickListener {
+            findNavController().navigate(R.id.action_registerStep2Fragment_to_second_graph)
+            findNavController().graph.startDestination = R.id.second_graph}
 
 
     }

@@ -22,8 +22,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_discoverActiviy"
-            app:destination="@id/discoverActiviy" />
+            android:id="@+id/action_loginFragment_to_discoverFragment"
+            app:destination="@id/discoverFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerStep1Fragment"
@@ -40,12 +40,12 @@
         android:label="fragment_register_step2"
         tools:layout="@layout/fragment_register_step2" >
         <action
-            android:id="@+id/action_registerStep2Fragment_to_discoverActiviy"
-            app:destination="@id/discoverActiviy" />
+            android:id="@+id/action_registerStep2Fragment_to_discoverFragment"
+            app:destination="@id/discoverFragment" />
     </fragment>
-    <activity
-        android:id="@+id/discoverActiviy"
-        android:name="com.pipix.pipi.src.discover.DiscoverActiviy"
-        android:label="activity_discover"
-        tools:layout="@layout/activity_discover" />
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.pipix.pipi.src.discover.DiscoverFragment"
+        android:label="fragment_discover"
+        tools:layout="@layout/fragment_discover" />
 </navigation>

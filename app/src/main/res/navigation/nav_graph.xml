@@ -22,8 +22,10 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_discoverFragment"
-            app:destination="@id/discoverFragment" />
+            android:id="@+id/action_loginFragment_to_second_graph"
+            app:destination="@id/second_graph"
+            app:popUpTo="@id/loggedOutFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/registerStep1Fragment"
@@ -40,12 +42,10 @@
         android:label="fragment_register_step2"
         tools:layout="@layout/fragment_register_step2" >
         <action
-            android:id="@+id/action_registerStep2Fragment_to_discoverFragment"
-            app:destination="@id/discoverFragment" />
+            android:id="@+id/action_registerStep2Fragment_to_second_graph"
+            app:destination="@id/second_graph"
+            app:popUpTo="@id/loggedOutFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
-    <fragment
-        android:id="@+id/discoverFragment"
-        android:name="com.pipix.pipi.src.discover.DiscoverFragment"
-        android:label="fragment_discover"
-        tools:layout="@layout/fragment_discover" />
+    <include app:graph="@navigation/second_graph" />
 </navigation>

@@ -15,8 +15,8 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
         val back = binding.loginImgbtnBack
 
         val t = binding.loginBtnLogin
-        t.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_discoverActiviy) }
-
-
+        t.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_second_graph)
+            findNavController().graph.startDestination = R.id.second_graph}
     }
 }

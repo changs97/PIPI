@@ -55,15 +55,4 @@
 
     <include app:graph="@navigation/second_graph" />
 
-    <fragment
-        android:id="@+id/insertFragment"
-        android:name="com.pipix.pipi.src.fragment.insertPerson.InsertFragment"
-        android:label="fragment_insert"
-        tools:layout="@layout/fragment_insert" />
-    <fragment
-        android:id="@+id/pureFragment2"
-        android:name="com.pipix.pipi.src.fragment.hearingTest.PureFragment2"
-        android:label="fragment_pure2"
-        tools:layout="@layout/fragment_pure2" />
-
 </navigation>

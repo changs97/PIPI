@@ -23,6 +23,7 @@ import com.pipix.pipi.R
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult
+import com.pipix.pipi.data.SpeechResult
 import com.pipix.pipi.databinding.FragmentSpeechBinding
 import com.pipix.pipi.testpackage.SoundController
 import com.pipix.pipi.testpackage.SpeechTest
@@ -32,6 +33,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.random.Random.Default.nextInt
 
 class SpeechFragment : BaseFragment<FragmentSpeechBinding>(
     FragmentSpeechBinding::bind, R.layout.fragment_speech) {
@@ -70,14 +72,14 @@ class SpeechFragment : BaseFragment<FragmentSpeechBinding>(
         setListener()
         
         prViewModel = ViewModelProvider(this).get(PRViewModel::class.java)
-        prViewModel.readAllData.observe(viewLifecycleOwner, Observer { list ->
+        prViewModel.readAllPureData.observe(viewLifecycleOwner, Observer { list ->
             tpaLeft = list[list.size-1].tpaLeft
             tpaRight = list[list.size -1].tpaRight
         })
 
         // 테스트 객체 생성
         speechViewModel = ViewModelProvider(this).get(SpeechViewModel::class.java)
-        speechTest= SpeechTest(tpaRight, tpaLeft, binding.speechCountText, speechViewModel, prViewModel, requireContext())
+        speechTest= SpeechTest(tpaRight, tpaLeft, binding.speechCountText, speechViewModel, requireContext())
 
 
         speechViewModel.currentCountVisible.observe(viewLifecycleOwner, Observer {
@@ -132,8 +134,8 @@ class SpeechFragment : BaseFragment<FragmentSpeechBinding>(
                 val now = System.currentTimeMillis()
                 val date =  Date(now)
                 val sdf =  SimpleDateFormat("yyyy.MM.dd a hh시 mm분")
-                val pr = PureResult(0,2,result[0],result[1],sdf.format(date),result[2],result[3])
-                prViewModel.addPureResult(pr)
+                val sr = SpeechResult(0,result[0],result[1],sdf.format(date),result[2],result[3], (0..100).random())
+                prViewModel.addSpeechResult(sr)
                 isPause = true
                 // activity?.runOnUiThread { findNavController().navigate(R.id.action_speechFragment_to_resultFragment) }
             }

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/insertFragment"
+    android:padding="20dp"
+    tools:context=".src.fragment.insertPerson.InsertFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/insert_imgbtn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/transparency"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:id="@+id/insert_text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/insert_title"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/name" />
+
+            <EditText
+                android:id="@+id/insert_edittext_name"
+                android:background="@drawable/custom_edittext"
+                android:layout_marginTop="10dp"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:paddingStart="15dp"
+                android:paddingVertical="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/insert_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textSize="20dp"
+                android:text="@string/age" />
+
+            <EditText
+                android:id="@+id/insert_edittext_age"
+                android:background="@drawable/custom_edittext"
+                android:layout_marginTop="10dp"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:paddingStart="15dp"
+                android:paddingVertical="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/insert_age"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textSize="20dp"
+                android:text="@string/sex" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <RadioButton
+                    android:id="@+id/insert_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="@string/man"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"/>
+
+                <RadioButton
+                    android:id="@+id/insert_woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="@string/woman"
+                    android:textSize="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textSize="20dp"
+                android:text="@string/address" />
+
+            <EditText
+                android:id="@+id/insert_edittext_address"
+                android:background="@drawable/custom_edittext"
+                android:layout_marginTop="10dp"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:paddingStart="15dp"
+                android:paddingVertical="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/insert_address"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textSize="20dp"
+                android:text="@string/picture" />
+            
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_gravity="center"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:src ="@drawable/ic_basic_profile"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/cardview_light_background"/>
+
+                <ImageButton
+                    android:background="@drawable/custom_btn3"
+                    android:id="@+id/profile_imgbtn_change_image"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_profile_edit_camera"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="70dp"/>
+
+            </FrameLayout>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textSize="20dp"
+                android:text="@string/visitDay" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ToggleButton
+                    android:id="@+id/insert_mon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:textSize="15dp"
+                    android:textOn="@string/Mon"
+                    android:textOff="@string/Mon"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textStyle="bold" />
+                <ToggleButton
+                    android:id="@+id/insert_Tues"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:textOn="@string/Tues"
+                    android:textOff="@string/Tues"
+                    android:textSize="15dp"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textStyle="bold" />
+                <ToggleButton
+                    android:id="@+id/insert_wed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:textOn="@string/Wed"
+                    android:textOff="@string/Wed"
+                    android:textSize="15dp"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textStyle="bold" />
+                <ToggleButton
+                    android:id="@+id/insert_thu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:textOn="@string/Thu"
+                    android:textOff="@string/Thu"
+                    android:textSize="15dp"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textStyle="bold" />
+                <ToggleButton
+                    android:id="@+id/insert_fri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:textOn="@string/Fri"
+                    android:textOff="@string/Fri"
+                    android:textSize="15dp"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textStyle="bold" />
+                <ToggleButton
+                    android:id="@+id/insert_sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:textOn="@string/Sat"
+                    android:textOff="@string/Sat"
+                    android:textSize="15dp"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textStyle="bold" />
+                <ToggleButton
+                    android:id="@+id/insert_sun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:textOn="@string/Sun"
+                    android:textOff="@string/Sun"
+                    android:textSize="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/custom_btn1"
+                android:text="@string/insert_done">
+
+            </Button>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

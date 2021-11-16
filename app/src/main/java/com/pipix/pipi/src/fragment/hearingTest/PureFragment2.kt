@@ -22,6 +22,7 @@ import com.pipix.pipi.testpackage.PureTest2ViewModel
 import com.pipix.pipi.testpackage.SoundController
 import kotlinx.coroutines.*
 import java.util.*
+import kotlin.random.Random.Default.nextInt
 
 class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::bind, R.layout.fragment_pure2) {
 
@@ -90,9 +91,9 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
                 val now = System.currentTimeMillis()
                 val date =  Date(now)
                 val sdf =  SimpleDateFormat("yyyy.MM.dd a hh시 mm분")
-                val pr = PureResult(0,1,pureTest.getTpa(1),pureTest.getTpa(0),sdf.format(date)
-                    ,null,null, result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
-                    , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
+                val pr = PureResult(0,pureTest.getTpa(1),pureTest.getTpa(0),sdf.format(date)
+                    , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
+                    , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3], (0..100).random())
                 viewModel.addPureResult(pr)
                 activity?.runOnUiThread {
                     isPause = true

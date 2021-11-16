@@ -22,14 +22,12 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-
             android:id="@+id/action_loginFragment_to_second_graph"
             app:destination="@id/second_graph"
             app:popUpTo="@id/loggedOutFragment"
             app:popUpToInclusive="true"/>
 
-            android:id="@+id/action_loginFragment_to_pureFragment2"
-            app:destination="@id/pureFragment2" />
+
 
     </fragment>
     <fragment

@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI
 import com.pipix.pipi.R
 import com.pipix.pipi.config.BaseActivity
 import com.pipix.pipi.databinding.ActivityMainBinding
+import com.pipix.pipi.testpackage.SoundController
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +18,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         val bottomNavigationView = binding.bottomNav
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
+
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
 
@@ -29,5 +31,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 bottomNavigationView.visibility = View.GONE
             }
         }
+
+        //SoundController init
+        SoundController.init(applicationContext)
+
     }
 }

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/insertFragment"
     android:padding="20dp"
     tools:context=".src.fragment.insertPerson.InsertFragment">
 
@@ -26,6 +27,7 @@
                 android:src="@drawable/back" />
 
             <TextView
+                android:id="@+id/insert_text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -92,9 +94,9 @@
                     android:background="@drawable/selector_radio_button"
                     android:button="@null"
                     android:text="@string/man"
-                    android:textSize="15dp"
                     android:textAlignment="center"
                     android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <Space
@@ -139,17 +141,37 @@
                 android:layout_marginTop="40dp"
                 android:textSize="20dp"
                 android:text="@string/picture" />
+            
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:src ="@drawable/aaa"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/cardview_light_background"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_gravity="center"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:src ="@drawable/ic_basic_profile"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/cardview_light_background"/>
+
+                <ImageButton
+                    android:background="@drawable/custom_btn3"
+                    android:id="@+id/profile_imgbtn_change_image"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_profile_edit_camera"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="70dp"/>
+
+            </FrameLayout>
+
+
 
             <TextView
                 android:layout_width="wrap_content"

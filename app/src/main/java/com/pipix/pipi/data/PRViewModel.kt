@@ -10,13 +10,15 @@ import kotlinx.coroutines.launch
 class PRViewModel(applications: Application): AndroidViewModel(applications) {
 
     //not private
-    val readAllData: LiveData<List<PureResult>>
+    val readAllPureData: LiveData<List<PureResult>>
+    val readAllSpeechData: LiveData<List<SpeechResult>>
     private val repository: PRRepository
 
     init{
         val pureResultDao = PRDatabase.getDatabase(applications).pureResultDao()
         repository = PRRepository(pureResultDao)
-        readAllData = repository.readAllData
+        readAllPureData = repository.readAllPureData
+        readAllSpeechData = repository.readAllSpeechData
     }
 
     fun deletePureResult(pr: PureResult){
@@ -28,6 +30,18 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
     fun addPureResult(pr: PureResult){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addPureResult(pr)
+        }
+    }
+
+    fun deleteSpeechResult(sr: SpeechResult){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteSpeechResult(sr)
+        }
+    }
+
+    fun addSpeechResult(sr: SpeechResult){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addSpeechResult(sr)
         }
     }
 }

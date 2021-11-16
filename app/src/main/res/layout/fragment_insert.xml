@@ -158,7 +158,7 @@
                     app:civ_border_color="@color/cardview_light_background"/>
 
                 <ImageButton
-                    android:background="@drawable/custom_btn3"
+                    android:background="@drawable/custom_btn4"
                     android:id="@+id/profile_imgbtn_change_image"
                     android:paddingVertical="10dp"
                     android:paddingHorizontal="8dp"

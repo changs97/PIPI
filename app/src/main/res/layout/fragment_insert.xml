@@ -284,6 +284,11 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/insert_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

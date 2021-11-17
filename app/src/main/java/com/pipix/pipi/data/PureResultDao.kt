@@ -12,8 +12,11 @@ interface PureResultDao {
     @Delete
     suspend fun deletePureResult(pr: PureResult)
 
-    @Query("SELECT * FROM pure_result_table ORDER BY id ASC")
+    @Query("SELECT * FROM pure_result_table ORDER BY date ASC")
     fun readAllPureData(): LiveData<List<PureResult>>
+
+    @Query("SELECT * FROM pure_result_table  WHERE oldID = oldID ORDER BY date ASC")
+    fun readAllLOldData(oldID : Int): LiveData<List<PureResult>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addSpeechResult(sr: SpeechResult)

@@ -91,15 +91,15 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
                 val now = System.currentTimeMillis()
                 val date =  Date(now)
                 val sdf =  SimpleDateFormat("yyyy.MM.dd a hh시 mm분")
-                val pr = PureResult(0,pureTest.getTpa(1),pureTest.getTpa(0),sdf.format(date)
+                // sdf.format(date)
+                val pr = PureResult(0, date, pureTest.getTpa(1),pureTest.getTpa(0)
                     , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
-                    , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3], (0..100).random())
+                    , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
                 viewModel.addPureResult(pr)
                 activity?.runOnUiThread {
                     isPause = true
                     //findNavController().navigate(R.id.action_pureFragment2_to_resultFragment)
                 }
-
             }
         }
 

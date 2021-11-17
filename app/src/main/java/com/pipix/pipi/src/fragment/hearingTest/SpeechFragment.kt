@@ -140,7 +140,6 @@ class SpeechFragment : BaseFragment<FragmentSpeechBinding>(
                 // activity?.runOnUiThread { findNavController().navigate(R.id.action_speechFragment_to_resultFragment) }
             }
         }
-
     }
 
     private fun setListener() {

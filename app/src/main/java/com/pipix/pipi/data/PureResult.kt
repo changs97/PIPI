@@ -51,7 +51,6 @@ data class Schedule(
     // not key
     val userId: String,
     @PrimaryKey
-    @ForeignKey(entity = Old::class, parentColumns = arrayOf("oldId"), onDelete = ForeignKey.CASCADE)
     val oldId: Int,
     @PrimaryKey
     val day: Int,

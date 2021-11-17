@@ -5,8 +5,8 @@ import androidx.room.*
 
 @Dao
 interface PureResultDao {
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    // Pure Result
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addPureResult(pr: PureResult)
 
     @Delete
@@ -15,9 +15,27 @@ interface PureResultDao {
     @Query("SELECT * FROM pure_result_table ORDER BY date ASC")
     fun readAllPureData(): LiveData<List<PureResult>>
 
-    @Query("SELECT * FROM pure_result_table  WHERE oldID = oldID ORDER BY date ASC")
-    fun readAllLOldData(oldID : Int): LiveData<List<PureResult>>
+    @Query("SELECT * FROM pure_result_table ORDER BY date ASC")
+    fun getAllPureData(): List<PureResult>
 
+
+    // Old
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addOld(old: Old)
+
+    @Delete
+    suspend fun deleteOld(old: Old)
+
+    @Query("SELECT * FROM old_table ORDER BY oldID ASC")
+    fun readAllOld(): LiveData<List<Old>>
+
+    @Query("SELECT * FROM old_table ORDER BY oldID ASC")
+    fun getAllOld(): List<Old>
+
+
+
+
+    // 미사용
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addSpeechResult(sr: SpeechResult)
 

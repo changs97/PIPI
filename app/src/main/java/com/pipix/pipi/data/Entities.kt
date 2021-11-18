@@ -9,7 +9,7 @@ import java.util.*
 
 @Entity(tableName = "pure_result_table")
 data class PureResult (
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val oldID: Int,
     val userID: String,
     val date: Date,

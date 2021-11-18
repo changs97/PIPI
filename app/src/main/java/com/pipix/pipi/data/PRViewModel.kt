@@ -35,8 +35,8 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
         }
     }
 
-    fun getAllPureData(){
-        repository.getAllPureData()
+    fun getAllPureData(): MutableList<PureResult>{
+        return repository.getAllPureData()
     }
 
     // Old
@@ -52,8 +52,8 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
         }
     }
 
-    fun getAllOld(){
-        repository.getAllOld()
+    fun getAllOld(): MutableList<Old>{
+        return repository.getAllOld()
     }
 
 

@@ -10,13 +10,23 @@ import kotlinx.coroutines.launch
 class PRViewModel(applications: Application): AndroidViewModel(applications) {
 
     //not private
-    val readAllData: LiveData<List<PureResult>>
+    val readAllPureData: LiveData<List<PureResult>>
+    val readAllOld: LiveData<List<Old>>
+
     private val repository: PRRepository
 
     init{
         val pureResultDao = PRDatabase.getDatabase(applications).pureResultDao()
         repository = PRRepository(pureResultDao)
-        readAllData = repository.readAllData
+        readAllPureData = repository.readAllPureData
+        readAllOld = repository.readAllOld
+    }
+
+    // PureResult
+    fun addPureResult(pr: PureResult){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addPureResult(pr)
+        }
     }
 
     fun deletePureResult(pr: PureResult){
@@ -25,9 +35,42 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
         }
     }
 
-    fun addPureResult(pr: PureResult){
+    fun getAllPureData(){
+        repository.getAllPureData()
+    }
+
+    // Old
+    fun addOld(old: Old){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addPureResult(pr)
+            repository.addOld(old)
+        }
+    }
+
+    fun deleteOld(old: Old){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteOld(old)
+        }
+    }
+
+    fun getAllOld(){
+        repository.getAllOld()
+    }
+
+
+
+
+
+
+    // 미사용
+    fun deleteSpeechResult(sr: SpeechResult){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteSpeechResult(sr)
+        }
+    }
+
+    fun addSpeechResult(sr: SpeechResult){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addSpeechResult(sr)
         }
     }
 }

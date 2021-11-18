@@ -13,7 +13,7 @@ import java.util.*
 import kotlin.concurrent.thread
 import kotlin.math.pow
 
-class SpeechTest(private val tpaRight: Int, private val tpaLeft: Int, private val textCount: TextView, private val speechViewModel: SpeechViewModel, val prViewModel: PRViewModel, val context: Context) {
+class SpeechTest(private val tpaRight: Int, private val tpaLeft: Int, private val textCount: TextView, private val speechViewModel: SpeechViewModel, val context: Context) {
     private var recordString = ""
     private var isPaused = false
     private var isRecorded = false

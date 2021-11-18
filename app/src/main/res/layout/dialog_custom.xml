@@ -4,33 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:layout_margin="10dp"
         android:paddingHorizontal="10dp"
-        android:background="@color/amerald"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
         <TextView
-            android:layout_centerInParent="true"
-            android:gravity="center"
+            style="@style/NormalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="방문시간 설정하기"
-            style="@style/NormalText"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="방문시간 설정"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageButton
-            android:layout_centerVertical="true"
             android:id="@+id/dialog_imgbtn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:background="@color/transparency"
             android:src="@drawable/back" />
 
@@ -56,7 +57,7 @@
             android:background="@drawable/custom_edittext"
             android:drawableRight="@drawable/ic_baseline_arrow_drop_down"
             android:paddingHorizontal="10dp"
-            android:text="시작 시간" />
+            android:text="시작시간" />
 
         <Button
             android:id="@+id/dialog_item_btn_end"
@@ -68,7 +69,7 @@
             android:background="@drawable/custom_edittext"
             android:drawableRight="@drawable/ic_baseline_arrow_drop_down"
             android:paddingHorizontal="10dp"
-            android:text="종료 시간"
+            android:text="종료시간"
             />
 
     </LinearLayout>
@@ -78,9 +79,11 @@
 
     <Button
         android:id="@+id/dialog_btn_complete"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_btn2"
+        android:background="@drawable/custom_btn3"
+        android:textColor="@drawable/custom_btn3_textcolor"
         android:text="@string/insert_done"/>
 
 

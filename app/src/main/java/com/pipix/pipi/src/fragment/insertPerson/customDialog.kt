@@ -10,7 +10,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.annotation.RequiresApi
+import com.pipix.pipi.data.Old
 import com.pipix.pipi.databinding.DialogCustomBinding
+import com.pipix.pipi.src.main.MainActivity
 
 class CustomDialog(context: Context, val title : String) : Dialog(context) {
     @RequiresApi(Build.VERSION_CODES.N)
@@ -56,7 +58,6 @@ class CustomDialog(context: Context, val title : String) : Dialog(context) {
         }
 
         complate.setOnClickListener {
-
             InsertFragment.dataList.add(TestData(setStartTime.text.toString(), setEndTime.text.toString(), title))
             InsertFragment.recyclerviewAdapter.notifyDataSetChanged()
             dismiss()

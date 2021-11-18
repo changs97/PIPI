@@ -7,16 +7,40 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/insert_item_title"
+    <RelativeLayout
+        android:paddingHorizontal="10dp"
         android:background="@color/amerald"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="33sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:text="월요일"/>
+        android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:id="@+id/insert_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="33sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="월요일"/>
+
+            <ImageButton
+                android:layout_centerVertical="true"
+                android:background="@color/transparency"
+                android:layout_alignParentRight="true"
+                android:id="@+id/insert_item_imgbtn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_clear_24"/>
+
+
+
+
+
+    </RelativeLayout>
+
+
 
     <LinearLayout
         android:layout_marginTop="10dp"

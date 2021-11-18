@@ -81,6 +81,7 @@
                 android:text="@string/sex" />
 
             <RadioGroup
+                android:id="@+id/insert_radiogroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -185,102 +186,95 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
-                <ToggleButton
+                <Button
                     android:id="@+id/insert_mon"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_radio_button"
-                    android:button="@null"
-                    android:textSize="15dp"
-                    android:textOn="@string/Mon"
-                    android:textOff="@string/Mon"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_btn3"
+                    android:button="@null"
+                    android:text="@string/Mon"
                     android:textAlignment="center"
                     android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
-                <ToggleButton
+
+                <Button
                     android:id="@+id/insert_Tues"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_radio_button"
-                    android:button="@null"
-                    android:textOn="@string/Tues"
-                    android:textOff="@string/Tues"
-                    android:textSize="15dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_btn3"
+                    android:text="@string/Tues"
                     android:textAlignment="center"
                     android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
-                <ToggleButton
+
+                <Button
                     android:id="@+id/insert_wed"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_radio_button"
-                    android:button="@null"
-                    android:textOn="@string/Wed"
-                    android:textOff="@string/Wed"
-                    android:textSize="15dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_btn3"
+                    android:text="@string/Wed"
                     android:textAlignment="center"
                     android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
-                <ToggleButton
+
+                <Button
                     android:id="@+id/insert_thu"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_radio_button"
-                    android:button="@null"
-                    android:textOn="@string/Thu"
-                    android:textOff="@string/Thu"
-                    android:textSize="15dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_btn3"
+                    android:text="@string/Thu"
                     android:textAlignment="center"
                     android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
-                <ToggleButton
+
+                <Button
                     android:id="@+id/insert_fri"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_radio_button"
-                    android:button="@null"
-                    android:textOn="@string/Fri"
-                    android:textOff="@string/Fri"
-                    android:textSize="15dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_btn3"
+                    android:text="@string/Fri"
                     android:textAlignment="center"
                     android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
-                <ToggleButton
+
+                <Button
                     android:id="@+id/insert_sat"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_radio_button"
-                    android:button="@null"
-                    android:textOn="@string/Sat"
-                    android:textOff="@string/Sat"
-                    android:textSize="15dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_btn3"
+                    android:text="@string/Sat"
                     android:textAlignment="center"
                     android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
-                <ToggleButton
+
+                <Button
                     android:id="@+id/insert_sun"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_radio_button"
-                    android:button="@null"
-                    android:textOn="@string/Sun"
-                    android:textOff="@string/Sun"
-                    android:textSize="15dp"
+                    android:background="@drawable/custom_btn3"
+                    android:text="@string/Sun"
                     android:textAlignment="center"
                     android:textColor="@drawable/selector_radio_text"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -291,11 +285,13 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:id="@+id/insert_btn_complate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/custom_btn1"
-                android:text="@string/insert_done">
+                android:background="@drawable/custom_btn3"
+                android:text="@string/insert_done"
+                android:textColor="@drawable/custom_btn1_textcolor">
 
             </Button>
         </LinearLayout>

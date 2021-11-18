@@ -285,6 +285,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="20dp"
                 android:id="@+id/insert_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

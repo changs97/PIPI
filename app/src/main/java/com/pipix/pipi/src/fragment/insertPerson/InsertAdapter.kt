@@ -1,20 +1,21 @@
 package com.pipix.pipi.src.fragment.insertPerson
 
-import android.content.Intent
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
-import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.dataList
+import okhttp3.internal.http2.Http2Connection
+import java.security.AccessControlContext
 
 
-class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapter<InsertAdapter.ViewHolder>() {
 
+
+class InsertAdapter(val dataList: MutableList<TestData> )  :  RecyclerView.Adapter<InsertAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -23,7 +24,10 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
         var endTime  : TextView? = null
         var deleteBtn : ImageButton? = null
 
+
+
         init {
+
             // Define click listener for the ViewHolder's View.
 
             title = view.findViewById(R.id.insert_item_title)
@@ -60,25 +64,34 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
 
         var currentItem = dataList[position]
 
+
         viewHolder.title!!.text = currentItem.title
         viewHolder.startTime!!.text = currentItem.startTime
         viewHolder.endTime!!.text = currentItem.endTime
 
-
-
         viewHolder.deleteBtn!!.setOnClickListener {
             removeItem(position)
             when(currentItem.title) {
-                "월요일" -> InsertFragment.monTime = "${currentItem.startTime}-${currentItem.endTime}"
-                "화요일" -> InsertFragment.tuesTime ="${currentItem.startTime}-${currentItem.endTime}"
-                "수요일" -> InsertFragment.wedTime = "${currentItem.startTime}-${currentItem.endTime}"
-                "목요일" -> InsertFragment.thuTime = "${currentItem.startTime}-${currentItem.endTime}"
-                "금요일" -> InsertFragment.friTime = "${currentItem.startTime}-${currentItem.endTime}"
-                "토요일" -> InsertFragment.satTime = "${currentItem.startTime}-${currentItem.endTime}"
-                "일요일" -> InsertFragment.sunTime = "${currentItem.startTime}-${currentItem.endTime}"
+                "월요일" -> {InsertFragment.monChecked = false
+                InsertFragment.monTime = null}
+                "화요일" -> {InsertFragment.tuesChecked = false
+                    InsertFragment.tuesTime = null}
+                "수요일" -> {InsertFragment.wedChecked = false
+                    InsertFragment.wedTime = null}
+                "목요일" -> {InsertFragment.thuChecked = false
+                    InsertFragment.thuTime = null}
+                "금요일" -> {InsertFragment.friChecked = false
+                    InsertFragment.friTime = null}
+                "토요일" -> {InsertFragment.satChecked = false
+                    InsertFragment.satTime = null}
+                "일요일" -> {InsertFragment.sunChecked = false
+                    InsertFragment.sunTime = null}
             }
 
         }
+
+
+
 
     }
 

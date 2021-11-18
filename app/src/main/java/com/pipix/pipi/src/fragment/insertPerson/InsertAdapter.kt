@@ -23,12 +23,6 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
         var endTime  : TextView? = null
         var deleteBtn : ImageButton? = null
 
-
-
-
-
-
-
         init {
             // Define click listener for the ViewHolder's View.
 
@@ -36,7 +30,6 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
             startTime = view.findViewById(R.id.insert_item_text_start)
             endTime = view.findViewById(R.id.insert_item_text_end)
             deleteBtn = view.findViewById(R.id.insert_item_imgbtn_delete)
-
         }
     }
 
@@ -72,6 +65,7 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
         viewHolder.endTime!!.text = currentItem.endTime
 
 
+
         viewHolder.deleteBtn!!.setOnClickListener {
             removeItem(position)
             when(currentItem.title) {
@@ -86,12 +80,7 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
 
         }
 
-
-
     }
-
-
-
 
 
 }

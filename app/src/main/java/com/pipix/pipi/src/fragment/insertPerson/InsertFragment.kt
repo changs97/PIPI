@@ -17,6 +17,14 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         var dataList = mutableListOf<TestData>()
         var recyclerviewAdapter = InsertAdapter(dataList)
 
+        // 방문 요일의 체크 상태를 처리할 변수
+        var monChecked : Boolean = false
+        var tuesChecked : Boolean = false
+        var wedChecked : Boolean = false
+        var thuChecked : Boolean = false
+        var friChecked : Boolean = false
+        var satChecked : Boolean = false
+        var sunChecked : Boolean = false
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -89,6 +97,8 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                 return false
             }
         })
+
+
 
 
 

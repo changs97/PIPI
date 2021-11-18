@@ -15,7 +15,7 @@ class PRRepository(private val pureResultDao: PureResultDao) {
         pureResultDao.deletePureResult(pr)
     }
 
-    fun getAllPureData(): List<PureResult>{
+    fun getAllPureData(): MutableList<PureResult>{
         return pureResultDao.getAllPureData()
     }
 
@@ -31,7 +31,7 @@ class PRRepository(private val pureResultDao: PureResultDao) {
         pureResultDao.deleteOld(old)
     }
 
-    fun getAllOld(): List<Old>{
+    fun getAllOld(): MutableList<Old>{
         return pureResultDao.getAllOld()
     }
 

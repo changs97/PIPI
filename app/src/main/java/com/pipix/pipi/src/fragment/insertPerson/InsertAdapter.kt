@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
 import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.dataList
@@ -74,16 +75,16 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
         viewHolder.deleteBtn!!.setOnClickListener {
             removeItem(position)
             when(currentItem.title) {
-                "월요일" -> InsertFragment.monChecked = false
-                "화요일" -> InsertFragment.tuesChecked = false
-                "수요일" -> InsertFragment.wedChecked = false
-                "목요일" -> InsertFragment.thuChecked = false
-                "금요일" -> InsertFragment.friChecked = false
-                "토요일" -> InsertFragment.satChecked = false
-                "일요일" -> InsertFragment.sunChecked = false
+                "월요일" -> InsertFragment.monTime = "${currentItem.startTime}-${currentItem.endTime}"
+                "화요일" -> InsertFragment.tuesTime ="${currentItem.startTime}-${currentItem.endTime}"
+                "수요일" -> InsertFragment.wedTime = "${currentItem.startTime}-${currentItem.endTime}"
+                "목요일" -> InsertFragment.thuTime = "${currentItem.startTime}-${currentItem.endTime}"
+                "금요일" -> InsertFragment.friTime = "${currentItem.startTime}-${currentItem.endTime}"
+                "토요일" -> InsertFragment.satTime = "${currentItem.startTime}-${currentItem.endTime}"
+                "일요일" -> InsertFragment.sunTime = "${currentItem.startTime}-${currentItem.endTime}"
             }
-        }
 
+        }
 
 
 

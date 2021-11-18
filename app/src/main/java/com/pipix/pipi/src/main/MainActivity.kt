@@ -36,4 +36,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         SoundController.init(applicationContext)
 
     }
+
+    override fun onPause() {
+        super.onPause()
+        showCustomToast("onPause")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        showCustomToast("onDestroy")
+    }
 }

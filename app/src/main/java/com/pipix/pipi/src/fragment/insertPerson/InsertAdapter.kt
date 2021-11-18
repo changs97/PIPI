@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
@@ -19,6 +20,8 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
         var title : TextView? = null
         var startTime : TextView? = null
         var endTime  : TextView? = null
+        var deleteBtn : ImageButton? = null
+
 
 
 
@@ -31,11 +34,16 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
             title = view.findViewById(R.id.insert_item_title)
             startTime = view.findViewById(R.id.insert_item_text_start)
             endTime = view.findViewById(R.id.insert_item_text_end)
-
-
+            deleteBtn = view.findViewById(R.id.insert_item_imgbtn_delete)
 
         }
     }
+
+    fun removeItem(position: Int) {
+        dataList.removeAt(position)
+        notifyDataSetChanged()
+    }
+
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int):ViewHolder {
         // Create a new view, which defines the UI of the list item
@@ -61,6 +69,20 @@ class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapt
         viewHolder.title!!.text = currentItem.title
         viewHolder.startTime!!.text = currentItem.startTime
         viewHolder.endTime!!.text = currentItem.endTime
+
+
+        viewHolder.deleteBtn!!.setOnClickListener {
+            removeItem(position)
+            when(currentItem.title) {
+                "월요일" -> InsertFragment.monChecked = false
+                "화요일" -> InsertFragment.tuesChecked = false
+                "수요일" -> InsertFragment.wedChecked = false
+                "목요일" -> InsertFragment.thuChecked = false
+                "금요일" -> InsertFragment.friChecked = false
+                "토요일" -> InsertFragment.satChecked = false
+                "일요일" -> InsertFragment.sunChecked = false
+            }
+        }
 
 
 

@@ -8,16 +8,17 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
+import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.dataList
 
 
-class InsertAdapter(val data : List<String>)  :  RecyclerView.Adapter<InsertAdapter.ViewHolder>() {
+class InsertAdapter(val dataList : MutableList<TestData>)  :  RecyclerView.Adapter<InsertAdapter.ViewHolder>() {
 
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var title : TextView? = null
-        var startTime : Button? = null
-        var endTime  : Button? = null
+        var startTime : TextView? = null
+        var endTime  : TextView? = null
 
 
 
@@ -28,17 +29,10 @@ class InsertAdapter(val data : List<String>)  :  RecyclerView.Adapter<InsertAdap
             // Define click listener for the ViewHolder's View.
 
             title = view.findViewById(R.id.insert_item_title)
-            startTime = view.findViewById(R.id.insert_item_btn_start)
-            endTime = view.findViewById(R.id.insert_item_btn_end)
+            startTime = view.findViewById(R.id.insert_item_text_start)
+            endTime = view.findViewById(R.id.insert_item_text_end)
 
 
-            startTime!!.setOnClickListener {
-
-            }
-
-            endTime!!.setOnClickListener {
-
-            }
 
         }
     }
@@ -52,7 +46,7 @@ class InsertAdapter(val data : List<String>)  :  RecyclerView.Adapter<InsertAdap
     }
 
     override fun getItemCount(): Int {
-        return  data.size
+        return  dataList.size
     }
 
 
@@ -62,11 +56,19 @@ class InsertAdapter(val data : List<String>)  :  RecyclerView.Adapter<InsertAdap
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
 
-        viewHolder.title!!.text = data[position]
+        var currentItem = dataList[position]
+
+        viewHolder.title!!.text = currentItem.title
+        viewHolder.startTime!!.text = currentItem.startTime
+        viewHolder.endTime!!.text = currentItem.endTime
+
 
 
 
     }
+
+
+
 
 
 }

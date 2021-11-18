@@ -42,7 +42,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         MainActivity.viewModel.addOld(Old(0, "userID", "KIM", 56,1,"목동", null,
         "12-30-16-00",null, null,null,null,null,null))
         MainActivity.viewModel.addOld(Old(0, "userID", "JU", 56,1,"목동", null,
-            "12-30-16-00",null, null,null,null,null,null))
+            null,"04-23-05-27", null,null,null,null,null))
 
 
 

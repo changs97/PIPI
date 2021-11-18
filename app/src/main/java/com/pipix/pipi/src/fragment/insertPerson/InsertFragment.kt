@@ -99,14 +99,5 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         recyclerView.adapter = recyclerviewAdapter
     }
 
-    override fun onPause() {
-        super.onPause()
-        showCustomToast("onPause")
 
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        showCustomToast("onDetach")
-    }
 }

@@ -59,13 +59,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     }
 
-    override fun onPause() {
-        super.onPause()
-        showCustomToast("onPause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        showCustomToast("onDestroy")
-    }
 }

@@ -5,9 +5,12 @@ import android.text.Editable
 import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
@@ -27,11 +30,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private var recyclerviewAdapter: RecyclerView.Adapter<SearchAdapter.ViewHolder>? =null
     private var searchList: MutableList<Old> = MainActivity.oldList as MutableList<Old>
-    private lateinit var sViewModel: SearchViewModel
     private lateinit var updatedList: MutableList<Old>
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchText: EditText
-    private lateinit var scope: CoroutineScope
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,10 +45,18 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             "12-30-16-00",null, null,null,null,null,null))
 
 
+
         searchText = binding.searchEdittextName
+
+        //초기 기본 리스트 반환
+        updatedList = searchList
+
         searchText.addTextChangedListener {
-            sViewModel.setSearchText( searchText.text.toString())
+            updateList(searchText.text.toString())
+            recyclerviewAdapter = SearchAdapter(updatedList)
+            recyclerView.adapter = recyclerviewAdapter
         }
+
 
 
         recyclerView = binding.searchRecyclerview
@@ -57,25 +66,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
         }
 
-        //초기 기본 리스트 반환
-        updatedList = searchList
-        sViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        sViewModel.searchText.observe(viewLifecycleOwner,{
-
-            updateList(it)
-            recyclerviewAdapter = SearchAdapter(updatedList)
-
-            // 리사이클러뷰에 Adapter 객체 지정.
-            recyclerView.adapter = recyclerviewAdapter
-        })
+        recyclerviewAdapter = SearchAdapter(updatedList)
+        recyclerView.adapter = recyclerviewAdapter
     }
 
     private fun updateList(str: String) {
-        if(str.isNotEmpty()){
+        if(str.isNotBlank()){
             updatedList = mutableListOf()
             for(old in searchList){
                 if(old.oldName.contains(str)) updatedList.add(old)
             }
-        }
+        }else updatedList = searchList
     }
 }

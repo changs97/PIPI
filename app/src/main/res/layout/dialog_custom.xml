@@ -6,24 +6,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
+        android:paddingHorizontal="10dp"
         android:background="@color/amerald"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageButton
-            android:paddingLeft="10dp"
-            android:id="@+id/dialog_imgbtn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/transparency"
-            android:src="@drawable/back" />
 
         <TextView
+            android:layout_centerInParent="true"
             android:gravity="center"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="방문시간 설정하기"
@@ -33,7 +25,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-    </LinearLayout>
+        <ImageButton
+            android:layout_centerVertical="true"
+            android:id="@+id/dialog_imgbtn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@color/transparency"
+            android:src="@drawable/back" />
+
+
+    </RelativeLayout>
 
 
 

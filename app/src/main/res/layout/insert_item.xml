@@ -33,7 +33,6 @@
             android:layout_weight="1"/>
 
 
-
         <TextView
             android:gravity="center"
             android:layout_width="wrap_content"
@@ -44,41 +43,37 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginHorizontal="20dp"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/insert_item_btn_start"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
+        <TextView
+            android:id="@+id/insert_item_text_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:background="@drawable/custom_edittext"
-            android:drawableRight="@drawable/ic_baseline_arrow_drop_down"
-            android:paddingHorizontal="10dp"
-            android:text="시간을 선택하세요"
-            />
+            android:layout_weight="1"
+            android:gravity="center"
+            style="@style/NormalText"
+            android:text="시간" />
 
-        <Button
-            android:id="@+id/insert_item_btn_end"
-            android:layout_marginLeft="20dp"
+        <TextView
+            android:id="@+id/insert_item_text_end"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:background="@drawable/custom_edittext"
-            android:drawableRight="@drawable/ic_baseline_arrow_drop_down"
-            android:paddingHorizontal="10dp"
-            android:text="시간을 선택하세요"
+            android:gravity="center"
+            android:text="시간"
+            style="@style/NormalText"
+
             />
 
     </LinearLayout>
 
    <View
-        android:layout_marginHorizontal="10dp"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/line"/>

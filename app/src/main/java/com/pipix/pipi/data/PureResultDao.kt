@@ -16,7 +16,7 @@ interface PureResultDao {
     fun readAllPureData(): LiveData<List<PureResult>>
 
     @Query("SELECT * FROM pure_result_table ORDER BY date ASC")
-    fun getAllPureData(): List<PureResult>
+    fun getAllPureData(): MutableList<PureResult>
 
 
     // Old
@@ -30,8 +30,7 @@ interface PureResultDao {
     fun readAllOld(): LiveData<List<Old>>
 
     @Query("SELECT * FROM old_table ORDER BY oldID ASC")
-    fun getAllOld(): List<Old>
-
+    fun getAllOld(): MutableList<Old>
 
 
 

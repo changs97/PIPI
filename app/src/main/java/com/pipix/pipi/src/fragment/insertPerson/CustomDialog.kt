@@ -96,17 +96,18 @@ class CustomDialog(context: Context, val title : String) : Dialog(context) {
                         setStartTime.text.toString(),
                         setEndTime.text.toString(),
                         title
-                    )
+                    ))
 
-                )
+                var startTimeText = setStartTime.text.split(":")
+                var endTimeText = setEndTime.text.split(":")
                 when(title) {
-                    "월요일" -> {InsertFragment.monTime = "${setStartTime.text}-${setEndTime.text}"}
-                    "화요일" -> {InsertFragment.tuesTime = "${setStartTime.text}-${setEndTime.text}"}
-                    "수요일" -> {InsertFragment.wedTime = "${setStartTime.text}-${setEndTime.text}" }
-                    "목요일" -> {InsertFragment.thuTime = "${setStartTime.text}-${setEndTime.text}" }
-                    "금요일" -> {InsertFragment.friTime = "${setStartTime.text}-${setEndTime.text}" }
-                    "토요일" -> {InsertFragment.satTime = "${setStartTime.text}-${setEndTime.text}" }
-                    "일요일" -> {InsertFragment.sunTime = "${setStartTime.text}-${setEndTime.text}" }
+                    "월요일" -> {InsertFragment.monTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
+                    "화요일" -> {InsertFragment.tuesTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
+                    "수요일" -> {InsertFragment.wedTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
+                    "목요일" -> {InsertFragment.thuTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
+                    "금요일" -> {InsertFragment.friTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
+                    "토요일" -> {InsertFragment.satTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
+                    "일요일" -> {InsertFragment.sunTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
                 }
                 InsertFragment.recyclerviewAdapter.notifyDataSetChanged()
                 dismiss()

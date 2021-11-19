@@ -12,6 +12,7 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
     //not private
     val readAllPureData: LiveData<List<PureResult>>
     val readAllOld: LiveData<List<Old>>
+    lateinit var currentOld: Old
 
     private val repository: PRRepository
 

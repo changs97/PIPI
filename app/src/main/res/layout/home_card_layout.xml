@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/home_card_image"
@@ -22,11 +22,11 @@
             app:srcCompat="@drawable/ic_basic_profile" />
 
         <TextView
-            android:id="@+id/search_card_name"
+            android:id="@+id/home_card_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black"
             android:textSize="20dp" />
 

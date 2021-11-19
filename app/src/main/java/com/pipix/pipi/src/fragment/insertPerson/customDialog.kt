@@ -37,13 +37,13 @@ class CustomDialog(context: Context, val title : String) : Dialog(context) {
         setContentView(dialogBinding.root)
         setOnCancelListener {
             when(title) {
-                "월요일" -> { InsertFragment.monChecked = false}
-                "화요일" -> { InsertFragment.tuesChecked = false}
-                "수요일" -> { InsertFragment.wedChecked = false}
-                "목요일" -> { InsertFragment.thuChecked = false}
-                "금요일" -> { InsertFragment.friChecked = false}
-                "토요일" -> { InsertFragment.satChecked = false}
-                "일요일" -> { InsertFragment.sunChecked = false}
+                "월요일" -> {InsertFragment.monliveChecked.value = false}
+                "화요일" -> {InsertFragment.tuesliveChecked.value = false}
+                "수요일" -> {InsertFragment.wedliveChecked.value = false}
+                "목요일" -> {InsertFragment.thuliveChecked.value = false}
+                "금요일" -> {InsertFragment.friliveChecked.value = false}
+                "토요일" -> {InsertFragment.satliveChecked.value = false}
+                "일요일" -> {InsertFragment.sunliveChecked.value = false}
             }
         }
 
@@ -70,13 +70,13 @@ class CustomDialog(context: Context, val title : String) : Dialog(context) {
 
         back.setOnClickListener {
             when(title) {
-                "월요일" -> { InsertFragment.monChecked = false}
-                "화요일" -> { InsertFragment.tuesChecked = false}
-                "수요일" -> { InsertFragment.wedChecked = false}
-                "목요일" -> { InsertFragment.thuChecked = false}
-                "금요일" -> { InsertFragment.friChecked = false}
-                "토요일" -> { InsertFragment.satChecked = false}
-                "일요일" -> { InsertFragment.sunChecked = false}
+                "월요일" -> {InsertFragment.monliveChecked.value = false}
+                "화요일" -> {InsertFragment.tuesliveChecked.value = false}
+                "수요일" -> {InsertFragment.wedliveChecked.value = false}
+                "목요일" -> {InsertFragment.thuliveChecked.value = false}
+                "금요일" -> {InsertFragment.friliveChecked.value = false}
+                "토요일" -> {InsertFragment.satliveChecked.value = false}
+                "일요일" -> {InsertFragment.sunliveChecked.value = false}
             }
             dismiss()
         }

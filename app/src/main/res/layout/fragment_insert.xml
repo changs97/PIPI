@@ -9,10 +9,7 @@
     tools:context=".src.fragment.insertPerson.InsertFragment">
 
 
-      <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/insert_swiperefreshlayot"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
 
               <ScrollView
@@ -322,6 +319,4 @@
               </ScrollView>
 
 
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

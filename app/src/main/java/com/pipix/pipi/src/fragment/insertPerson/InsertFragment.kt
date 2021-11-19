@@ -144,7 +144,13 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                 address.text = null
                 genderType = null
                 radioGroup.clearCheck()
-
+                monliveChecked.value = false
+                tuesliveChecked.value = false
+                wedliveChecked.value = false
+                thuliveChecked.value = false
+                friliveChecked.value = false
+                satliveChecked.value = false
+                sunliveChecked.value = false
             }
             else{ showCustomToast("필수 항목을 모두 입력하세요")
             }

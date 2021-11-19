@@ -37,15 +37,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        // 임시 추가 데이터
-        MainActivity.viewModel.addOld(Old(0, "userID", "KIM", 56,1,"목동", null,
-        "12-30-16-00",null, null,null,null,null,null))
-        MainActivity.viewModel.addOld(Old(0, "userID", "JU", 56,1,"목동", null,
-            null,"04-23-05-27", null,null,null,null,null))
-
-
-
         searchText = binding.searchEdittextName
 
         //초기 기본 리스트 반환

@@ -12,7 +12,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btn = binding.button2
-        btn.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_profileFragment) }
+        val userName = "userName"
+        binding.homeTitle.text = "$userName 요양사님"
+        binding.homePlan.text = "오늘 방문 예정인 어르신"
     }
 }

@@ -57,36 +57,38 @@ class SearchAdapter(private val oldList: MutableList<Old>)  :  RecyclerView.Adap
         return oldList.size
     }
 
-    fun getSchedule(old: Old): String{
-        var schedule = ""
-        if(!old.mon.isNullOrBlank()){
-            val sl = old.mon.split("-")
-            schedule += "월요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+    companion object{
+        fun getSchedule(old: Old): String{
+            var schedule = ""
+            if(!old.mon.isNullOrBlank()){
+                val sl = old.mon.split("-")
+                schedule += "월요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+            }
+            if(!old.tue.isNullOrBlank()){
+                val sl = old.tue.split("-")
+                schedule += "화요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+            }
+            if(!old.wed.isNullOrBlank()){
+                val sl = old.wed.split("-")
+                schedule += "화요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+            }
+            if(!old.thu.isNullOrBlank()){
+                val sl = old.thu.split("-")
+                schedule += "목요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+            }
+            if(!old.fri.isNullOrBlank()){
+                val sl = old.fri.split("-")
+                schedule += "금요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+            }
+            if(!old.sat.isNullOrBlank()){
+                val sl = old.sat.split("-")
+                schedule += "토요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+            }
+            if(!old.sun.isNullOrBlank()){
+                val sl = old.sun.split("-")
+                schedule += "일요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+            }
+            return schedule
         }
-        if(!old.tue.isNullOrBlank()){
-            val sl = old.tue.split("-")
-            schedule += "화요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
-        }
-        if(!old.wed.isNullOrBlank()){
-            val sl = old.wed.split("-")
-            schedule += "화요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
-        }
-        if(!old.thu.isNullOrBlank()){
-            val sl = old.thu.split("-")
-            schedule += "목요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
-        }
-        if(!old.fri.isNullOrBlank()){
-            val sl = old.fri.split("-")
-            schedule += "금요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
-        }
-        if(!old.sat.isNullOrBlank()){
-            val sl = old.sat.split("-")
-            schedule += "토요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
-        }
-        if(!old.sun.isNullOrBlank()){
-            val sl = old.sun.split("-")
-            schedule += "일요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
-        }
-        return schedule
     }
 }

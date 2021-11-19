@@ -70,28 +70,33 @@ class InsertAdapter(val dataList: MutableList<TestData> )  :  RecyclerView.Adapt
         viewHolder.deleteBtn!!.setOnClickListener {
             removeItem(position)
             when(currentItem.title) {
-                "월요일" -> {InsertFragment.monChecked = false
-                InsertFragment.monTime = null}
-                "화요일" -> {InsertFragment.tuesChecked = false
-                    InsertFragment.tuesTime = null}
-                "수요일" -> {InsertFragment.wedChecked = false
-                    InsertFragment.wedTime = null}
-                "목요일" -> {InsertFragment.thuChecked = false
-                    InsertFragment.thuTime = null}
-                "금요일" -> {InsertFragment.friChecked = false
-                    InsertFragment.friTime = null}
-                "토요일" -> {InsertFragment.satChecked = false
-                    InsertFragment.satTime = null}
-                "일요일" -> {InsertFragment.sunChecked = false
-                    InsertFragment.sunTime = null}
+                "월요일" -> {
+                InsertFragment.monTime = null
+                    InsertFragment.monliveChecked.value = false
+                }
+                "화요일" -> {
+                    InsertFragment.tuesTime = null
+                    InsertFragment.tuesliveChecked.value = false}
+                "수요일" -> {
+                    InsertFragment.wedTime = null
+                    InsertFragment.wedliveChecked.value = false}
+                "목요일" -> {
+                    InsertFragment.thuTime = null
+                    InsertFragment.thuliveChecked.value = false}
+                "금요일" -> {
+                    InsertFragment.friTime = null
+                    InsertFragment.friliveChecked.value = false}
+                "토요일" -> {
+                    InsertFragment.satTime = null
+                    InsertFragment.satliveChecked.value = false}
+                "일요일" -> {
+                    InsertFragment.sunTime = null
+                    InsertFragment.sunliveChecked.value = false}
             }
 
         }
 
 
-
-
     }
-
 
 }

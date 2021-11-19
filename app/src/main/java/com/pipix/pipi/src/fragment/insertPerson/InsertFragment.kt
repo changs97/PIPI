@@ -39,7 +39,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //기본 방문자 정보
         val complete = binding.insertBtnComplate
         val name = binding.insertEdittextName
         val address = binding.insertEdittextAddress
@@ -180,6 +179,17 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
 
         recyclerView.adapter = recyclerviewAdapter
+    }
+
+    override fun onPause() {
+        super.onPause()
+        monChecked = false
+        tuesChecked  = false
+        wedChecked  = false
+        thuChecked = false
+        friChecked = false
+        satChecked = false
+        sunChecked  = false
     }
 
     override fun onDetach() {

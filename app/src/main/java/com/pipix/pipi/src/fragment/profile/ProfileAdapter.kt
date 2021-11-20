@@ -10,10 +10,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
 import com.pipix.pipi.data.PureResult
-import com.pipix.pipi.src.fragment.profile.ProfileFragment.Companion.dataList
-import com.pipix.pipi.src.main.MainActivity
 
-class ProfileAdapter :  RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
+class ProfileAdapter(private var dataList: MutableList<PureResult>) :  RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
 
 
 
@@ -75,13 +73,12 @@ class ProfileAdapter :  RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
         val time = currentItem.date
         viewHolder.dateTime?.setText(time.toString())
         viewHolder.data = dataList[position]
-        viewHolder.itemPosition = position
 
     }
 
 
 
-    fun setData(user : List<PureResult>){
+    fun setData(user : MutableList<PureResult>){
         dataList = user
         notifyDataSetChanged()
     }

@@ -22,7 +22,6 @@ import com.pipix.pipi.testpackage.PureTest2ViewModel
 import com.pipix.pipi.testpackage.SoundController
 import kotlinx.coroutines.*
 import java.util.*
-import kotlin.random.Random.Default.nextInt
 
 class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::bind, R.layout.fragment_pure2) {
 
@@ -98,7 +97,7 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
                 viewModel.addPureResult(pr)
                 activity?.runOnUiThread {
                     isPause = true
-                    //findNavController().navigate(R.id.action_pureFragment2_to_resultFragment)
+                    findNavController().navigate(R.id.action_pureFragment2_to_profileFragment)
                 }
             }
         }
@@ -107,7 +106,7 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
         binding.pure2ButtonPause.setOnClickListener {
             pureTest.pause()
             isPause = true
-            //findNavController().navigate(R.id.action_pureFragment2_to_ProfileFragment)
+            findNavController().navigate(R.id.action_pureFragment2_to_profileFragment)
             showCustomToast("순음청력검사가 취소 되었습니다.")
         }
 
@@ -115,7 +114,7 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             pureTest.pause()
             isPause = true
-            //findNavController().navigate(R.id.action_pureFragment2_to_ProfileFragment)
+            findNavController().navigate(R.id.action_pureFragment2_to_profileFragment)
             showCustomToast("순음청력검사가 취소 되었습니다.")
         }
 
@@ -124,7 +123,7 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
     override fun onPause() {
         pureTest.pause()
         SoundController.mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,7,1)
-        //if(!isPause)findNavController().navigate(R.id.action_pureFragment2_to_ProfileFragment)
+        if(!isPause)findNavController().navigate(R.id.action_pureFragment2_to_profileFragment)
         super.onPause()
     }
 }

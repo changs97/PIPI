@@ -12,8 +12,8 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val btn = binding.button
-        showCustomToast(MainActivity.viewModel.currentOld.oldID.toString())
+
+
 
 
     }

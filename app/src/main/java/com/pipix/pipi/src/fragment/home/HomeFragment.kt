@@ -28,7 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         val userName = "userName"
         binding.homeTitle.text = "$userName 요양사님,"
         binding.homePlan.text = "오늘 방문 예정인 어르신"
-        binding.homePlan2.text = "내일 방뮨 예정인 어르신"
+        binding.homePlan2.text = "내일 방문 예정인 어르신"
         recyclerView = binding.homeRecyclerview
         recyclerView2 = binding.homeRecyclerview2
 
@@ -60,7 +60,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         // Tomorrow or Yesterday
         getHomeList((day+1)%7)
-        recyclerviewAdapter2 = SearchAdapter(updatedList)
+        recyclerviewAdapter2 = SearchAdapter(updatedList, 0)
         recyclerView2.adapter = recyclerviewAdapter2
 
         if(updatedList.size == 0) {

@@ -29,7 +29,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         var satliveChecked : MutableLiveData<Boolean> = MutableLiveData()
         var sunliveChecked  : MutableLiveData<Boolean> = MutableLiveData()
 
-
         var monTime : String? = null
         var tuesTime : String? = null
         var wedTime : String? = null
@@ -55,9 +54,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         val BtnFri = binding.insertFri
         val BtnSat = binding.insertSat
         val BtnSun = binding.insertSun
-
-
-
 
 
         monliveChecked.observe(viewLifecycleOwner, Observer {
@@ -151,6 +147,13 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                 friliveChecked.value = false
                 satliveChecked.value = false
                 sunliveChecked.value = false
+                monTime  = null
+                tuesTime  = null
+                wedTime  = null
+                thuTime  = null
+                friTime  = null
+                satTime  = null
+                sunTime  = null
             }
             else{ showCustomToast("필수 항목을 모두 입력하세요")
             }

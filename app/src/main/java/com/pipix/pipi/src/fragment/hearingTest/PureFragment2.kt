@@ -17,6 +17,7 @@ import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.FragmentPure2Binding
+import com.pipix.pipi.src.main.MainActivity
 import com.pipix.pipi.testpackage.PureTest2
 import com.pipix.pipi.testpackage.PureTest2ViewModel
 import com.pipix.pipi.testpackage.SoundController
@@ -43,7 +44,7 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
 
         SoundController.isStopMusicOfOtherApps()
 
-        viewModel = ViewModelProvider(this).get(PRViewModel::class.java)
+        viewModel = MainActivity.viewModel
         ptViewModel = ViewModelProvider(this).get(PureTest2ViewModel::class.java)
         pureTest = PureTest2(binding.pure2ButtonYes,binding.pure2ButtonNo,requireContext(), ptViewModel)
 
@@ -89,24 +90,22 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
                 result = pureTest.getResult()
                 val now = System.currentTimeMillis()
                 val date =  Date(now)
-                val sdf =  SimpleDateFormat("yyyy.MM.dd a hh시 mm분")
-                // sdf.format(date)
-                val pr = PureResult(0, "userID", date, pureTest.getTpa(1),pureTest.getTpa(0)
+
+                val pr = PureResult(MainActivity.viewModel.currentOld.oldID, "userID", date, pureTest.getTpa(1),pureTest.getTpa(0)
                     , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
                     , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
                 viewModel.addPureResult(pr)
                 activity?.runOnUiThread {
                     isPause = true
-                    findNavController().navigate(R.id.action_pureFragment2_to_profileFragment)
+                    findNavController().popBackStack()
                 }
             }
         }
 
-
         binding.pure2ButtonPause.setOnClickListener {
             pureTest.pause()
             isPause = true
-            findNavController().navigate(R.id.action_pureFragment2_to_profileFragment)
+            findNavController().popBackStack()
             showCustomToast("순음청력검사가 취소 되었습니다.")
         }
 
@@ -114,16 +113,15 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             pureTest.pause()
             isPause = true
-            findNavController().navigate(R.id.action_pureFragment2_to_profileFragment)
+            findNavController().popBackStack()
             showCustomToast("순음청력검사가 취소 되었습니다.")
         }
-
     }
 
     override fun onPause() {
         pureTest.pause()
         SoundController.mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,7,1)
-        if(!isPause)findNavController().navigate(R.id.action_pureFragment2_to_profileFragment)
+        if(!isPause)findNavController().popBackStack()
         super.onPause()
     }
 }

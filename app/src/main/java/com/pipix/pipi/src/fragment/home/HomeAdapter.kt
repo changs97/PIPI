@@ -47,7 +47,7 @@ class HomeAdapter (private val oldList: MutableList<Old>)  :  RecyclerView.Adapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var currentItem = oldList[position]
 
-        holder.name!!.text = currentItem.oldName + " " + currentItem.oldID
+        holder.name!!.text = currentItem.oldName
         holder.image!!.setImageResource(R.drawable.ic_basic_profile)
         holder.address!!.text = currentItem.oldAddress
         holder.schedule!!.text = SearchAdapter.getSchedule(currentItem)

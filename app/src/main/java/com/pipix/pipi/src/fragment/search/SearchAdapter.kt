@@ -11,9 +11,9 @@ import com.pipix.pipi.R
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.src.main.MainActivity
 
-class SearchAdapter(private val oldList: MutableList<Old>)  :  RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter(private val oldList: MutableList<Old>, private val which: Int)  :  RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, private val which: Int) : RecyclerView.ViewHolder(view) {
 
         var name : TextView? = null
         var image: ImageView? = null
@@ -31,7 +31,9 @@ class SearchAdapter(private val oldList: MutableList<Old>)  :  RecyclerView.Adap
             // 객체 넘겨주기
             view.setOnClickListener {
                 MainActivity.viewModel.currentOld = old
-                findNavController(view).navigate(R.id.action_searchFragment_to_profileFragment)
+                val where = if(which == 1) R.id.action_searchFragment_to_profileFragment
+                else R.id.action_homeFragment_to_profileFragment
+                findNavController(view).navigate(where)
             }
         }
     }
@@ -40,7 +42,7 @@ class SearchAdapter(private val oldList: MutableList<Old>)  :  RecyclerView.Adap
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.search_card_layout, viewGroup, false)
 
-        return ViewHolder(view)
+        return ViewHolder(view, which)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

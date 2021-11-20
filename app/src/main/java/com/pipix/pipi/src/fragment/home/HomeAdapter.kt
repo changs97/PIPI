@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
 import com.pipix.pipi.data.Old
@@ -31,7 +32,7 @@ class HomeAdapter (private val oldList: MutableList<Old>)  :  RecyclerView.Adapt
             // 객체 넘겨주기
             view.setOnClickListener {
                 MainActivity.viewModel.currentOld = old
-                //Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_profileFragment)
+                findNavController(view).navigate(R.id.action_homeFragment_to_profileFragment)
             }
         }
     }

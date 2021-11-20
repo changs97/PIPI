@@ -1,29 +1,16 @@
 package com.pipix.pipi.src.fragment.search
 
 import android.os.Bundle
-import android.text.Editable
-import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
-import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.databinding.FragmentSearchBinding
-import com.pipix.pipi.src.fragment.insertPerson.InsertFragment
-import com.pipix.pipi.src.fragment.insertPerson.TestData
 import com.pipix.pipi.src.main.MainActivity
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search) {
@@ -44,7 +31,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
         searchText.addTextChangedListener {
             updateList(searchText.text.toString())
-            recyclerviewAdapter = SearchAdapter(updatedList)
+            recyclerviewAdapter = SearchAdapter(updatedList,1)
             recyclerView.adapter = recyclerviewAdapter
         }
 
@@ -57,7 +44,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
         }
 
-        recyclerviewAdapter = SearchAdapter(updatedList)
+        recyclerviewAdapter = SearchAdapter(updatedList,1)
         recyclerView.adapter = recyclerviewAdapter
     }
 

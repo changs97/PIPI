@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface PureResultDao {
     // Pure Result
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addPureResult(pr: PureResult)
 
     @Delete

@@ -16,9 +16,6 @@ import com.pipix.pipi.src.main.MainActivity
 
 class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::bind, R.layout.fragment_profile) {
 
-    companion object{
-        var dataList = emptyList<PureResult>()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,23 +38,29 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
         }
 
 
+        var resultDataList = mutableListOf<PureResult>()
+        for(i in MainActivity.pureList){
+            if(i.oldID == old.oldID){
+                resultDataList.add(i)
+            }
+        }
+        var recyclerviewAdapter = ProfileAdapter(resultDataList)
+        recyclerView.adapter = recyclerviewAdapter
 
-        var recyclerviewAdapter = ProfileAdapter()
 
-        val resultDataList = mutableListOf<PureResult>()
         // UserViewModel
         MainActivity.viewModel.readAllPureData.observe(viewLifecycleOwner, Observer { user ->
-
-            for(i in user){
+             resultDataList = mutableListOf()
+            for(i in MainActivity.pureList){
                 if(i.oldID == old.oldID){
                     resultDataList.add(i)
-                    break
                 }
             }
+            var recyclerviewAdapter = ProfileAdapter(resultDataList)
+            recyclerView.adapter = recyclerviewAdapter
 
         })
-        recyclerviewAdapter.setData(resultDataList)
-        recyclerView.adapter = recyclerviewAdapter
+
 
     }
 

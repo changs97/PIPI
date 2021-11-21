@@ -67,26 +67,32 @@ class SearchAdapter(private val oldList: MutableList<Old>, private val which: In
                 schedule += "월요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
             }
             if(!old.tue.isNullOrBlank()){
+                if(schedule.isNotEmpty()) schedule+="\n"
                 val sl = old.tue.split("-")
                 schedule += "화요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
             }
             if(!old.wed.isNullOrBlank()){
+                if(schedule.isNotEmpty()) schedule+="\n"
                 val sl = old.wed.split("-")
                 schedule += "화요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
             }
             if(!old.thu.isNullOrBlank()){
+                if(schedule.isNotEmpty()) schedule+="\n"
                 val sl = old.thu.split("-")
                 schedule += "목요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
             }
             if(!old.fri.isNullOrBlank()){
+                if(schedule.isNotEmpty()) schedule+="\n"
                 val sl = old.fri.split("-")
                 schedule += "금요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
             }
             if(!old.sat.isNullOrBlank()){
+                if(schedule.isNotEmpty()) schedule+="\n"
                 val sl = old.sat.split("-")
                 schedule += "토요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
             }
             if(!old.sun.isNullOrBlank()){
+                if(schedule.isNotEmpty()) schedule+="\n"
                 val sl = old.sun.split("-")
                 schedule += "일요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
             }

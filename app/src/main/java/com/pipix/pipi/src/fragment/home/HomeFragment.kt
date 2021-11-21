@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.pipix.pipi.R
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
@@ -15,11 +16,11 @@ import java.util.*
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
 
-    private var recyclerviewAdapter: RecyclerView.Adapter<HomeAdapter.ViewHolder>? =null
+    private var recyclerviewAdapter: RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>? =null
     private var recyclerviewAdapter2: RecyclerView.Adapter<SearchAdapter.ViewHolder>? =null
     private var homeList: MutableList<Old> = MainActivity.oldList as MutableList<Old>
     private lateinit var updatedList: MutableList<Old>
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: ViewPager2
     private lateinit var recyclerView2: RecyclerView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,11 +33,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         recyclerView = binding.homeRecyclerview
         recyclerView2 = binding.homeRecyclerview2
 
-        recyclerView.layoutManager = object : LinearLayoutManager(activity){
-            override fun canScrollVertically(): Boolean {
-                return false
-            }
-        }
 
         recyclerView2.layoutManager = object : LinearLayoutManager(activity){
             override fun canScrollVertically(): Boolean {
@@ -48,8 +44,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         val day = calendar.get(Calendar.DAY_OF_WEEK)
 
         getHomeList(day) // Mon~ Sun => 1~7
-        recyclerviewAdapter = HomeAdapter(updatedList)
+        recyclerviewAdapter = ViewPagerAdapter(updatedList)
         recyclerView.adapter = recyclerviewAdapter
+
+        recyclerView.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        recyclerView.clipToPadding = false
+        recyclerView.clipChildren = false
+        recyclerView.offscreenPageLimit = 3
+
+        val offsetBetweenPages = resources.getDimensionPixelOffset(R.dimen.offsetBetweenPages).toFloat()
+        recyclerView.setPageTransformer { page, position ->
+            val myOffset = position * -(2 * offsetBetweenPages)
+            if (position < -1) {
+                page.translationX = -myOffset
+            } else if (position <= 1) {
+                // Paging 시 Y축 Animation 배경색을 약간 연하게 처리
+                val scaleFactor = 0.8f.coerceAtLeast(1 - Math.abs(position))
+                page.translationX = myOffset
+                page.scaleY = scaleFactor
+                page.alpha = scaleFactor
+            } else {
+                page.alpha = 0f
+                page.translationX = myOffset
+            }
+        }
 
         if(updatedList.size == 0) {
             val layoutParams = binding.homeNotify.layoutParams as LinearLayout.LayoutParams

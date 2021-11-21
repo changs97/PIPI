@@ -13,7 +13,7 @@ import com.pipix.pipi.data.Old
 import com.pipix.pipi.src.fragment.search.SearchAdapter
 import com.pipix.pipi.src.main.MainActivity
 
-class HomeAdapter (private val oldList: MutableList<Old>)  :  RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class ViewPagerAdapter (private val oldList: MutableList<Old>)  :  RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         var name : TextView? = null

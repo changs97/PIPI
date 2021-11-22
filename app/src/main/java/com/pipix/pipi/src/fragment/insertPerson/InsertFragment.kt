@@ -30,7 +30,7 @@ import com.google.firebase.storage.FirebaseStorage
 class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding::bind, R.layout.fragment_insert) {
 
     companion object {
-        var dataList = mutableListOf<TestData>()
+        var dataList = mutableListOf<SetTime>()
         var recyclerviewAdapter = InsertAdapter(dataList)
 
         var monliveChecked : MutableLiveData<Boolean> = MutableLiveData()
@@ -243,7 +243,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         if(requestCode==IMAGE_PICK&&resultCode== Activity.RESULT_OK){
             selectImage=data?.data
             binding.insertCircleimageProfile.setImageURI(selectImage)
-
             //이미지 업로드
             fileName = "${binding.insertEdittextName.text}${binding.insertEdittextAge.text}.jpg"
             storage.getReference().child("image").child(fileName!!)

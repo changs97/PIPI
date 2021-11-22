@@ -2,6 +2,7 @@ package com.pipix.pipi.src.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
@@ -15,6 +16,7 @@ import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.ActivityMainBinding
 import com.pipix.pipi.testpackage.SoundController
+import java.util.jar.Manifest
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
@@ -27,6 +29,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
         viewModel = ViewModelProvider(this).get(PRViewModel::class.java)
         viewModel.readAllOld.observe(this ,{

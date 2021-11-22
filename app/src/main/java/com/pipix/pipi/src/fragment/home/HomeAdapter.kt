@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.pipix.pipi.R
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.src.fragment.search.SearchAdapter
@@ -48,7 +49,14 @@ class ViewPagerAdapter (private val oldList: MutableList<Old>)  :  RecyclerView.
         var currentItem = oldList[position]
 
         holder.name!!.text = currentItem.oldName
-        holder.image!!.setImageResource(R.drawable.ic_basic_profile)
+
+        if (currentItem.oldImage == null){
+            holder.image!!.setImageResource(R.drawable.ic_basic_profile)}
+        else{
+            Glide.with(holder.itemView.getContext())
+                .load(currentItem.oldImage)
+                .into(holder.image!!)
+        }
         holder.address!!.text = currentItem.oldAddress
         holder.schedule!!.text = SearchAdapter.getSchedule(currentItem)
         holder.old = oldList[position]

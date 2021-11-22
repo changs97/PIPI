@@ -21,8 +21,7 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        var old  = MainActivity.viewModel.currentOld
+        val old  = MainActivity.viewModel.currentOld
 
         dataBind(old)
 
@@ -57,12 +56,9 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
                     resultDataList.add(i)
                 }
             }
-            var recyclerviewAdapter = ProfileAdapter(resultDataList)
+            val recyclerviewAdapter = ProfileAdapter(resultDataList)
             recyclerView.adapter = recyclerviewAdapter
-
         })
-
-
     }
 
 
@@ -70,14 +66,13 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
         binding.profileTextName.text = "${old.oldName}(${old.oldAge})"
         binding.profileTextAddress.text = old.oldAddress
 
-        Log.d("profileimge",old.oldImage.toString())
+        
         if (old.oldImage == null){
             binding.profileCircleimageProfile.setImageResource(R.drawable.ic_basic_profile)}
         else{
             Glide.with(this)
                 .load(old.oldImage.toString())
-                .into(binding.profileCircleimageProfile)
-        }
+                .into(binding.profileCircleimageProfile)}
 
         if(old.mon != null) {
             val mon = old.mon.split("-")
@@ -109,8 +104,6 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             val sun = old.sun.split("-")
             binding.profileTextDateSun.text = "일요일 ${sun[0]}:${sun[1]} - ${sun[2]}:${sun[3]}"
             binding.profileTextDateSun.visibility = VISIBLE}
-
-
     }
 
 }

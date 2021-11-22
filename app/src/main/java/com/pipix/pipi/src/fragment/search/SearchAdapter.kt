@@ -59,7 +59,6 @@ class SearchAdapter(private val oldList: MutableList<Old>, private val which: In
         }
 
         holder.name!!.text = currentItem.oldName
-        holder.image!!.setImageResource(R.drawable.ic_basic_profile)
         holder.address!!.text = currentItem.oldAddress
         holder.schedule!!.text = getSchedule(currentItem)
         holder.old = oldList[position]

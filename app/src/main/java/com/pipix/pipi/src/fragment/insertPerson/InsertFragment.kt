@@ -1,10 +1,8 @@
 package com.pipix.pipi.src.fragment.insertPerson
 
-import android.os.Bundle
-import android.view.MotionEvent
+import android.app.Activity
+import android.content.Intent
 import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,10 +11,16 @@ import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.databinding.FragmentInsertBinding
 import com.pipix.pipi.src.main.MainActivity
+import java.util.*
+import android.net.Uri
+import android.os.Bundle
+import com.google.firebase.storage.FirebaseStorage
+import java.text.SimpleDateFormat
 
 
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding::bind, R.layout.fragment_insert) {
+
     companion object {
         var dataList = mutableListOf<TestData>()
         var recyclerviewAdapter = InsertAdapter(dataList)
@@ -37,8 +41,20 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         var satTime : String? = null
         var sunTime : String? = null
     }
+
+
+    val IMAGE_PICK=1111
+
+    var selectImage: Uri?=null
+
+    lateinit var storage: FirebaseStorage
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        storage= FirebaseStorage.getInstance()
+
 
         val complete = binding.insertBtnComplate
         val name = binding.insertEdittextName
@@ -54,6 +70,10 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         val BtnFri = binding.insertFri
         val BtnSat = binding.insertSat
         val BtnSun = binding.insertSun
+
+
+
+
 
 
         monliveChecked.observe(viewLifecycleOwner, Observer {
@@ -77,11 +97,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         sunliveChecked.observe(viewLifecycleOwner, Observer {
             BtnSun.isChecked  = it
         })
-
-
-
-
-
 
 
 
@@ -128,6 +143,18 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         }
 
         complete.setOnClickListener {
+
+
+            if(selectImage!=null) {
+
+                showCustomToast("hihi")
+                var fileName =
+                    SimpleDateFormat("yyyyMMddHHmmss").format(Date()) // 파일명이 겹치면 안되기 떄문에 시년월일분초 지정
+                storage.getReference().child("image").child(fileName)
+                    .putFile(selectImage!!)//어디에 업로드할지 지정
+            }
+
+
             if(name.text != null && age.text != null && genderType != null && address.text != null){
                 MainActivity.viewModel.addOld(
                     Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), null,
@@ -171,7 +198,23 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
 
         recyclerView.adapter = recyclerviewAdapter
+
+
+
+
+
+
+
+        binding.profileImgbtnChangeImage.setOnClickListener {
+            var intent= Intent(Intent.ACTION_PICK) //선택하면 무언가를 띄움. 묵시적 호출
+            intent.type="image/*"
+            startActivityForResult(intent,IMAGE_PICK)
+        }
+
     }
+
+
+
 
 
 
@@ -183,4 +226,12 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
 
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==IMAGE_PICK&&resultCode== Activity.RESULT_OK){
+            selectImage=data?.data
+            binding.insertCircleimageProfile.setImageURI(selectImage)
+        }
+    }
 }

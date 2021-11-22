@@ -60,13 +60,12 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
         storage= FirebaseStorage.getInstance()
 
+        var genderType : Int? = null
         val complete = binding.insertBtnComplate
         val name = binding.insertEdittextName
         val address = binding.insertEdittextAddress
         val age = binding.insertEdittextAge
         val radioGroup = binding.insertRadiogroup
-        var genderType : Int? = null
-
         val BtnMon = binding.insertMon
         val BtnTues = binding.insertTues
         val BtnWed = binding.insertWed
@@ -74,11 +73,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         val BtnFri = binding.insertFri
         val BtnSat = binding.insertSat
         val BtnSun = binding.insertSun
-
-
-
-
-
 
 
 
@@ -149,8 +143,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         }
 
         complete.setOnClickListener {
-
-
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
                 var imageUrl : String? = null
@@ -174,7 +166,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                         Glide.with(this)
                             .load(R.drawable.ic_basic_profile)
                             .into(binding.insertCircleimageProfile)
-
                         name.text = null
                         age.text = null
                         address.text = null
@@ -211,7 +202,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                     Glide.with(this)
                         .load(R.drawable.ic_basic_profile)
                         .into(binding.insertCircleimageProfile)
-
                     name.text = null
                     age.text = null
                     address.text = null
@@ -231,16 +221,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                     friTime  = null
                     satTime  = null
                     sunTime  = null
-
                 }
-
-
-
-            }
-            else{ showCustomToast("필수 항목을 모두 입력하세요")
-            }
+            }else { showCustomToast("필수 항목을 모두 입력하세요") }
         }
-
 
 
         val recyclerView = binding.insertRecyclerview
@@ -250,19 +233,14 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             }
         })
 
-
         recyclerView.adapter = recyclerviewAdapter
-
-
 
         binding.profileImgbtnChangeImage.setOnClickListener {
             var intent= Intent(Intent.ACTION_PICK) //선택하면 무언가를 띄움. 묵시적 호출
             intent.type="image/*"
             startActivityForResult(intent,IMAGE_PICK)
         }
-
     }
-
 
     override fun onDetach() {
         super.onDetach()
@@ -281,4 +259,5 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                 .putFile(selectImage!!)//어디에 업로드할지 지정
         }
     }
+
 }

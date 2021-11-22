@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "446017215200",
+    "project_id": "pipix-ccecb",
+    "storage_bucket": "pipix-ccecb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446017215200:android:85814d9b52e6010381ce85",
+        "android_client_info": {
+          "package_name": "com.pipix.pipi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446017215200-n9ncrkmdhmrbcenct541le50jkjs20p6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZeN88haOJnz6GZPGjlwFKP1erYhHw5tY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446017215200-n9ncrkmdhmrbcenct541le50jkjs20p6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

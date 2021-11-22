@@ -7,6 +7,7 @@ import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.pipix.pipi.R
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
@@ -68,6 +69,15 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
     fun dataBind(old: Old) {
         binding.profileTextName.text = "${old.oldName}(${old.oldAge})"
         binding.profileTextAddress.text = old.oldAddress
+
+        Log.d("profileimge",old.oldImage.toString())
+        if (old.oldImage == null){
+            binding.profileCircleimageProfile.setImageResource(R.drawable.ic_basic_profile)}
+        else{
+            Glide.with(this)
+                .load(old.oldImage.toString())
+                .into(binding.profileCircleimageProfile)
+        }
 
         if(old.mon != null) {
             val mon = old.mon.split("-")

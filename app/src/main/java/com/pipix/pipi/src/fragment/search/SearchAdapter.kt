@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.pipix.pipi.R
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.src.main.MainActivity
@@ -47,6 +48,15 @@ class SearchAdapter(private val oldList: MutableList<Old>, private val which: In
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var currentItem = oldList[position]
+
+
+        if (currentItem.oldImage == null){
+            holder.image!!.setImageResource(R.drawable.ic_basic_profile)}
+        else{
+            Glide.with(holder.itemView.getContext())
+                .load(currentItem.oldImage)
+                .into(holder.image!!)
+        }
 
         holder.name!!.text = currentItem.oldName
         holder.image!!.setImageResource(R.drawable.ic_basic_profile)

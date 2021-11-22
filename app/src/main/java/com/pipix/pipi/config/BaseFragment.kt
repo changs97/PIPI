@@ -1,6 +1,8 @@
 package com.pipix.pipi.config
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,5 +36,7 @@ abstract class BaseFragment<B : ViewBinding>(
     fun showCustomToast(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
+
+
 
 }

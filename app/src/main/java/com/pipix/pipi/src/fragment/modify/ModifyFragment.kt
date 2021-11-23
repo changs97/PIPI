@@ -12,7 +12,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.ToggleButton
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -24,7 +23,6 @@ import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.databinding.FragmentModifyBinding
 import com.pipix.pipi.src.fragment.insertPerson.CustomDialog
-import com.pipix.pipi.src.fragment.insertPerson.InsertAdapter
 import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.dataList
 import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.friTime
 import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.friliveChecked
@@ -46,7 +44,6 @@ import com.pipix.pipi.src.main.MainActivity
 
 
 class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding::bind, R.layout.fragment_modify) {
-
 
 
     val IMAGE_PICK = 1111
@@ -76,6 +73,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
             findNavController().popBackStack()
         }
 
+
         storage= FirebaseStorage.getInstance()
 
         val data =  args.myArg2
@@ -83,6 +81,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         viewBind()
 
         dataBind(data)
+
 
         monliveChecked.observe(viewLifecycleOwner, Observer {
             BtnMon.isChecked  = it
@@ -156,11 +155,8 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                     dismissLoadingDialog()
                 }, 5000)
 
-                val imageUrl : String? = null
-
 
                 if(selectImage!=null) {
-
                     val fileName = "${binding.modifyEdittextName.text}${binding.modifyEdittextAge.text}.jpg"
 
                     val ref = storage.getReference().child("image").child(fileName)
@@ -197,11 +193,12 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                             // Handle failures
                             Log.d("insert테스트","이미지 업로드 실패")
                         }
+                        findNavController().popBackStack()
                     }
                 }
                 else{
                     MainActivity.viewModel.addOld(
-                        Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), imageUrl,
+                        Old(data.oldID, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), data.oldImage,
                             monTime,
                             tuesTime,
                             wedTime,
@@ -212,7 +209,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                         ))
                     //all clear
                     dataClear()
-
+                    findNavController().popBackStack()
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
         }
@@ -250,7 +247,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         BtnSun = binding.modifySun
     }
 
-    fun dataBind(old: Old) {
+    fun dataBind(old: ModifyOld) {
 
         binding.modifyEdittextName.setText(old.oldName)
         binding.modifyEdittextAddress.setText(old.oldAddress)
@@ -261,50 +258,68 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         else{
             Glide.with(this)
                 .load(old.oldImage.toString())
-                .into(binding.modifyCircleimageProfile)}
+                .into(binding.modifyCircleimageProfile) }
         when(old.oldSex){
-            1 -> binding.modifyMan.isChecked = true
-            2 -> binding.modifyWoman.isChecked = true
+            1 -> {
+                binding.modifyMan.isChecked = true
+                genderType = 1}
+            2 -> {
+                binding.modifyWoman.isChecked = true
+                genderType = 2}
         }
 
 
         if(old.mon != null){
+            monTime = old.mon
+            monliveChecked.value = true
             val setTime = old.mon.split("-")
             val startTimeText = "${setTime[0]}:${setTime[1]}"
             val endTimeText = "${setTime[2]}:${setTime[3]}"
             dataList.add(SetTime(startTimeText,endTimeText,"월요일"))
         }
         if(old.tue != null){
+            tuesTime = old.tue
+            tuesliveChecked.value = true
             val setTime = old.tue.split("-")
             val startTimeText = "${setTime[0]}:${setTime[1]}"
             val endTimeText = "${setTime[2]}:${setTime[3]}"
             dataList.add(SetTime(startTimeText,endTimeText,"화요일"))
         }
         if(old.wed != null){
+            wedTime = old.wed
+            wedliveChecked.value = true
             val setTime = old.wed.split("-")
             val startTimeText = "${setTime[0]}:${setTime[1]}"
             val endTimeText = "${setTime[2]}:${setTime[3]}"
             dataList.add(SetTime(startTimeText,endTimeText,"수요일"))
         }
         if(old.thu != null){
+            thuTime = old.thu
+            thuliveChecked.value = true
             val setTime = old.thu.split("-")
             val startTimeText = "${setTime[0]}:${setTime[1]}"
             val endTimeText = "${setTime[2]}:${setTime[3]}"
             dataList.add(SetTime(startTimeText,endTimeText,"목요일"))
         }
         if(old.fri != null){
+            friTime = old.fri
+            friliveChecked.value = true
             val setTime = old.fri.split("-")
             val startTimeText = "${setTime[0]}:${setTime[1]}"
             val endTimeText = "${setTime[2]}:${setTime[3]}"
             dataList.add(SetTime(startTimeText,endTimeText,"금요일"))
         }
         if(old.sat!= null){
+            satTime = old.sat
+            satliveChecked.value = true
             val setTime = old.sat.split("-")
             val startTimeText = "${setTime[0]}:${setTime[1]}"
             val endTimeText = "${setTime[2]}:${setTime[3]}"
             dataList.add(SetTime(startTimeText,endTimeText,"토요일"))
         }
         if(old.sun != null){
+            sunTime = old.sun
+            sunliveChecked.value = true
             val setTime = old.sun.split("-")
             val startTimeText = "${setTime[0]}:${setTime[1]}"
             val endTimeText = "${setTime[2]}:${setTime[3]}"

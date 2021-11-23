@@ -20,6 +20,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.ToggleButton
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 
@@ -73,6 +74,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         storage= FirebaseStorage.getInstance()
 
         viewBind()
+
 
         monliveChecked.observe(viewLifecycleOwner, Observer {
             BtnMon.isChecked  = it

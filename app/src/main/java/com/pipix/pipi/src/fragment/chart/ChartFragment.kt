@@ -2,7 +2,6 @@ package com.pipix.pipi.src.fragment.chart
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
@@ -16,10 +15,8 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.pipix.pipi.R
 import com.pipix.pipi.config.BaseFragment
-import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.FragmentChartBinding
 import com.pipix.pipi.src.main.MainActivity
-import java.sql.Date
 
 
 
@@ -37,40 +34,34 @@ class ChartFragment   : BaseFragment<FragmentChartBinding>(FragmentChartBinding:
             findNavController().popBackStack()
         }
 
-
         val data =  args.myArg
 
         val pta = (data.tpaLeft + data.tpaRight) / 2
-        Log.d("test",pta.toString())
-
-        var image1 = binding.chartImageviewAngry
-        var image2 = binding.chartImageviewSad
-        var image3 = binding.chartImageviewNeutral
-        var image4 = binding.chartImageviewSmile
-
-        var text1 = binding.chartTextviewAngry
-        var text2 = binding.chartTextviewSad
-        var text3 = binding.chartTextviewNeutural
-        var text4 = binding.chartTextviewSmile
+        val image1 = binding.chartImageviewAngry
+        val image2 = binding.chartImageviewSad
+        val image3 = binding.chartImageviewNeutral
+        val image4 = binding.chartImageviewSmile
+        val text1 = binding.chartTextviewAngry
+        val text2 = binding.chartTextviewSad
+        val text3 = binding.chartTextviewNeutural
+        val text4 = binding.chartTextviewSmile
         when(pta){
             in 0..10 -> {  image4.setImageResource(R.drawable.smile2)
-                text4.setTextColor(getColor((activity as MainActivity),R.color.amerald))
+                text4.setTextColor(getColor((activity as MainActivity),R.color.navy))
                 text4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_baseline_lens_24_2, 0, 0)}
             in 10..30 -> {image3.setImageResource(R.drawable.neutral2)
-                text3.setTextColor(getColor((activity as MainActivity),R.color.amerald))
+                text3.setTextColor(getColor((activity as MainActivity),R.color.navy))
                 text3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_baseline_lens_24_2, 0, 0)}
             in 30..50 -> {image2.setImageResource(R.drawable.sad2)
-                text2.setTextColor(getColor((activity as MainActivity),R.color.amerald))
+                text2.setTextColor(getColor((activity as MainActivity),R.color.navy))
                 text2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_baseline_lens_24_2, 0, 0)}
             else -> {image1.setImageResource(R.drawable.angry2)
-                text1.setTextColor(getColor((activity as MainActivity),R.color.amerald))
+                text1.setTextColor(getColor((activity as MainActivity),R.color.navy))
                 text1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_baseline_lens_24_2, 0, 0)}
 
         }
 
 
-
-        Log.d("test",data.toString())
         var lineChart: LineChart? = null
 
         lineChart = binding.chart
@@ -137,14 +128,7 @@ class ChartFragment   : BaseFragment<FragmentChartBinding>(FragmentChartBinding:
             )
 
 
-
-
-
-
-
-
         //디자인 부분
-
         val chartData = LineData()
         val set1 = LineDataSet(entries, " : 왼쪽 귀")
         chartData.addDataSet(set1)
@@ -155,8 +139,6 @@ class ChartFragment   : BaseFragment<FragmentChartBinding>(FragmentChartBinding:
         set1.circleHoleRadius = 7F
         set1.setCircleColor(Color.RED)
         set1.setDrawValues(false)
-
-
 
 
 
@@ -235,17 +217,12 @@ class ChartFragment   : BaseFragment<FragmentChartBinding>(FragmentChartBinding:
 
 
 
-
-
-
         xAxis.valueFormatter = MyXAxisFormatter()
         yAxisRight.valueFormatter = MyYAxisFormatter()
 
 
 
-
         lineChart.animateX(1000) //X축 애니메이션
-
 
         lineChart.invalidate()
 
@@ -263,14 +240,8 @@ class ChartFragment   : BaseFragment<FragmentChartBinding>(FragmentChartBinding:
     inner class MyYAxisFormatter : ValueFormatter() {
         private val dB = arrayOf("100dB","90dB","80dB","70dB","60dB","50dB","40dB","30dB","20dB","10dB","0dB","-10dB")
         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-            return dB.getOrNull(value.toInt() - 1) ?: value.toInt().toString() + "dB"
-        }
-
+            return dB.getOrNull(value.toInt() - 1) ?: value.toInt().toString() + "dB" }
     }
-
-
-
-
 
 
 }

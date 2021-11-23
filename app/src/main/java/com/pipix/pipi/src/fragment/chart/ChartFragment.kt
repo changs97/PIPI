@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
@@ -33,7 +34,7 @@ class ChartFragment   : BaseFragment<FragmentChartBinding>(FragmentChartBinding:
 
 
         binding.chartImgbtnBack.setOnClickListener {
-           //뒤로가기
+            findNavController().popBackStack()
         }
 
 
@@ -244,7 +245,7 @@ class ChartFragment   : BaseFragment<FragmentChartBinding>(FragmentChartBinding:
 
 
         lineChart.animateX(1000) //X축 애니메이션
-        //lineChart.animateY(1000) //Y축 애니메이션
+
 
         lineChart.invalidate()
 

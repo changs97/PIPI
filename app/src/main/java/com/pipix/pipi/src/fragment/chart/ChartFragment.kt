@@ -32,10 +32,9 @@ class ChartFragment   : BaseFragment<FragmentChartBinding>(FragmentChartBinding:
 
 
 
-        binding.chartImageviewBtnBack.setOnClickListener {
+        binding.chartImgbtnBack.setOnClickListener {
            //뒤로가기
         }
-        args
 
 
         val data =  args.myArg

@@ -13,6 +13,8 @@ import com.pipix.pipi.databinding.FragmentInsertBinding
 import com.pipix.pipi.src.main.MainActivity
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -54,9 +56,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     val IMAGE_PICK = 1111
     var selectImage: Uri?=null
     lateinit var storage: FirebaseStorage
-    var fileName : String? = null
     var genderType : Int? = null
-
     lateinit var complete : Button
     lateinit var name : EditText
     lateinit var address : EditText
@@ -103,8 +103,8 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.insert_man-> genderType = 1
-                R.id.insert_woman-> genderType = 2
+                R.id.insert_man -> genderType = 1
+                R.id.insert_woman -> genderType = 2
             }
         }
 
@@ -145,24 +145,47 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         complete.setOnClickListener {
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
-                var imageUrl : String? = null
+               showLoadingDialog(context as MainActivity)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    dismissLoadingDialog()
+                }, 5000)
+
+                val imageUrl : String? = null
+
 
                 if(selectImage!=null) {
 
-                    storage.getReference().child("image").child(fileName!!).getDownloadUrl().addOnSuccessListener {
+                    val fileName = "${binding.insertEdittextName.text}${binding.insertEdittextAge.text}.jpg"
 
-                        imageUrl = it.toString()
+                    val ref = storage.getReference().child("image").child(fileName)
+                    val uploadTask = ref.putFile(selectImage!!)
 
-                        val oldData = Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), imageUrl.toString(),
-                            monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime)
+                    val urlTask = uploadTask.continueWithTask { task ->
+                        if (!task.isSuccessful) {
+                            task.exception?.let {
+                                throw it
+                            }
+                        }
+                        ref.downloadUrl
+                    }.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d("insert테스트","이미지 URL 호출 성공")
 
-                        MainActivity.viewModel.addOld(oldData)
+                            val downloadUri = task.result
+                            val oldData = Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), downloadUri.toString(),
+                                monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime)
 
-                        //all clear
-                        dataClear()
+                            MainActivity.viewModel.addOld(oldData)
 
-                    }.addOnFailureListener {
-                        showCustomToast("fail")}}
+                            //all clear
+                            dataClear()
+
+                        } else {
+                            // Handle failures
+                            Log.d("insert테스트","이미지 업로드 실패")
+                        }
+                    }
+                }
                 else{
                     MainActivity.viewModel.addOld(
                         Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), imageUrl,
@@ -232,10 +255,13 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         sunTime  = null
     }
 
+
     override fun onDetach() {
         super.onDetach()
         dataList.clear()
     }
+
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -243,10 +269,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         if(requestCode==IMAGE_PICK&&resultCode== Activity.RESULT_OK){
             selectImage=data?.data
             binding.insertCircleimageProfile.setImageURI(selectImage)
-            //이미지 업로드
-            fileName = "${binding.insertEdittextName.text}${binding.insertEdittextAge.text}.jpg"
-            storage.getReference().child("image").child(fileName!!)
-                .putFile(selectImage!!)
         }
     }
 

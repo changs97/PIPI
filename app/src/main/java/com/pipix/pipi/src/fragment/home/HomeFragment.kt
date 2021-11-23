@@ -20,6 +20,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     private var recyclerviewAdapter2: RecyclerView.Adapter<SearchAdapter.ViewHolder>? =null
     private var homeList: MutableList<Old> = MainActivity.oldList as MutableList<Old>
     private lateinit var updatedList: MutableList<Old>
+    private lateinit var updatedList2: MutableList<Old>
     private lateinit var recyclerView: ViewPager2
     private lateinit var recyclerView2: RecyclerView
 
@@ -34,23 +35,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         recyclerView2 = binding.homeRecyclerview2
 
 
-        recyclerView2.layoutManager = object : LinearLayoutManager(activity){
-            override fun canScrollVertically(): Boolean {
-                return false
-            }
-        }
+
 
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
 
-        getHomeList(day) // Mon~ Sun => 1~7
+
+        updatedList = mutableListOf()
+        getHomeList(day, updatedList) // Mon~ Sun => 1~7
         recyclerviewAdapter = ViewPagerAdapter(updatedList)
         recyclerView.adapter = recyclerviewAdapter
 
         recyclerView.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         recyclerView.clipToPadding = false
         recyclerView.clipChildren = false
-        recyclerView.offscreenPageLimit = 3
+        recyclerView.offscreenPageLimit = 100
 
         val offsetBetweenPages = resources.getDimensionPixelOffset(R.dimen.offsetBetweenPages).toFloat()
         recyclerView.setPageTransformer { page, position ->
@@ -76,12 +75,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             binding.homeNotify.text = "금일 방문 예정 내역이 없습니다\n귀하의 노고에 감사드립니다"
         }
 
+
+
         // Tomorrow or Yesterday
-        getHomeList((day+1)%7)
-        recyclerviewAdapter2 = SearchAdapter(updatedList, 0)
+        updatedList2 = mutableListOf()
+        getHomeList((day+1)%7, updatedList2)
+        recyclerviewAdapter2 = SearchAdapter(updatedList2, 0)
+
+        recyclerView2.layoutManager = object : LinearLayoutManager(activity){
+            override fun canScrollVertically(): Boolean {
+                return false
+            }
+        }
+
+        showCustomToast("${(recyclerviewAdapter2 as SearchAdapter).itemCount}")
         recyclerView2.adapter = recyclerviewAdapter2
 
-        if(updatedList.size == 0) {
+        if(updatedList2.size == 0) {
             val layoutParams = binding.homeNotify2.layoutParams as LinearLayout.LayoutParams
             layoutParams.setMargins(0,80,0,80)
             binding.homeNotify2.layoutParams = layoutParams
@@ -89,16 +99,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         }
 
     }
-    private fun getHomeList(day: Int){
-        updatedList = mutableListOf()
+    private fun getHomeList(day: Int, list: MutableList<Old>){
         when (day) {
-            Calendar.MONDAY -> {for(old in homeList) if(!old.mon.isNullOrBlank()) updatedList.add(old)}
-            Calendar.TUESDAY -> {for(old in homeList) if(!old.tue.isNullOrBlank()) updatedList.add(old)}
-            Calendar.WEDNESDAY ->{for(old in homeList) if(!old.wed.isNullOrBlank()) updatedList.add(old)}
-            Calendar.THURSDAY ->{for(old in homeList) if(!old.thu.isNullOrBlank()) updatedList.add(old)}
-            Calendar.FRIDAY ->{for(old in homeList) if(!old.fri.isNullOrBlank()) updatedList.add(old)}
-            Calendar.SATURDAY ->{for(old in homeList) if(!old.sat.isNullOrBlank()) updatedList.add(old)}
-            Calendar.SUNDAY -> {for(old in homeList) if(!old.sun.isNullOrBlank()) updatedList.add(old)}
+            Calendar.MONDAY -> {for(old in homeList) if(!old.mon.isNullOrBlank()) list.add(old)}
+            Calendar.TUESDAY -> {for(old in homeList) if(!old.tue.isNullOrBlank()) list.add(old)}
+            Calendar.WEDNESDAY ->{for(old in homeList) if(!old.wed.isNullOrBlank()) list.add(old)}
+            Calendar.THURSDAY ->{for(old in homeList) if(!old.thu.isNullOrBlank()) list.add(old)}
+            Calendar.FRIDAY ->{for(old in homeList) if(!old.fri.isNullOrBlank()) list.add(old)}
+            Calendar.SATURDAY ->{for(old in homeList) if(!old.sat.isNullOrBlank()) list.add(old)}
+            Calendar.SUNDAY -> {for(old in homeList) if(!old.sun.isNullOrBlank()) list.add(old)}
         }
     }
 }

@@ -42,6 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
+        showCustomToast("$day")
 
         getHomeList(day) // Mon~ Sun => 1~7
         recyclerviewAdapter = ViewPagerAdapter(updatedList)
@@ -93,7 +94,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         updatedList = mutableListOf()
         when (day) {
             Calendar.MONDAY -> {for(old in homeList) if(!old.mon.isNullOrBlank()) updatedList.add(old)}
-            Calendar.TUESDAY -> {for(old in homeList) if(!old.thu.isNullOrBlank()) updatedList.add(old)}
+            Calendar.TUESDAY -> {for(old in homeList) if(!old.tue.isNullOrBlank()) updatedList.add(old)}
             Calendar.WEDNESDAY ->{for(old in homeList) if(!old.wed.isNullOrBlank()) updatedList.add(old)}
             Calendar.THURSDAY ->{for(old in homeList) if(!old.thu.isNullOrBlank()) updatedList.add(old)}
             Calendar.FRIDAY ->{for(old in homeList) if(!old.fri.isNullOrBlank()) updatedList.add(old)}

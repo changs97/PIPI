@@ -1,20 +1,23 @@
 package com.pipix.pipi.src.fragment.profile
 
+import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
 import com.pipix.pipi.data.PureResult
+import com.pipix.pipi.src.main.MainActivity
 
 class ProfileAdapter(private var dataList: MutableList<PureResult>) :  RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var delete: TextView? = null
         var dateTime: TextView? = null
-        var itemPosition : Int? = null
         var type: TextView? = null
         lateinit var data : PureResult
 
@@ -31,13 +34,14 @@ class ProfileAdapter(private var dataList: MutableList<PureResult>) :  RecyclerV
             }
 
 
-            /* 삭제 코드 구현
-              more!!.setOnClickListener {
-                  val intent2 = Intent(view.context, DeleteItemActivity::class.java)
-                  intent2.putExtra("delete",itemPosition)
-                  view.getContext().startActivity(intent2)
+           //삭제 코드 구현
+              delete!!.setOnClickListener {
+                  //삭제 다이얼로그
+
+                  //삭제 코드
+                  MainActivity.viewModel.deletePureResult(data)
               }
-              */
+
 
 
         }
@@ -53,10 +57,12 @@ class ProfileAdapter(private var dataList: MutableList<PureResult>) :  RecyclerV
         return  dataList.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
         var currentItem = dataList[position]
-        val time = currentItem.date
+        val sdf =  SimpleDateFormat("yyyy.MM.dd a hh시 mm분")
+        val time = sdf.format(currentItem.date)
         viewHolder.dateTime?.setText(time.toString())
         viewHolder.data = dataList[position]
     }

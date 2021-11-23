@@ -42,7 +42,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
-        showCustomToast("$day")
 
         getHomeList(day) // Mon~ Sun => 1~7
         recyclerviewAdapter = ViewPagerAdapter(updatedList)

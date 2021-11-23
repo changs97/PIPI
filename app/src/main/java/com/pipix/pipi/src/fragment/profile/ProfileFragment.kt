@@ -14,6 +14,7 @@ import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.FragmentProfileBinding
+import com.pipix.pipi.src.fragment.modify.ModifyOld
 import com.pipix.pipi.src.main.MainActivity
 
 class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::bind, R.layout.fragment_profile) {
@@ -38,7 +39,9 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             findNavController().navigate(R.id.action_profileFragment_to_pureFragment2)
         }
         binding.profileTextModify.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToModifyFragment(old)
+            val modifyOld = ModifyOld(old.oldID,old.userID,old.oldName,old.oldAge,old.oldSex,old.oldAddress,old.oldImage,old.mon
+            ,old.tue,old.wed,old.thu,old.fri,old.sat,old.sun)
+            val action = ProfileFragmentDirections.actionProfileFragmentToModifyFragment(myArg2 = modifyOld )
             Navigation.findNavController(view).navigate(action)
         }
 

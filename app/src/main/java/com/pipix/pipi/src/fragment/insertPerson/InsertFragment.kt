@@ -25,10 +25,6 @@ import com.google.firebase.storage.FirebaseStorage
 
 
 
-
-
-
-
 class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding::bind, R.layout.fragment_insert) {
 
     companion object {

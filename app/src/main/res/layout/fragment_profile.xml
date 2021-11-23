@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="20dp"
-    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     tools:context=".src.fragment.profile.ProfileFragment">
 
     <ScrollView
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:scrollbars="none">
 
         <LinearLayout
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -31,7 +32,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
                     android:background="@color/transparency"
                     android:src="@drawable/back" />
 
@@ -49,7 +49,6 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_circleimage_profile"
                 android:layout_height="150dp"
                 android:src ="@drawable/ic_basic_profile"

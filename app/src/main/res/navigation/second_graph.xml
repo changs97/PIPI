@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_profileFragment_to_pureFragment2"
             app:destination="@id/pureFragment2" />
+        <action
+            android:id="@+id/action_profileFragment_to_modifyFragment"
+            app:destination="@id/modifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/chartFragment"
@@ -60,5 +63,14 @@
             app:destination="@id/profileFragment"
             app:popUpTo="@id/pureFragment2"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/modifyFragment"
+        android:name="com.pipix.pipi.src.fragment.modify.ModifyFragment"
+        android:label="fragment_modify"
+        tools:layout="@layout/fragment_modify" >
+        <argument
+            android:name="myArg2"
+            app:argType="com.pipix.pipi.data.Old" />
     </fragment>
 </navigation>

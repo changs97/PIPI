@@ -66,7 +66,7 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
         binding.profileTextName.text = "${old.oldName}(${old.oldAge})"
         binding.profileTextAddress.text = old.oldAddress
 
-        
+
         if (old.oldImage == null){
             binding.profileCircleimageProfile.setImageResource(R.drawable.ic_basic_profile)}
         else{

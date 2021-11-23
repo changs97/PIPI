@@ -83,7 +83,7 @@ class SearchAdapter(private val oldList: MutableList<Old>, private val which: In
             if(!old.wed.isNullOrBlank()){
                 if(schedule.isNotEmpty()) schedule+="\n"
                 val sl = old.wed.split("-")
-                schedule += "화요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
+                schedule += "수요일 ${sl[0]}:${sl[1]} - ${sl[2]}:${sl[3]} "
             }
             if(!old.thu.isNullOrBlank()){
                 if(schedule.isNotEmpty()) schedule+="\n"

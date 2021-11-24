@@ -361,6 +361,13 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
     override fun onDetach() {
         super.onDetach()
         dataList.clear()
+        monliveChecked.value = false
+        tuesliveChecked.value = false
+        wedliveChecked.value = false
+        thuliveChecked.value = false
+        friliveChecked.value = false
+        satliveChecked.value = false
+        sunliveChecked.value = false
     }
 
 

@@ -35,6 +35,10 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             }
         })
 
+        binding.profileImgbtnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.profileBtnTest.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_pureFragment2)
         }

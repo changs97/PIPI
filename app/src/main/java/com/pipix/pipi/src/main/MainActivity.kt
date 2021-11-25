@@ -30,7 +30,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         viewModel = ViewModelProvider(this).get(PRViewModel::class.java)
         viewModel.readAllOld.observe(this ,{
-            showCustomToast("start")
             oldList = it
         })
         viewModel.readAllPureData.observe(this ,{

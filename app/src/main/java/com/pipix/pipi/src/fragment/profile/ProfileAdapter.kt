@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.pipix.pipi.R
 import com.pipix.pipi.data.PureResult
+import com.pipix.pipi.src.fragment.insertPerson.CustomDialog
 import com.pipix.pipi.src.main.MainActivity
 
 class ProfileAdapter(private var dataList: MutableList<PureResult>) :  RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
@@ -37,9 +38,7 @@ class ProfileAdapter(private var dataList: MutableList<PureResult>) :  RecyclerV
            //삭제 코드 구현
               delete!!.setOnClickListener {
                   //삭제 다이얼로그
-
-                  //삭제 코드
-                  MainActivity.viewModel.deletePureResult(data)
+                  CustomDialog2(view.context, data).show()
               }
 
 

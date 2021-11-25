@@ -32,15 +32,6 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             }
         })
 
-        //dataBind(old)
-
-        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        val recyclerView = binding.profileRecyclerview
-        recyclerView.setLayoutManager(object : LinearLayoutManager(context){
-            override fun canScrollVertically(): Boolean {
-                return true
-            }
-        })
 
         binding.profileImgbtnBack.setOnClickListener {
             findNavController().popBackStack()
@@ -57,6 +48,19 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
         }
 
 
+    }
+
+
+    fun dataBind(old: Old) {
+
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        val recyclerView = binding.profileRecyclerview
+        recyclerView.setLayoutManager(object : LinearLayoutManager(context){
+            override fun canScrollVertically(): Boolean {
+                return true
+            }
+        })
+
         var resultDataList = mutableListOf<PureResult>()
         for(i in MainActivity.pureList){
             if(i.oldID == old.oldID){
@@ -69,7 +73,7 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
 
         // UserViewModel
         MainActivity.viewModel.readAllPureData.observe(viewLifecycleOwner, Observer { user ->
-             resultDataList = mutableListOf()
+            resultDataList = mutableListOf()
             for(i in MainActivity.pureList){
                 if(i.oldID == old.oldID){
                     resultDataList.add(i)
@@ -78,10 +82,7 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             val recyclerviewAdapter = ProfileAdapter(resultDataList)
             recyclerView.adapter = recyclerviewAdapter
         })
-    }
-
-
-    fun dataBind(old: Old) {
+        
         binding.profileTextName.text = "${old.oldName}(${old.oldAge})"
         binding.profileTextAddress.text = old.oldAddress
 

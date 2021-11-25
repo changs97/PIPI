@@ -46,6 +46,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
         recyclerviewAdapter = SearchAdapter(updatedList,1)
         recyclerView.adapter = recyclerviewAdapter
+
+        MainActivity.viewModel.readAllOld.observe(viewLifecycleOwner,{
+            searchList = it as MutableList<Old>
+            updateList(searchText.text.toString())
+            recyclerviewAdapter = SearchAdapter(updatedList,1)
+            recyclerView.adapter = recyclerviewAdapter
+        })
     }
 
     private fun updateList(str: String) {

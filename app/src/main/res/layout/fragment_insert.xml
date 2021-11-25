@@ -303,9 +303,9 @@
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:layout_marginTop="40dp"
-                          android:background="@drawable/custom_btn3"
+                          android:background="@drawable/custom_btn1"
                           android:text="@string/insert_done"
-                          android:textColor="@drawable/custom_btn3_textcolor"/>
+                          android:textColor="@drawable/custom_btn1_textcolor"/>
                   </LinearLayout>
 
               </ScrollView>

@@ -79,8 +79,8 @@
         android:id="@+id/dialog_btn_complete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_btn3"
-        android:textColor="@drawable/custom_btn3_textcolor"
+        android:background="@drawable/custom_btn1"
+        android:textColor="@drawable/custom_btn1_textcolor"
         android:text="@string/insert_done"/>
 
 

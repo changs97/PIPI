@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="방문시간 설정"
+            android:text="@string/dialog_time_set_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/custom_edittext"
             android:drawableRight="@drawable/ic_baseline_arrow_drop_down"
-            android:text="시작시간"
+            android:text="@string/dialog_starttime"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/dialog_item_btn_end"
@@ -65,7 +65,7 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/custom_edittext"
             android:drawableRight="@drawable/ic_baseline_arrow_drop_down"
-            android:text="종료시간"
+            android:text="@string/dialog_endtime"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

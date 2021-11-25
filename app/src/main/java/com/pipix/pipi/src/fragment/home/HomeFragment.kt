@@ -18,7 +18,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
     private var recyclerviewAdapter: RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>? =null
     private var recyclerviewAdapter2: RecyclerView.Adapter<SearchAdapter.ViewHolder>? =null
-    private var homeList: MutableList<Old> = MainActivity.oldList as MutableList<Old>
+    private var homeList = MainActivity.oldList
     private lateinit var updatedList: MutableList<Old>
     private lateinit var updatedList2: MutableList<Old>
     private lateinit var recyclerView: ViewPager2
@@ -77,10 +77,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
 
 
-        // Tomorrow or Yesterday
         updatedList2 = mutableListOf()
         getHomeList((day+1)%7, updatedList2)
         recyclerviewAdapter2 = SearchAdapter(updatedList2, 0)
+        recyclerView2.adapter = recyclerviewAdapter2
 
         recyclerView2.layoutManager = object : LinearLayoutManager(activity){
             override fun canScrollVertically(): Boolean {
@@ -88,8 +88,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             }
         }
 
-        showCustomToast("${(recyclerviewAdapter2 as SearchAdapter).itemCount}")
-        recyclerView2.adapter = recyclerviewAdapter2
+
 
         if(updatedList2.size == 0) {
             val layoutParams = binding.homeNotify2.layoutParams as LinearLayout.LayoutParams
@@ -98,7 +97,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             binding.homeNotify2.text = "내일 방문 예정 내역이 없습니다"
         }
 
+        MainActivity.viewModel.readAllOld.observe(viewLifecycleOwner,{
+            homeList = it
+            updatedList = mutableListOf()
+            getHomeList(day, updatedList) // Mon~ Sun => 1~7
+            recyclerviewAdapter = ViewPagerAdapter(updatedList)
+            recyclerView.adapter = recyclerviewAdapter
+            updatedList2 = mutableListOf()
+            getHomeList((day+1)%7, updatedList2)
+            recyclerviewAdapter2 = SearchAdapter(updatedList2, 0)
+            recyclerView2.adapter = recyclerviewAdapter2
+        })
     }
+
     private fun getHomeList(day: Int, list: MutableList<Old>){
         when (day) {
             Calendar.MONDAY -> {for(old in homeList) if(!old.mon.isNullOrBlank()) list.add(old)}

@@ -19,15 +19,15 @@
         android:background="@color/transparency"
         android:src="@drawable/back" />
 
-    <TextView
-        android:id="@+id/chart_textview_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="검사결과지"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/chart_textview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="검사결과지"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -56,7 +56,7 @@
            android:textSize="20sp"
            android:textStyle="bold"
            android:textColor="@color/black"
-           android:text="오른쪽"/>
+           android:text="@string/right"/>
         <ImageView
             android:layout_marginLeft="40dp"
             android:layout_width="30dp"
@@ -70,7 +70,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="왼쪽"/>
+            android:text="@string/left"/>
 
     </LinearLayout>
 
@@ -134,7 +134,7 @@
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="매우나쁨"
+                android:text="@string/angry"
                 android:gravity="center_horizontal"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -145,7 +145,7 @@
                 android:id="@+id/chart_textview_sad"
                 android:textSize="10sp"
                 android:textStyle="bold"
-                android:text="나쁨"
+                android:text="@string/sad"
                 android:textColor="@color/black"
                 android:gravity="center_horizontal"
                 android:layout_weight="1"
@@ -155,7 +155,7 @@
             <TextView
                 android:id="@+id/chart_textview_neutural"
                 android:textSize="10sp"
-                android:text="보통"
+                android:text="@string/neutral"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:gravity="center_horizontal"
@@ -169,7 +169,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:gravity="center_horizontal"
-                android:text="좋음"
+                android:text="@string/smile"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="검사 결과가 보통이하라면 병원에 방문하여\n정밀 검사를 받으시길 바랍니다."/>
+        android:text="@string/chart_text"/>
 
 
 </LinearLayout>

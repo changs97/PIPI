@@ -13,7 +13,7 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
 
     val readAllPureData: LiveData<List<PureResult>>
     val readAllOld: LiveData<List<Old>>
-    lateinit var currentOld: Old
+    var currentOldID: Int = 0
 
     private val _isSuccess = MutableLiveData<Boolean>()
     val isSuccess: LiveData<Boolean>

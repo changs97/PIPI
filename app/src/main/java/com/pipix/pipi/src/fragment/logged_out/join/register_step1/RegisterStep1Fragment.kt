@@ -16,6 +16,10 @@ class RegisterStep1Fragment : BaseFragment<FragmentRegisterStep1Binding>(Fragmen
         val nextBtn = binding.registerStep1BtnNext
         val back = binding.registerStep1ImgbtnBack
 
+        back.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         nextBtn.setOnClickListener {
             findNavController().navigate(R.id.action_registerStep1Fragment_to_registerStep2Fragment)
         }

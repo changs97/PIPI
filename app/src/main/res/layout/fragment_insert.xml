@@ -25,13 +25,7 @@
                       android:layout_height="match_parent"
                       android:orientation="vertical">
 
-                      <ImageButton
-                          android:id="@+id/insert_imgbtn_back"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginTop="10dp"
-                          android:background="@color/transparency"
-                          android:src="@drawable/back" />
+
 
                       <TextView
                           android:id="@+id/insert_text_title"

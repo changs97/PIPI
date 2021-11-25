@@ -2,12 +2,8 @@ package com.pipix.pipi.src.main
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.app.ActivityCompat
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.pipix.pipi.R
 import com.pipix.pipi.config.BaseActivity
@@ -16,7 +12,7 @@ import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.ActivityMainBinding
 import com.pipix.pipi.testpackage.SoundController
-import java.util.jar.Manifest
+
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 

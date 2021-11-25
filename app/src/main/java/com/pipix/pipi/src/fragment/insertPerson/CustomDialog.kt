@@ -92,14 +92,14 @@ class CustomDialog(context: Context, val title : String) : Dialog(context) {
         complate.setOnClickListener {
             if(setStartTime.text.length == 5 && setEndTime.text.length == 5 ) {
                 InsertFragment.dataList.add(
-                    TestData(
+                    SetTime(
                         setStartTime.text.toString(),
                         setEndTime.text.toString(),
                         title
                     ))
 
-                var startTimeText = setStartTime.text.split(":")
-                var endTimeText = setEndTime.text.split(":")
+                val startTimeText = setStartTime.text.split(":")
+                val endTimeText = setEndTime.text.split(":")
                 when(title) {
                     "월요일" -> {InsertFragment.monTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
                     "화요일" -> {InsertFragment.tuesTime = "${startTimeText[0]}-${startTimeText[1]}-${endTimeText[0]}-${endTimeText[1]}"}
@@ -113,10 +113,6 @@ class CustomDialog(context: Context, val title : String) : Dialog(context) {
                 dismiss()
             }
         }
-
-
-
     }
-
 
 }

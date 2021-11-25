@@ -13,7 +13,7 @@ import com.pipix.pipi.R
 
 
 
-class InsertAdapter(val dataList: MutableList<TestData> )  :  RecyclerView.Adapter<InsertAdapter.ViewHolder>() {
+class InsertAdapter(val dataList: MutableList<SetTime> )  :  RecyclerView.Adapter<InsertAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -23,11 +23,7 @@ class InsertAdapter(val dataList: MutableList<TestData> )  :  RecyclerView.Adapt
         var deleteBtn : ImageButton? = null
 
 
-
         init {
-
-            // Define click listener for the ViewHolder's View.
-
             title = view.findViewById(R.id.insert_item_title)
             startTime = view.findViewById(R.id.insert_item_text_start)
             endTime = view.findViewById(R.id.insert_item_text_end)
@@ -40,9 +36,7 @@ class InsertAdapter(val dataList: MutableList<TestData> )  :  RecyclerView.Adapt
         notifyDataSetChanged()
     }
 
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int):ViewHolder {
-        // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.insert_item, viewGroup, false)
 
@@ -54,13 +48,9 @@ class InsertAdapter(val dataList: MutableList<TestData> )  :  RecyclerView.Adapt
     }
 
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-
-        var currentItem = dataList[position]
+        val currentItem = dataList[position]
 
 
         viewHolder.title!!.text = currentItem.title
@@ -72,8 +62,7 @@ class InsertAdapter(val dataList: MutableList<TestData> )  :  RecyclerView.Adapt
             when(currentItem.title) {
                 "월요일" -> {
                 InsertFragment.monTime = null
-                    InsertFragment.monliveChecked.value = false
-                }
+                    InsertFragment.monliveChecked.value = false }
                 "화요일" -> {
                     InsertFragment.tuesTime = null
                     InsertFragment.tuesliveChecked.value = false}

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -13,6 +14,7 @@ import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.FragmentProfileBinding
+import com.pipix.pipi.src.fragment.modify.ModifyOld
 import com.pipix.pipi.src.main.MainActivity
 
 class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::bind, R.layout.fragment_profile) {
@@ -21,8 +23,7 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        var old  = MainActivity.viewModel.currentOld
+        val old  = MainActivity.viewModel.currentOld
 
         dataBind(old)
 
@@ -34,8 +35,18 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             }
         })
 
+        binding.profileImgbtnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.profileBtnTest.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_pureFragment2)
+        }
+        binding.profileTextModify.setOnClickListener {
+            val modifyOld = ModifyOld(old.oldID,old.userID,old.oldName,old.oldAge,old.oldSex,old.oldAddress,old.oldImage,old.mon
+            ,old.tue,old.wed,old.thu,old.fri,old.sat,old.sun)
+            val action = ProfileFragmentDirections.actionProfileFragmentToModifyFragment(myArg2 = modifyOld )
+            Navigation.findNavController(view).navigate(action)
         }
 
 
@@ -57,12 +68,9 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
                     resultDataList.add(i)
                 }
             }
-            var recyclerviewAdapter = ProfileAdapter(resultDataList)
+            val recyclerviewAdapter = ProfileAdapter(resultDataList)
             recyclerView.adapter = recyclerviewAdapter
-
         })
-
-
     }
 
 
@@ -70,14 +78,13 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
         binding.profileTextName.text = "${old.oldName}(${old.oldAge})"
         binding.profileTextAddress.text = old.oldAddress
 
-        Log.d("profileimge",old.oldImage.toString())
+
         if (old.oldImage == null){
             binding.profileCircleimageProfile.setImageResource(R.drawable.ic_basic_profile)}
         else{
             Glide.with(this)
                 .load(old.oldImage.toString())
-                .into(binding.profileCircleimageProfile)
-        }
+                .into(binding.profileCircleimageProfile)}
 
         if(old.mon != null) {
             val mon = old.mon.split("-")
@@ -109,8 +116,6 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             val sun = old.sun.split("-")
             binding.profileTextDateSun.text = "일요일 ${sun[0]}:${sun[1]} - ${sun[2]}:${sun[3]}"
             binding.profileTextDateSun.visibility = VISIBLE}
-
-
     }
 
 }

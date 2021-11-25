@@ -13,20 +13,23 @@ import com.pipix.pipi.databinding.FragmentInsertBinding
 import com.pipix.pipi.src.main.MainActivity
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioGroup
+import android.widget.ToggleButton
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
-
-
-
-
 
 
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding::bind, R.layout.fragment_insert) {
 
     companion object {
-        var dataList = mutableListOf<TestData>()
+        var dataList = mutableListOf<SetTime>()
         var recyclerviewAdapter = InsertAdapter(dataList)
 
         var monliveChecked : MutableLiveData<Boolean> = MutableLiveData()
@@ -44,15 +47,25 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         var friTime : String? = null
         var satTime : String? = null
         var sunTime : String? = null
-
     }
 
 
-    val IMAGE_PICK=1111
+    val IMAGE_PICK = 1111
     var selectImage: Uri?=null
     lateinit var storage: FirebaseStorage
-    var fileName : String? = null
-
+    var genderType : Int? = null
+    lateinit var complete : Button
+    lateinit var name : EditText
+    lateinit var address : EditText
+    lateinit var age : EditText
+    lateinit var radioGroup : RadioGroup
+    lateinit var BtnMon : ToggleButton
+    lateinit var BtnTues : ToggleButton
+    lateinit var BtnWed : ToggleButton
+    lateinit var BtnThu : ToggleButton
+    lateinit var BtnFri : ToggleButton
+    lateinit var BtnSat : ToggleButton
+    lateinit var BtnSun : ToggleButton
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,26 +73,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
         storage= FirebaseStorage.getInstance()
 
-        val complete = binding.insertBtnComplate
-        val name = binding.insertEdittextName
-        val address = binding.insertEdittextAddress
-        val age = binding.insertEdittextAge
-        val radioGroup = binding.insertRadiogroup
-        var genderType : Int? = null
-
-        val BtnMon = binding.insertMon
-        val BtnTues = binding.insertTues
-        val BtnWed = binding.insertWed
-        val BtnThu = binding.insertThu
-        val BtnFri = binding.insertFri
-        val BtnSat = binding.insertSat
-        val BtnSun = binding.insertSun
-
-
-
-
-
-
+        viewBind()
 
 
         monliveChecked.observe(viewLifecycleOwner, Observer {
@@ -105,14 +99,12 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         })
 
 
-
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.insert_man-> genderType = 1
-                R.id.insert_woman-> genderType = 2
+                R.id.insert_man -> genderType = 1
+                R.id.insert_woman -> genderType = 2
             }
         }
-
 
         BtnMon.setOnClickListener{
             if(BtnMon.isChecked) {
@@ -149,99 +141,58 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         }
 
         complete.setOnClickListener {
-
-
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
-                var imageUrl : String? = null
+               showLoadingDialog(context as MainActivity)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    dismissLoadingDialog()
+                }, 5000)
+
+                val imageUrl : String? = null
+
 
                 if(selectImage!=null) {
 
-                    storage.getReference().child("image").child(fileName!!).getDownloadUrl().addOnSuccessListener {
-                        imageUrl = it.toString()
-                        Log.d("insert",imageUrl.toString())
+                    val fileName = "${binding.insertEdittextName.text}${binding.insertEdittextAge.text}.jpg"
 
-                        Log.d("insert",name.text.toString() + age.text.toString() +genderType.toString() + address.text.toString() + imageUrl.toString() + monTime.toString())
+                    val ref = storage.getReference().child("image").child(fileName)
+                    val uploadTask = ref.putFile(selectImage!!)
 
-                        val oldData = Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), imageUrl.toString(),
-                            monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime)
+                    val urlTask = uploadTask.continueWithTask { task ->
+                        if (!task.isSuccessful) {
+                            task.exception?.let {
+                                throw it
+                            }
+                        }
+                        ref.downloadUrl
+                    }.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d("insert테스트","이미지 URL 호출 성공")
 
-                        MainActivity.viewModel.addOld(oldData)
+                            val downloadUri = task.result
+                            val oldData = Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), downloadUri.toString(),
+                                monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime)
 
-                        //all clear
-                        dataList.clear()
-                        recyclerviewAdapter.notifyDataSetChanged()
-                        Glide.with(this)
-                            .load(R.drawable.ic_basic_profile)
-                            .into(binding.insertCircleimageProfile)
+                            MainActivity.viewModel.addOld(oldData)
 
-                        name.text = null
-                        age.text = null
-                        address.text = null
-                        genderType = null
-                        radioGroup.clearCheck()
-                        monliveChecked.value = false
-                        tuesliveChecked.value = false
-                        wedliveChecked.value = false
-                        thuliveChecked.value = false
-                        friliveChecked.value = false
-                        satliveChecked.value = false
-                        sunliveChecked.value = false
-                        monTime  = null
-                        tuesTime  = null
-                        wedTime  = null
-                        thuTime  = null
-                        friTime  = null
-                        satTime  = null
-                        sunTime  = null
+                            //all clear
+                            dataClear()
 
-                    }.addOnFailureListener {
-                        showCustomToast("fail")
+                        } else {
+                            // Handle failures
+                            Log.d("insert테스트","이미지 업로드 실패")
+                        }
                     }
-
-                }else{
+                }
+                else{
                     MainActivity.viewModel.addOld(
                         Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), imageUrl,
                             monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
-
                     //all clear
-                    Log.d("insert","초기화")
-                    dataList.clear()
-                    recyclerviewAdapter.notifyDataSetChanged()
-                    Glide.with(this)
-                        .load(R.drawable.ic_basic_profile)
-                        .into(binding.insertCircleimageProfile)
-
-                    name.text = null
-                    age.text = null
-                    address.text = null
-                    genderType = null
-                    radioGroup.clearCheck()
-                    monliveChecked.value = false
-                    tuesliveChecked.value = false
-                    wedliveChecked.value = false
-                    thuliveChecked.value = false
-                    friliveChecked.value = false
-                    satliveChecked.value = false
-                    sunliveChecked.value = false
-                    monTime  = null
-                    tuesTime  = null
-                    wedTime  = null
-                    thuTime  = null
-                    friTime  = null
-                    satTime  = null
-                    sunTime  = null
-
+                    dataClear()
                 }
-
-
-
-            }
-            else{ showCustomToast("필수 항목을 모두 입력하세요")
-            }
+            }else { showCustomToast("필수 항목을 모두 입력하세요") }
         }
-
-
 
         val recyclerView = binding.insertRecyclerview
         recyclerView.setLayoutManager(object : LinearLayoutManager(activity){
@@ -250,17 +201,56 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             }
         })
 
-
         recyclerView.adapter = recyclerviewAdapter
-
-
 
         binding.profileImgbtnChangeImage.setOnClickListener {
             var intent= Intent(Intent.ACTION_PICK) //선택하면 무언가를 띄움. 묵시적 호출
             intent.type="image/*"
             startActivityForResult(intent,IMAGE_PICK)
         }
+    }
 
+    fun viewBind() {
+        complete = binding.insertBtnComplate
+        name = binding.insertEdittextName
+        address = binding.insertEdittextAddress
+        age = binding.insertEdittextAge
+        radioGroup = binding.insertRadiogroup
+        BtnMon = binding.insertMon
+        BtnTues = binding.insertTues
+        BtnWed = binding.insertWed
+        BtnThu = binding.insertThu
+        BtnFri = binding.insertFri
+        BtnSat = binding.insertSat
+        BtnSun = binding.insertSun
+    }
+
+    fun dataClear() {
+        Log.d("insert","초기화")
+        dataList.clear()
+        recyclerviewAdapter.notifyDataSetChanged()
+        Glide.with(this)
+            .load(R.drawable.ic_basic_profile)
+            .into(binding.insertCircleimageProfile)
+        name.text = null
+        age.text = null
+        address.text = null
+        genderType = null
+        radioGroup.clearCheck()
+        monliveChecked.value = false
+        tuesliveChecked.value = false
+        wedliveChecked.value = false
+        thuliveChecked.value = false
+        friliveChecked.value = false
+        satliveChecked.value = false
+        sunliveChecked.value = false
+        monTime  = null
+        tuesTime  = null
+        wedTime  = null
+        thuTime  = null
+        friTime  = null
+        satTime  = null
+        sunTime  = null
     }
 
 
@@ -270,15 +260,14 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     }
 
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==IMAGE_PICK&&resultCode== Activity.RESULT_OK){
             selectImage=data?.data
             binding.insertCircleimageProfile.setImageURI(selectImage)
-
-            fileName = "${binding.insertEdittextName.text}${binding.insertEdittextAge.text}.jpg"
-            storage.getReference().child("image").child(fileName!!)
-                .putFile(selectImage!!)//어디에 업로드할지 지정
         }
     }
+
 }

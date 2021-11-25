@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.pipix.pipi.R
+import com.pipix.pipi.config.ApplicationClass.Companion.sSharedPreferences
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult
@@ -91,7 +92,7 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
                 val now = System.currentTimeMillis()
                 val date =  Date(now)
 
-                val pr = PureResult(MainActivity.viewModel.currentOldID, "userID", date, pureTest.getTpa(1),pureTest.getTpa(0)
+                val pr = PureResult(MainActivity.viewModel.currentOldID, sSharedPreferences.getString(getString(R.string.sharedIDKey), "userID")!!, date, pureTest.getTpa(1),pureTest.getTpa(0)
                     , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
                     , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
                 viewModel.addPureResult(pr)

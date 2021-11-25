@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.pipix.pipi.R
+import com.pipix.pipi.config.ApplicationClass
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.databinding.FragmentHomeBinding
@@ -27,14 +28,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userName = "userName"
+        val userName = ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedUserNameKey),"default")
         binding.homeTitle.text = "$userName 요양사님,"
         binding.homePlan.text = "오늘 방문 예정인 어르신"
         binding.homePlan2.text = "내일 방문 예정인 어르신"
         recyclerView = binding.homeRecyclerview
         recyclerView2 = binding.homeRecyclerview2
-
-
 
 
         val calendar = Calendar.getInstance()

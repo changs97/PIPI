@@ -17,6 +17,10 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
         val back = binding.loginImgbtnBack
         val userID = binding.loginEdittextId
 
+        back.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
 
         val t = binding.loginBtnLogin
         t.setOnClickListener {

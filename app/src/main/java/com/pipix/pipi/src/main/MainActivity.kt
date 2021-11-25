@@ -30,7 +30,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         viewModel = ViewModelProvider(this).get(PRViewModel::class.java)
         viewModel.readAllOld.observe(this ,{
-            showCustomToast("start")
             oldList = it
         })
         viewModel.readAllPureData.observe(this ,{
@@ -46,7 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.homeFragment || destination.id == R.id.searchFragment || destination.id == R.id.insertFragment) {
+            if(destination.id == R.id.homeFragment || destination.id == R.id.searchFragment || destination.id == R.id.insertFragment || destination.id == R.id.guideFragment) {
                 bottomNavigationView.visibility = View.VISIBLE
 
             } else {

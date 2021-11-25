@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="20dp"
-    android:paddingBottom="20dp"
+
     tools:context=".src.fragment.profile.ProfileFragment">
 
     <ScrollView

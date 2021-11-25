@@ -3,16 +3,21 @@ package com.pipix.pipi.data
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PRViewModel(applications: Application): AndroidViewModel(applications) {
 
-    //not private
+
     val readAllPureData: LiveData<List<PureResult>>
     val readAllOld: LiveData<List<Old>>
-    lateinit var currentOld: Old
+    var currentOldID: Int = 0
+
+    private val _isSuccess = MutableLiveData<Boolean>()
+    val isSuccess: LiveData<Boolean>
+        get() = _isSuccess
 
     private val repository: PRRepository
 
@@ -21,6 +26,7 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
         repository = PRRepository(pureResultDao)
         readAllPureData = repository.readAllPureData
         readAllOld = repository.readAllOld
+        _isSuccess.value = false
     }
 
     // PureResult

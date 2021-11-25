@@ -31,7 +31,7 @@ class SearchAdapter(private val oldList: MutableList<Old>, private val which: In
 
             // 객체 넘겨주기
             view.setOnClickListener {
-                MainActivity.viewModel.currentOld = old
+                MainActivity.viewModel.currentOldID = old.oldID
                 val where = if(which == 1) R.id.action_searchFragment_to_profileFragment
                 else R.id.action_homeFragment_to_profileFragment
                 findNavController(view).navigate(where)

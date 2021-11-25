@@ -19,13 +19,20 @@ import com.pipix.pipi.src.main.MainActivity
 
 class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::bind, R.layout.fragment_profile) {
 
+    lateinit var old: Old
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val old  = MainActivity.viewModel.currentOld
 
-        dataBind(old)
+        MainActivity.viewModel.readAllOld.observe(viewLifecycleOwner, {
+            for(o in it) if(o.oldID == MainActivity.viewModel.currentOldID) {
+                old = o
+                dataBind(old)
+            }
+        })
+
+        //dataBind(old)
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         val recyclerView = binding.profileRecyclerview

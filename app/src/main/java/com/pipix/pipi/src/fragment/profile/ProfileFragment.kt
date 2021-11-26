@@ -91,7 +91,7 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             binding.profileCircleimageProfile.setImageResource(R.drawable.ic_basic_profile)}
         else{
             Glide.with(this)
-                .load(old.oldImage.toString())
+                .load(old.oldImage.toString()).centerCrop()
                 .into(binding.profileCircleimageProfile)}
 
         if(old.mon != null) {

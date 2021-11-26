@@ -39,7 +39,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
 
-
         updatedList = mutableListOf()
         getHomeList(day, updatedList) // Mon~ Sun => 1~7
         recyclerviewAdapter = ViewPagerAdapter(updatedList)
@@ -75,18 +74,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         }
 
 
-
-        updatedList2 = mutableListOf()
-        getHomeList((day+1)%7, updatedList2)
-        recyclerviewAdapter2 = SearchAdapter(updatedList2, 0)
-        recyclerView2.adapter = recyclerviewAdapter2
-
         recyclerView2.layoutManager = object : LinearLayoutManager(activity){
             override fun canScrollVertically(): Boolean {
                 return false
             }
         }
 
+        updatedList2 = mutableListOf()
+        getHomeList(day%7+1, updatedList2)
+        recyclerviewAdapter2 = SearchAdapter(updatedList2, 0)
+        recyclerView2.adapter = recyclerviewAdapter2
 
 
         if(updatedList2.size == 0) {
@@ -102,10 +99,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             getHomeList(day, updatedList) // Mon~ Sun => 1~7
             recyclerviewAdapter = ViewPagerAdapter(updatedList)
             recyclerView.adapter = recyclerviewAdapter
+
             updatedList2 = mutableListOf()
-            getHomeList((day+1)%7, updatedList2)
+            getHomeList(day%7+1, updatedList2)
             recyclerviewAdapter2 = SearchAdapter(updatedList2, 0)
             recyclerView2.adapter = recyclerviewAdapter2
+
+            if(updatedList.size == 0) {
+                val layoutParams = binding.homeNotify.layoutParams as LinearLayout.LayoutParams
+                layoutParams.setMargins(0,80,0,80)
+                binding.homeNotify.layoutParams = layoutParams
+                binding.homeNotify.text = "금일 방문 예정 내역이 없습니다\n귀하의 노고에 감사드립니다"
+            }
+
+            if(updatedList2.size == 0) {
+                val layoutParams = binding.homeNotify2.layoutParams as LinearLayout.LayoutParams
+                layoutParams.setMargins(0,80,0,80)
+                binding.homeNotify2.layoutParams = layoutParams
+                binding.homeNotify2.text = "내일 방문 예정 내역이 없습니다"
+            }
         })
     }
 

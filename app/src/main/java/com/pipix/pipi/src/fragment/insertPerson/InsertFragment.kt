@@ -177,6 +177,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
                             //all clear
                             dataClear()
+                            Glide.with(this)
+                                .load(R.drawable.ic_basic_profile)
+                                .into(binding.insertCircleimageProfile)
 
                         } else {
                             // Handle failures
@@ -190,6 +193,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                             monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
                     //all clear
                     dataClear()
+                    Glide.with(this)
+                        .load(R.drawable.ic_basic_profile)
+                        .into(binding.insertCircleimageProfile)
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
         }
@@ -229,9 +235,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         Log.d("insert","초기화")
         dataList.clear()
         recyclerviewAdapter.notifyDataSetChanged()
-        Glide.with(this)
-            .load(R.drawable.ic_basic_profile)
-            .into(binding.insertCircleimageProfile)
         name.text = null
         age.text = null
         address.text = null
@@ -256,7 +259,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
     override fun onDetach() {
         super.onDetach()
-        dataList.clear()
+        dataClear()
     }
 
 

@@ -18,7 +18,7 @@
             android:background="@drawable/custom_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기본"
+            android:text="@string/normal"
             android:textColor="@color/black"
             android:textStyle="bold"
             />
@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="삭제" />
+            android:text="@string/delete" />
     </LinearLayout>
 
     <View

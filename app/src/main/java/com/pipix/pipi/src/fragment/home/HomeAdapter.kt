@@ -50,10 +50,12 @@ class ViewPagerAdapter (private val oldList: MutableList<Old>)  :  RecyclerView.
         holder.name!!.text = currentItem.oldName
 
         if (currentItem.oldImage == null){
-            holder.image!!.setImageResource(R.drawable.ic_basic_profile)}
+            Glide.with(holder.itemView.getContext())
+                .load(R.drawable.ic_basic_profile).centerCrop()
+                .into(holder.image!!)}
         else{
             Glide.with(holder.itemView.getContext())
-                .load(currentItem.oldImage)
+                .load(currentItem.oldImage).centerCrop()
                 .into(holder.image!!)
         }
         holder.address!!.text = currentItem.oldAddress

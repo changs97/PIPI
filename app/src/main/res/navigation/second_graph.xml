@@ -73,4 +73,9 @@
             android:name="myArg2"
             app:argType="com.pipix.pipi.src.fragment.modify.ModifyOld" />
     </fragment>
+    <fragment
+        android:id="@+id/guideFragment"
+        android:name="com.pipix.pipi.src.fragment.guide.GuideFragment"
+        android:label="fragment_guide"
+        tools:layout="@layout/fragment_guide" />
 </navigation>

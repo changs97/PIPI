@@ -52,7 +52,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="시작 시간"
+            android:text="@string/dialog_starttime"
             style="@style/NormalText"
             android:layout_weight="1"/>
 
@@ -61,7 +61,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="종료 시간"
+            android:text="@string/dialog_endtime"
             style="@style/NormalText"
             android:layout_weight="1"/>
     </LinearLayout>

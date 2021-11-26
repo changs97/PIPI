@@ -30,7 +30,31 @@
     <string name="Fri">금</string>
     <string name="Sat">토</string>
     <string name="Sun">일</string>
+    <string name="guidetext1">2021 pipi All right reserved.</string>
+    <string name="guidetext2">기본청력검사는 \'삐-\'소리와 같은 순음으로 청력을 검사합니다. 작은 소리를 잘 들을 수록 청력이 좋은 것입니다.</string>
+    <string name="guidetext3">검사는 조용한 곳에서 진행해주십시오. 삐삐의 청력검사 결과는 병원처럼 정확하지 않습니다. 혹시라도 귀에 불편함이 느껴지거나 결과를 신뢰할 수 없다면 지체 없이 병원에 방문하여 진료를 받으십시오.</string>
     <string name="insert_done">입력완료</string>
+    <string name="dialog_time_set_title">방문시간 설정</string>
+    <string name="dialog_starttime">시작시간</string>
+    <string name="dialog_endtime">종료시간</string>
+    <string name="chart_title">검사결과지</string>
+    <string name="right">오른쪽</string>
+    <string name="left">왼쪽</string>
+    <string name="sad">나쁨</string>
+    <string name="neutral">보통</string>
+    <string name="smile">좋음</string>
+    <string name="angry">매우나쁨</string>
+    <string name="chart_text">검사 결과가 보통이하라면 병원에 방문하여\n정밀 검사를 받으시길 바랍니다.</string>
+    <string name="profile_test">검사하기</string>
+    <string name="profile_modify">수정</string>
+    <string name="puretest_title">기본검사</string>
+    <string name="puretest_text">소리가 들리시나요?</string>
+    <string name="yes">예</string>
+    <string name="no">아니요</string>
+    <string name="normal">기본</string>
+    <string name="delete">삭제</string>
+    <string name="ok">확인</string>
+    <string name="dialog_delete_text">검사결과를 삭제하시겠습니까?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

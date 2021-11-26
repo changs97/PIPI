@@ -153,6 +153,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                 showLoadingDialog(context as MainActivity)
                 Handler(Looper.getMainLooper()).postDelayed({
                     dismissLoadingDialog()
+
                 }, 5000)
 
 
@@ -188,12 +189,16 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
 
                             //all clear
                             dataClear()
+                            Glide.with(this)
+                                .load(R.drawable.ic_basic_profile).centerCrop()
+                                .into(binding.modifyCircleimageProfile)
+
+                            findNavController().popBackStack()
 
                         } else {
                             // Handle failures
                             Log.d("insert테스트","이미지 업로드 실패")
                         }
-                        findNavController().popBackStack()
                     }
                 }
                 else{
@@ -209,6 +214,10 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                         ))
                     //all clear
                     dataClear()
+                    Glide.with(this)
+                        .load(R.drawable.ic_basic_profile).centerCrop()
+                        .into(binding.modifyCircleimageProfile)
+
                     findNavController().popBackStack()
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
@@ -257,7 +266,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
             binding.modifyCircleimageProfile.setImageResource(R.drawable.ic_basic_profile)}
         else{
             Glide.with(this)
-                .load(old.oldImage.toString())
+                .load(old.oldImage.toString()).centerCrop()
                 .into(binding.modifyCircleimageProfile) }
         when(old.oldSex){
             1 -> {
@@ -334,9 +343,6 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         Log.d("modify","초기화")
         dataList.clear()
         recyclerviewAdapter.notifyDataSetChanged()
-        Glide.with(this)
-            .load(R.drawable.ic_basic_profile)
-            .into(binding.modifyCircleimageProfile)
         name.text = null
         age.text = null
         address.text = null
@@ -360,14 +366,8 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
 
     override fun onDetach() {
         super.onDetach()
-        dataList.clear()
-        monliveChecked.value = false
-        tuesliveChecked.value = false
-        wedliveChecked.value = false
-        thuliveChecked.value = false
-        friliveChecked.value = false
-        satliveChecked.value = false
-        sunliveChecked.value = false
+        dataClear()
+
     }
 
 

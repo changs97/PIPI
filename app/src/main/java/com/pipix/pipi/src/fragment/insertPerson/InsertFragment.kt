@@ -178,7 +178,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                             //all clear
                             dataClear()
                             Glide.with(this)
-                                .load(R.drawable.ic_basic_profile)
+                                .load(R.drawable.ic_basic_profile).centerCrop()
                                 .into(binding.insertCircleimageProfile)
 
                         } else {
@@ -194,7 +194,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                     //all clear
                     dataClear()
                     Glide.with(this)
-                        .load(R.drawable.ic_basic_profile)
+                        .load(R.drawable.ic_basic_profile).centerCrop()
                         .into(binding.insertCircleimageProfile)
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }

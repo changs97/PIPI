@@ -54,6 +54,9 @@
                           android:paddingVertical="13dp"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
+                          android:imeOptions="actionNext"
+                          android:inputType="textPersonName"
+                          android:nextFocusDown="@id/insert_edittext_age"
                           android:hint="@string/insert_name"/>
 
                       <TextView
@@ -136,6 +139,8 @@
                           android:paddingVertical="13dp"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
+                          android:inputType="textPostalAddress"
+                          android:imeOptions="actionDone"
                           android:hint="@string/insert_address"/>
 
                       <TextView

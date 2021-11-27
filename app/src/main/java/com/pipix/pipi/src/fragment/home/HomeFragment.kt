@@ -74,7 +74,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             val layoutParams = binding.homeNotify.layoutParams as LinearLayout.LayoutParams
             layoutParams.setMargins(0,80,0,80)
             binding.homeNotify.layoutParams = layoutParams
-            binding.homeNotify.text = "금일 방문 예정 내역이 없습니다\n귀하의 노고에 감사드립니다"
+            binding.homeNotify.text = "금일 방문 예정 내역이 없습니다"
         }else{
             binding.homeNotify.visibility = View.GONE
         }
@@ -115,7 +115,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
                 val layoutParams = binding.homeNotify.layoutParams as LinearLayout.LayoutParams
                 layoutParams.setMargins(0,80,0,80)
                 binding.homeNotify.layoutParams = layoutParams
-                binding.homeNotify.text = "금일 방문 예정 내역이 없습니다\n귀하의 노고에 감사드립니다"
+                binding.homeNotify.text = "금일 방문 예정 내역이 없습니다"
             }else{
                 binding.homeNotify.visibility = View.GONE
             }

@@ -25,6 +25,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     private lateinit var updatedList2: MutableList<Old>
     private lateinit var recyclerView: ViewPager2
     private lateinit var recyclerView2: RecyclerView
+    val timer = Timer()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,25 +52,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         recyclerView.offscreenPageLimit = 100
 
 
-        var currentPage = 0
-        val timer: Timer
-        val DELAY_MS: Long = 500
-        val PERIOD_MS: Long = 3000
-
-        val handler = Handler()
-        val Update = Runnable {
-            if (currentPage == updatedList.size) {
-                currentPage = 0
-            }
-            recyclerView.setCurrentItem(currentPage++, true)
-        }
-
-        timer = Timer()
-        timer.schedule(object : TimerTask() {
+        val timerTask: TimerTask = object : TimerTask() {
             override fun run() {
-                handler.post(Update)
+                recyclerView.post(Runnable {  recyclerView.setCurrentItem(( recyclerView.getCurrentItem() + 1) % updatedList.size) })
             }
-        }, DELAY_MS, PERIOD_MS)
+        }
+        timer.schedule(timerTask, 500, 3000)
 
 
         binding.homeLogout.setOnClickListener {
@@ -170,5 +158,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             Calendar.SUNDAY -> {for(old in homeList) if(!old.sun.isNullOrBlank()) list.add(old)
                 list.sortBy { it.sun }}
         }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.cancel()
     }
 }

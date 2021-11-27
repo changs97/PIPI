@@ -256,7 +256,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         BtnSun = binding.modifySun
     }
 
-    fun dataBind(old: ModifyOld) {
+    fun dataBind(old: Old) {
 
         binding.modifyEdittextName.setText(old.oldName)
         binding.modifyEdittextAddress.setText(old.oldAddress)

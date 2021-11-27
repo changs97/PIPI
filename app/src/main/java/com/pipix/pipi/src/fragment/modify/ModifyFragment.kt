@@ -83,6 +83,8 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         dataBind(data)
 
 
+
+
         monliveChecked.observe(viewLifecycleOwner, Observer {
             BtnMon.isChecked  = it
         })
@@ -148,14 +150,10 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
 
 
         complete.setOnClickListener {
+            complete.isEnabled = false
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
                 showLoadingDialog(context as MainActivity)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    dismissLoadingDialog()
-
-                }, 5000)
-
 
                 if(selectImage!=null) {
                     val fileName = "${binding.modifyEdittextName.text}${binding.modifyEdittextAge.text}.jpg"
@@ -194,6 +192,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                                 .into(binding.modifyCircleimageProfile)
 
                             findNavController().popBackStack()
+                            dismissLoadingDialog()
 
                         } else {
                             // Handle failures
@@ -219,8 +218,11 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                         .into(binding.modifyCircleimageProfile)
 
                     findNavController().popBackStack()
+                    dismissLoadingDialog()
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
+
+            complete.isEnabled = false
         }
 
         val recyclerView = binding.modifyRecyclerview
@@ -256,7 +258,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         BtnSun = binding.modifySun
     }
 
-    fun dataBind(old: ModifyOld) {
+    fun dataBind(old: Old) {
 
         binding.modifyEdittextName.setText(old.oldName)
         binding.modifyEdittextAddress.setText(old.oldAddress)

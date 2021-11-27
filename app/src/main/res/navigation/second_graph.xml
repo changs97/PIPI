@@ -71,7 +71,7 @@
         tools:layout="@layout/fragment_modify" >
         <argument
             android:name="myArg2"
-            app:argType="com.pipix.pipi.src.fragment.modify.ModifyOld" />
+            app:argType="com.pipix.pipi.data.Old" />
     </fragment>
     <fragment
         android:id="@+id/guideFragment"

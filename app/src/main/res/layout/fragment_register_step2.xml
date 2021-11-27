@@ -23,6 +23,7 @@
         style="@style/BoldText"/>
 
     <EditText
+        android:maxLength="5"
         android:id="@+id/register_step2_edittext_name"
         android:background="@drawable/custom_edittext"
         android:layout_marginTop="20dp"

@@ -29,13 +29,13 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@string/dialog_delete_text"
+                android:text="@string/dialog_logout_text"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/deleteitem_imageview_btn_back"
+                android:id="@+id/logout_imageview_btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -49,7 +49,7 @@
         <Button
             android:textColor="@drawable/custom_btn1_textcolor"
             android:layout_margin="10dp"
-            android:id="@+id/deleteitem_button_check"
+            android:id="@+id/logout_button_check"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_btn1"

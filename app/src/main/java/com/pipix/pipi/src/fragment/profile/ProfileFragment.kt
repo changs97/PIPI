@@ -84,7 +84,9 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             recyclerView.adapter = recyclerviewAdapter
         })
 
-        binding.profileTextName.text = "${old.oldName}(${old.oldAge})"
+        binding.profileTextName.text = "${old.oldName}"
+        binding.profileTextAge.text = "(${old.oldAge}세)"
+
         binding.profileTextAddress.text = old.oldAddress
 
 

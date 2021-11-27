@@ -179,14 +179,33 @@
 
        </FrameLayout>
 
-    <TextView
+    <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text="@string/chart_text"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text = "비슷한 연령대의 평균 청력(dB)"/>
+        <TextView
+            android:gravity=""
+            android:id="@+id/chart_text_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="40"
+            android:layout_gravity="center_horizontal"
+            style="@style/BoldText"/>
+
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.pipix.pipi.src.fragment.home
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -49,6 +48,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         recyclerView.clipToPadding = false
         recyclerView.clipChildren = false
         recyclerView.offscreenPageLimit = 100
+
+        binding.homeLogout.setOnClickListener {
+            CustomDialog3(context as MainActivity).show()
+        }
 
         val offsetBetweenPages = resources.getDimensionPixelOffset(R.dimen.offsetBetweenPages).toFloat()
         recyclerView.setPageTransformer { page, position ->

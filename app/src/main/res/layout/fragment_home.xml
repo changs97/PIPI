@@ -5,7 +5,6 @@
     android:id="@+id/homeFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:orientation="vertical"
     tools:context=".src.fragment.home.HomeFragment">
 
@@ -23,8 +22,8 @@
                 android:id="@+id/home_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:textColor="@color/black"
                 android:textSize="30dp"
@@ -36,17 +35,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginHorizontal="15dp"
-                android:textAlignment="center"
-                android:background="@color/amerald"
-                android:textColor="@color/white"
+                android:layout_marginHorizontal="30dp"
+                android:textColor="@color/black"
+
+                style="@style/BoldText"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/home_notify"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
+                android:layout_marginHorizontal="30dp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -63,16 +62,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:background="@color/amerald"
-                android:textColor="@color/white"
-                android:layout_marginHorizontal="15dp"
+                android:textColor="@color/black"
+                style="@style/BoldText"
+                android:layout_marginHorizontal="30dp"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/home_notify2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="30dp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -81,6 +80,7 @@
                 android:id="@+id/home_recyclerview2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="30dp"
                 android:scrollbars="none">
 
             </androidx.recyclerview.widget.RecyclerView>

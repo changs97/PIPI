@@ -45,7 +45,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         val navController = navHostFragment.navController
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController)
-        bottomNavigationView.setOnNavigationItemReselectedListener {  }
+        bottomNavigationView.setOnNavigationItemReselectedListener {
+
+        }
 
 
 

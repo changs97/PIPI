@@ -1,5 +1,6 @@
 package com.pipix.pipi.src.fragment.home
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -29,7 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         super.onViewCreated(view, savedInstanceState)
 
         val userName = ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedUserNameKey),"default")
-        binding.homeTitle.text = "$userName 요양사님,"
+        binding.homeUserNameBar.text = "$userName 님"
         binding.homePlan.text = "오늘 방문 예정인 어르신"
         binding.homePlan2.text = "내일 방문 예정인 어르신"
         recyclerView = binding.homeRecyclerview
@@ -71,6 +72,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             layoutParams.setMargins(0,80,0,80)
             binding.homeNotify.layoutParams = layoutParams
             binding.homeNotify.text = "금일 방문 예정 내역이 없습니다\n귀하의 노고에 감사드립니다"
+        }else{
+            binding.homeNotify.visibility = View.GONE
         }
 
 
@@ -110,6 +113,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
                 layoutParams.setMargins(0,80,0,80)
                 binding.homeNotify.layoutParams = layoutParams
                 binding.homeNotify.text = "금일 방문 예정 내역이 없습니다\n귀하의 노고에 감사드립니다"
+            }else{
+                binding.homeNotify.visibility = View.GONE
             }
 
             if(updatedList2.size == 0) {

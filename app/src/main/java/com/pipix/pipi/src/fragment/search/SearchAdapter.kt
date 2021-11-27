@@ -42,6 +42,7 @@ class SearchAdapter(private val oldList: MutableList<Old>, private val which: In
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.search_card_layout, viewGroup, false)
+        if(which==0)view.setBackgroundResource(R.drawable.shape)
 
         return ViewHolder(view, which)
     }

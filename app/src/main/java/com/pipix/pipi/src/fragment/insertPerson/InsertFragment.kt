@@ -141,15 +141,10 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         }
 
         complete.setOnClickListener {
+            complete.isEnabled = false
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
-               showLoadingDialog(context as MainActivity)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    dismissLoadingDialog()
-                }, 5000)
-
                 val imageUrl : String? = null
-
 
                 if(selectImage!=null) {
 
@@ -214,6 +209,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             intent.type="image/*"
             startActivityForResult(intent,IMAGE_PICK)
         }
+        complete.isEnabled = true
     }
 
     fun viewBind() {

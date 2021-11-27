@@ -83,6 +83,8 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         dataBind(data)
 
 
+
+
         monliveChecked.observe(viewLifecycleOwner, Observer {
             BtnMon.isChecked  = it
         })
@@ -148,13 +150,8 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
 
 
         complete.setOnClickListener {
+            complete.isEnabled = false
             if(name.text != null && age.text != null && genderType != null && address.text != null){
-
-                showLoadingDialog(context as MainActivity)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    dismissLoadingDialog()
-
-                }, 5000)
 
 
                 if(selectImage!=null) {
@@ -221,6 +218,8 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                     findNavController().popBackStack()
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
+
+            complete.isEnabled = false
         }
 
         val recyclerView = binding.modifyRecyclerview

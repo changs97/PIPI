@@ -3,6 +3,7 @@ package com.pipix.pipi.src.fragment.profile
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -14,7 +15,6 @@ import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
 import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.FragmentProfileBinding
-import com.pipix.pipi.src.fragment.modify.ModifyOld
 import com.pipix.pipi.src.main.MainActivity
 
 class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::bind, R.layout.fragment_profile) {
@@ -26,6 +26,7 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
 
 
         MainActivity.viewModel.readAllOld.observe(viewLifecycleOwner, {
+
             for(o in it) if(o.oldID == MainActivity.viewModel.currentOldID) {
                 old = o
                 dataBind(old)
@@ -41,7 +42,7 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             findNavController().navigate(R.id.action_profileFragment_to_pureFragment2)
         }
         binding.profileTextModify.setOnClickListener {
-            val modifyOld = ModifyOld(old.oldID,old.userID,old.oldName,old.oldAge,old.oldSex,old.oldAddress,old.oldImage,old.mon
+            val modifyOld = Old(old.oldID,old.userID,old.oldName,old.oldAge,old.oldSex,old.oldAddress,old.oldImage,old.mon
             ,old.tue,old.wed,old.thu,old.fri,old.sat,old.sun)
             val action = ProfileFragmentDirections.actionProfileFragmentToModifyFragment(myArg2 = modifyOld )
             Navigation.findNavController(view).navigate(action)
@@ -93,6 +94,15 @@ class ProfileFragment  : BaseFragment<FragmentProfileBinding>(FragmentProfileBin
             Glide.with(this)
                 .load(old.oldImage.toString()).centerCrop()
                 .into(binding.profileCircleimageProfile)}
+
+        binding.profileTextDateMon.visibility = GONE
+        binding.profileTextDateTue.visibility = GONE
+        binding.profileTextDateWed.visibility = GONE
+        binding.profileTextDateThu.visibility = GONE
+        binding.profileTextDateFri.visibility = GONE
+        binding.profileTextDateSat.visibility = GONE
+        binding.profileTextDateSun.visibility = GONE
+
 
         if(old.mon != null) {
             val mon = old.mon.split("-")

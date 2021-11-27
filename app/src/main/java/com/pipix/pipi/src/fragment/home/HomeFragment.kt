@@ -131,13 +131,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
     private fun getHomeList(day: Int, list: MutableList<Old>){
         when (day) {
-            Calendar.MONDAY -> {for(old in homeList) if(!old.mon.isNullOrBlank()) list.add(old)}
-            Calendar.TUESDAY -> {for(old in homeList) if(!old.tue.isNullOrBlank()) list.add(old)}
-            Calendar.WEDNESDAY ->{for(old in homeList) if(!old.wed.isNullOrBlank()) list.add(old)}
-            Calendar.THURSDAY ->{for(old in homeList) if(!old.thu.isNullOrBlank()) list.add(old)}
-            Calendar.FRIDAY ->{for(old in homeList) if(!old.fri.isNullOrBlank()) list.add(old)}
-            Calendar.SATURDAY ->{for(old in homeList) if(!old.sat.isNullOrBlank()) list.add(old)}
-            Calendar.SUNDAY -> {for(old in homeList) if(!old.sun.isNullOrBlank()) list.add(old)}
+            Calendar.MONDAY -> {
+                for(old in homeList) if(!old.mon.isNullOrBlank()) list.add(old)
+                list.sortBy { it.mon }}
+            Calendar.TUESDAY -> {for(old in homeList) if(!old.tue.isNullOrBlank()) list.add(old)
+                list.sortBy { it.tue }}
+            Calendar.WEDNESDAY ->{for(old in homeList) if(!old.wed.isNullOrBlank()) list.add(old)
+                list.sortBy { it.wed }}
+            Calendar.THURSDAY ->{for(old in homeList) if(!old.thu.isNullOrBlank()) list.add(old)
+                list.sortBy { it.thu }}
+            Calendar.FRIDAY ->{for(old in homeList) if(!old.fri.isNullOrBlank()) list.add(old)
+                list.sortBy { it.fri }}
+            Calendar.SATURDAY ->{for(old in homeList) if(!old.sat.isNullOrBlank()) list.add(old)
+                list.sortBy { it.sat }}
+            Calendar.SUNDAY -> {for(old in homeList) if(!old.sun.isNullOrBlank()) list.add(old)
+                list.sortBy { it.sun }}
         }
     }
 }

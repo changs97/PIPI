@@ -12,6 +12,10 @@ import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.ActivityMainBinding
 import com.pipix.pipi.testpackage.SoundController
+import androidx.annotation.NonNull
+
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemReselectedListener
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -40,7 +44,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
 
-        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+        NavigationUI.setupWithNavController(bottomNavigationView,navController)
+        bottomNavigationView.setOnNavigationItemReselectedListener {  }
 
 
 

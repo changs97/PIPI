@@ -153,6 +153,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
             complete.isEnabled = false
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
+                showLoadingDialog(context as MainActivity)
 
                 if(selectImage!=null) {
                     val fileName = "${binding.modifyEdittextName.text}${binding.modifyEdittextAge.text}.jpg"
@@ -191,6 +192,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                                 .into(binding.modifyCircleimageProfile)
 
                             findNavController().popBackStack()
+                            dismissLoadingDialog()
 
                         } else {
                             // Handle failures
@@ -216,6 +218,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                         .into(binding.modifyCircleimageProfile)
 
                     findNavController().popBackStack()
+                    dismissLoadingDialog()
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
 

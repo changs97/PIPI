@@ -52,7 +52,7 @@ data class Old(
     val sat: String?, // nullable
     val sun: String?, // nullable
 
-)
+) : Serializable
 
 
 @Entity(tableName = "speech_result_table")

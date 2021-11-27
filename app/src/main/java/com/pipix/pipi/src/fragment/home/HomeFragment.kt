@@ -1,6 +1,7 @@
 package com.pipix.pipi.src.fragment.home
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,6 +49,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         recyclerView.clipToPadding = false
         recyclerView.clipChildren = false
         recyclerView.offscreenPageLimit = 100
+
+
+        var currentPage = 0
+        val timer: Timer
+        val DELAY_MS: Long = 500
+        val PERIOD_MS: Long = 3000
+
+        val handler = Handler()
+        val Update = Runnable {
+            if (currentPage == updatedList.size) {
+                currentPage = 0
+            }
+            recyclerView.setCurrentItem(currentPage++, true)
+        }
+
+        timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(Update)
+            }
+        }, DELAY_MS, PERIOD_MS)
+
 
         binding.homeLogout.setOnClickListener {
             CustomDialog3(context as MainActivity).show()

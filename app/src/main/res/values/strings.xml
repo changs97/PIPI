@@ -60,5 +60,6 @@
 
     <string name="sharedIDKey">sharedIDKey</string>
     <string name="sharedUserNameKey">sharedUserNameKey</string>
+    <string name="logout">로그아웃</string>
 
 </resources>

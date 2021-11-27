@@ -142,6 +142,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
         complete.setOnClickListener {
             complete.isEnabled = false
+            showLoadingDialog(context as MainActivity)
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
                 val imageUrl : String? = null
@@ -176,11 +177,14 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                                 .load(R.drawable.ic_basic_profile).centerCrop()
                                 .into(binding.insertCircleimageProfile)
 
+                            dismissLoadingDialog()
+
                         } else {
                             // Handle failures
                             Log.d("insert테스트","이미지 업로드 실패")
                         }
                     }
+
                 }
                 else{
                     MainActivity.viewModel.addOld(
@@ -191,6 +195,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                     Glide.with(this)
                         .load(R.drawable.ic_basic_profile).centerCrop()
                         .into(binding.insertCircleimageProfile)
+                    dismissLoadingDialog()
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
         }

@@ -1,6 +1,7 @@
 package com.pipix.pipi.src.fragment.home
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     private lateinit var updatedList2: MutableList<Old>
     private lateinit var recyclerView: ViewPager2
     private lateinit var recyclerView2: RecyclerView
+    val timer = Timer()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,6 +50,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         recyclerView.clipToPadding = false
         recyclerView.clipChildren = false
         recyclerView.offscreenPageLimit = 100
+
+
+        val timerTask: TimerTask = object : TimerTask() {
+            override fun run() {
+                recyclerView.post(Runnable {  recyclerView.setCurrentItem(( recyclerView.getCurrentItem() + 1) % updatedList.size) })
+            }
+        }
+        timer.schedule(timerTask, 500, 3000)
+
 
         binding.homeLogout.setOnClickListener {
             CustomDialog3(context as MainActivity).show()
@@ -147,5 +158,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             Calendar.SUNDAY -> {for(old in homeList) if(!old.sun.isNullOrBlank()) list.add(old)
                 list.sortBy { it.sun }}
         }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.cancel()
     }
 }

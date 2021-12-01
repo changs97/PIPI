@@ -10,7 +10,6 @@ import java.util.*
 @Entity(tableName = "pure_result_table")
 data class PureResult (
     val oldID: Int,
-    val userID: String,
     @PrimaryKey
     val date: Date,
     val tpaRight: Int,

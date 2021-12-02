@@ -196,6 +196,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                 }
                 else{
                     MainActivity.viewModel.addOld(
+                        //userId 바꿔서 넣어주기
                         Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), imageUrl,
                             monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
                     //all clear
@@ -228,7 +229,8 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
     fun tryPostInsert(body : InsertBody){
         val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
-        UploadRetrofitInterface.postInsert(body, 4).enqueue(object :
+        //로그인 성공하면 userId 바꿔주기
+        UploadRetrofitInterface.postInsert(body, 5).enqueue(object :
             Callback<InsertResponse> {
             override fun onResponse(
                 call: Call<InsertResponse>,
@@ -260,7 +262,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     }
 
     fun dataClear() {
-        Log.d("insert","초기화")
         dataList.clear()
         recyclerviewAdapter.notifyDataSetChanged()
         name.text = null

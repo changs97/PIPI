@@ -27,6 +27,8 @@ import com.pipix.pipi.config.ApplicationClass
 import com.pipix.pipi.data.Webservice
 import com.pipix.pipi.src.fragment.insertPerson.model.InsertBody
 import com.pipix.pipi.src.fragment.insertPerson.model.InsertResponse
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleBody
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleResponse
 import com.pipix.pipi.src.fragment.logged_out.login.model.LoginBody
 import com.pipix.pipi.src.fragment.logged_out.login.model.LoginResponse
 import retrofit2.Call
@@ -172,14 +174,11 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                         ref.downloadUrl
                     }.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Log.d("insert테스트","이미지 URL 호출 성공")
 
                             val downloadUri = task.result
 
                             tryPostInsert(InsertBody(address.text.toString(),age.text.toString(),downloadUri.toString(),name.text.toString(),genderType!!))
 
-                            //all clear
-                            dataClear()
                             Glide.with(this)
                                 .load(R.drawable.ic_basic_profile).centerCrop()
                                 .into(binding.insertCircleimageProfile)
@@ -195,8 +194,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                 }
                 else{
                     tryPostInsert(InsertBody(address.text.toString(),age.text.toString(),null,name.text.toString(),genderType!!))
-                    //all clear
-                    dataClear()
+
                     Glide.with(this)
                         .load(R.drawable.ic_basic_profile).centerCrop()
                         .into(binding.insertCircleimageProfile)
@@ -233,10 +231,15 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             ) { Log.d("tryPostInsert",response.body().toString())
                 val data = response.body() as InsertResponse
 
+
                 MainActivity.viewModel.addOld(
                     //userId 바꿔서 넣어주기
-                    Old( data.id, data.caregiverId.toString(), data.name, data.age, data.sex.toInt() ,data.address, data.imageURL.toString(),
+                    Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
                         monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
+
+                tryPutInsert(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
+                    tuesTime, wedTime), data.id)
+
 
             }
 
@@ -247,6 +250,25 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     }
 
     //요일 서버에 업데이트
+    fun tryPutInsert(body : InsertScheduleBody, patientId : Int){
+        val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
+        UploadRetrofitInterface.putSchedule(body, patientId).enqueue(object :
+            Callback<InsertScheduleResponse> {
+            override fun onResponse(
+                call: Call<InsertScheduleResponse>,
+                response: Response<InsertScheduleResponse>
+            ) { Log.d("tryPostInsert",response.body().toString())
+                val data = response.body() as InsertScheduleResponse
+                //all clear
+                dataClear()
+
+            }
+
+            override fun onFailure(call: Call<InsertScheduleResponse>, t: Throwable) {
+                Log.d("tryPostInsert",t.message ?:"통신 오류")
+            }
+        })
+    }
 
 
 

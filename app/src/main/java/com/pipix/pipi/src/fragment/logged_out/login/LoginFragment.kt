@@ -56,7 +56,7 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
 
     fun tryGetLogin(body : LoginBody){
         val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
-        UploadRetrofitInterface.getLogin(body).enqueue(object :
+        UploadRetrofitInterface.postLogin(body).enqueue(object :
             Callback<LoginResponse> {
             override fun onResponse(
                 call: Call<LoginResponse>,

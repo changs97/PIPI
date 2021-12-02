@@ -49,6 +49,9 @@
             app:destination="@id/second_graph"
             app:popUpTo="@id/loggedOutFragment"
             app:popUpToInclusive="true"/>
+        <argument
+            android:name="resisterArg"
+            app:argType="com.pipix.pipi.src.fragment.logged_out.join.register_step2.RegisterArg" />
     </fragment>
 
     <include app:graph="@navigation/second_graph" />

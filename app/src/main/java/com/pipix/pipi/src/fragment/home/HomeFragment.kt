@@ -54,10 +54,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         val timerTask: TimerTask = object : TimerTask() {
             override fun run() {
-                recyclerView.post(Runnable {  recyclerView.setCurrentItem(( recyclerView.getCurrentItem() + 1) % updatedList.size) })
+                if (updatedList.size >= 2) recyclerView.post(Runnable {
+                    recyclerView.setCurrentItem(( recyclerView.getCurrentItem() + 1) % updatedList.size) })
             }
         }
-        timer.schedule(timerTask, 500, 3000)
+        timer.schedule(timerTask, 3000, 5000)
 
 
         binding.homeLogout.setOnClickListener {

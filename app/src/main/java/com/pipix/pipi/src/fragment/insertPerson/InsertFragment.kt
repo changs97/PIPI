@@ -75,7 +75,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     lateinit var BtnSat : ToggleButton
     lateinit var BtnSun : ToggleButton
 
-    val userId = MainActivity.userId
+    val userId = ApplicationClass.prefs.userId
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -225,7 +225,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
     fun tryPostInsert(body : InsertBody){
         val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
-        UploadRetrofitInterface.postInsert(body, userId.toInt()).enqueue(object :
+        UploadRetrofitInterface.postInsert(body, userId!!.toInt()).enqueue(object :
             Callback<InsertResponse> {
             override fun onResponse(
                 call: Call<InsertResponse>,

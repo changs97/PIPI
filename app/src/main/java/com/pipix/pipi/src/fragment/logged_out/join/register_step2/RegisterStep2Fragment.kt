@@ -48,8 +48,8 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
             Log.d("TEST_tryPostSignUp",userId+userName.text.toString()+password)
 
 
-            findNavController().navigate(R.id.action_registerStep2Fragment_to_second_graph)
-            findNavController().graph.startDestination = R.id.second_graph
+            findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
+
 
         }
     }

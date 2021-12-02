@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 // 앱이 실행될때 1번만 실행이 됩니다.
 class ApplicationClass : Application() {
-    //서버 준비되면 URL 변경
+
     val API_URL = "http://www.coline.tk:8080/"
 
 

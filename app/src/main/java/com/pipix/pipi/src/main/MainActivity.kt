@@ -16,12 +16,15 @@ import androidx.annotation.NonNull
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemReselectedListener
+import com.pipix.pipi.config.ApplicationClass
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
 
     companion object{
+        lateinit var userName : String
+        lateinit var userId : String
         lateinit var viewModel: PRViewModel
         lateinit var oldList: List<Old>
         lateinit var pureList: List<PureResult>
@@ -30,6 +33,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        userName =
+            ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedUserNameKey),"default").toString()
+        userId =
+            ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedIDKey),"default").toString()
 
 
         viewModel = ViewModelProvider(this).get(PRViewModel::class.java)
@@ -42,7 +49,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         val bottomNavigationView = binding.bottomNav
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+
         val navController = navHostFragment.navController
+
+        if(userName != "default" && userId != "default"){
+            navController.setGraph(R.navigation.second_graph)
+        }
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController)
         bottomNavigationView.setOnNavigationItemReselectedListener {

@@ -26,8 +26,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
 
     companion object{
-        lateinit var userName : String
-        lateinit var userId : String
         lateinit var viewModel: PRViewModel
         lateinit var oldList: List<Old>
         lateinit var pureList: List<PureResult>
@@ -36,10 +34,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        userName =
-            ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedUserNameKey),"default").toString()
-        userId =
-            ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedIDKey),"default").toString()
 
 
         viewModel = ViewModelProvider(this).get(PRViewModel::class.java)

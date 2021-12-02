@@ -30,6 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //MainActivity의 전역변수가 정상적으로 사용 가능해지면 아래 코드 제거
         val userName = ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedUserNameKey),"default")
         binding.homeUserNameBar.text = "$userName 님"
         binding.homePlan.text = "오늘 방문 예정인 어르신"

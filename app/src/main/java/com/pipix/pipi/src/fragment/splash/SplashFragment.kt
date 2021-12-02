@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.pipix.pipi.R
+import com.pipix.pipi.config.ApplicationClass
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.databinding.FragmentSplashBinding
 import com.pipix.pipi.src.main.MainActivity
@@ -21,7 +22,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if(MainActivity.userId != "default" && MainActivity.userName != "default"){
+            if(ApplicationClass.prefs.userId != null && ApplicationClass.prefs.userName != null){
                 findNavController().navigate(R.id.action_splashFragment_to_second_graph)
                 findNavController().graph.startDestination = R.id.second_graph
             }else{

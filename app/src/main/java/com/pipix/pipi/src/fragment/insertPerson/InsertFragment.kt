@@ -75,9 +75,11 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     lateinit var BtnSat : ToggleButton
     lateinit var BtnSun : ToggleButton
 
+    val userId = MainActivity.userId
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         storage= FirebaseStorage.getInstance()
 
@@ -153,7 +155,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             showLoadingDialog(context as MainActivity)
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
-                val imageUrl : String? = null
 
                 if(selectImage!=null) {
 
@@ -174,10 +175,8 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                             Log.d("insert테스트","이미지 URL 호출 성공")
 
                             val downloadUri = task.result
-                            val oldData = Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), downloadUri.toString(),
-                                monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime)
 
-                            MainActivity.viewModel.addOld(oldData)
+                            tryPostInsert(InsertBody(address.text.toString(),age.text.toString(),downloadUri.toString(),name.text.toString(),genderType!!))
 
                             //all clear
                             dataClear()
@@ -195,10 +194,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
                 }
                 else{
-                    MainActivity.viewModel.addOld(
-                        //userId 바꿔서 넣어주기
-                        Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), imageUrl,
-                            monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
+                    tryPostInsert(InsertBody(address.text.toString(),age.text.toString(),null,name.text.toString(),genderType!!))
                     //all clear
                     dataClear()
                     Glide.with(this)
@@ -229,14 +225,18 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
     fun tryPostInsert(body : InsertBody){
         val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
-        //로그인 성공하면 userId 바꿔주기
-        UploadRetrofitInterface.postInsert(body, 5).enqueue(object :
+        UploadRetrofitInterface.postInsert(body, userId.toInt()).enqueue(object :
             Callback<InsertResponse> {
             override fun onResponse(
                 call: Call<InsertResponse>,
                 response: Response<InsertResponse>
             ) { Log.d("tryPostInsert",response.body().toString())
+                val data = response.body() as InsertResponse
 
+                MainActivity.viewModel.addOld(
+                    //userId 바꿔서 넣어주기
+                    Old( data.id, data.caregiverId.toString(), data.name, data.age, data.sex.toInt() ,data.address, data.imageURL.toString(),
+                        monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
 
             }
 
@@ -245,6 +245,10 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             }
         })
     }
+
+    //요일 서버에 업데이트
+
+
 
     fun viewBind() {
         complete = binding.insertBtnComplate

@@ -23,7 +23,15 @@ import android.widget.ToggleButton
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
-
+import com.pipix.pipi.config.ApplicationClass
+import com.pipix.pipi.data.Webservice
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertBody
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertResponse
+import com.pipix.pipi.src.fragment.logged_out.login.model.LoginBody
+import com.pipix.pipi.src.fragment.logged_out.login.model.LoginResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding::bind, R.layout.fragment_insert) {
@@ -215,6 +223,25 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             startActivityForResult(intent,IMAGE_PICK)
         }
         complete.isEnabled = true
+    }
+
+
+    fun tryPostInsert(body : InsertBody){
+        val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
+        UploadRetrofitInterface.postInsert(body, 4).enqueue(object :
+            Callback<InsertResponse> {
+            override fun onResponse(
+                call: Call<InsertResponse>,
+                response: Response<InsertResponse>
+            ) { Log.d("tryPostInsert",response.body().toString())
+
+
+            }
+
+            override fun onFailure(call: Call<InsertResponse>, t: Throwable) {
+                Log.d("tryPostInsert",t.message ?:"통신 오류")
+            }
+        })
     }
 
     fun viewBind() {

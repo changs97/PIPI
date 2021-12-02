@@ -38,11 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         recyclerView = binding.homeRecyclerview
         recyclerView2 = binding.homeRecyclerview2
 
-        binding.homeLogout.setOnClickListener {
-            //룸 데이터베이스 초기화 시켜야 함
-            ApplicationClass.prefs.userName = null
-            ApplicationClass.prefs.userId = null
-        }
+
 
 
         val calendar = Calendar.getInstance()

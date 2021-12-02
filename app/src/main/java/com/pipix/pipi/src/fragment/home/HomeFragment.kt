@@ -31,12 +31,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         super.onViewCreated(view, savedInstanceState)
 
         //MainActivity의 전역변수가 정상적으로 사용 가능해지면 아래 코드 제거
-        val userName = ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedUserNameKey),"default")
+        val userName = ApplicationClass.prefs.userName
         binding.homeUserNameBar.text = "$userName 님"
         binding.homePlan.text = "오늘 방문 예정인 어르신"
         binding.homePlan2.text = "내일 방문 예정인 어르신"
         recyclerView = binding.homeRecyclerview
         recyclerView2 = binding.homeRecyclerview2
+
+        binding.homeLogout.setOnClickListener {
+            //룸 데이터베이스 초기화 시켜야 함
+            ApplicationClass.prefs.userName = null
+            ApplicationClass.prefs.userId = null
+        }
 
 
         val calendar = Calendar.getInstance()

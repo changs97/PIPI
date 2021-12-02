@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.pipix.pipi.R
-import com.pipix.pipi.config.ApplicationClass.Companion.sSharedPreferences
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult

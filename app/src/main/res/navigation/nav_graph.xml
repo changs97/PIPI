@@ -45,9 +45,9 @@
         android:label="fragment_register_step2"
         tools:layout="@layout/fragment_register_step2" >
         <action
-            android:id="@+id/action_registerStep2Fragment_to_second_graph"
-            app:destination="@id/second_graph"
-            app:popUpTo="@id/loggedOutFragment"
+            android:id="@+id/action_registerStep2Fragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/registerStep1Fragment"
             app:popUpToInclusive="true"/>
         <argument
             android:name="resisterArg"

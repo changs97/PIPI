@@ -11,8 +11,8 @@ import retrofit2.http.*
 
 interface Webservice {
 
-    @GET("/api/user/logIn")
-    fun getLogin(@Body params: LoginBody): Call<LoginResponse>
+    @POST("/api/user/logIn")
+    fun postLogin(@Body params: LoginBody): Call<LoginResponse>
 
     @POST("/api/user/signUp")
     fun postSignUp(@Body params: SignUpBody): Call<SignUpResponse>

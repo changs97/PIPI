@@ -39,16 +39,6 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
 
             tryPostSignUp(SignUpBody(userId,userName.text.toString(),password))
 
-            var name = ""
-            name = if(userName.text.isNullOrBlank()) "userName" else userName.text.toString()
-            with (ApplicationClass.sSharedPreferences.edit()) {
-                putString(getString(R.string.sharedUserNameKey), name)
-                commit()
-            }
-            Log.d("TEST_tryPostSignUp",userId+userName.text.toString()+password)
-
-
-            findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
 
 
         }
@@ -62,12 +52,14 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
             override fun onResponse(
                 call: Call<SignUpResponse>,
                 response: Response<SignUpResponse>
-            ) { Log.d("TEST_tryPostSignUp",response.body().toString()+"OnResponse")
+            ) {
+                findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
 
             }
 
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 Log.d("TEST_tryPostSignUp",t.message ?:"통신 오류")
+                showCustomToast("회원가입 실패")
             }
         })
     }

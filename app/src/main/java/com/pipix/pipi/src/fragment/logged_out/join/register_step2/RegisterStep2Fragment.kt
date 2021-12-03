@@ -54,12 +54,15 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
                 response: Response<SignUpResponse>
             ) {
                 findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
+                showCustomToast("회원가입 성공")
 
             }
 
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 Log.d("TEST_tryPostSignUp",t.message ?:"통신 오류")
+                //통신 결과 성공인데 이 함수가 호출되는 이유를 알아봐야함
                 showCustomToast("회원가입 실패")
+                findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
             }
         })
     }

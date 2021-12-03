@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loggedOutFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/loggedOutFragment"
         android:name="com.pipix.pipi.src.fragment.logged_out.LoggedOutFragment"
@@ -45,12 +45,31 @@
         android:label="fragment_register_step2"
         tools:layout="@layout/fragment_register_step2" >
         <action
-            android:id="@+id/action_registerStep2Fragment_to_second_graph"
-            app:destination="@id/second_graph"
-            app:popUpTo="@id/loggedOutFragment"
+            android:id="@+id/action_registerStep2Fragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/registerStep1Fragment"
             app:popUpToInclusive="true"/>
+        <argument
+            android:name="resisterArg"
+            app:argType="com.pipix.pipi.src.fragment.logged_out.join.register_step2.RegisterArg" />
     </fragment>
 
     <include app:graph="@navigation/second_graph" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.pipix.pipi.src.fragment.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_splashFragment_to_loggedOutFragment"
+            app:destination="@id/loggedOutFragment" />
+        <action
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_splashFragment_to_second_graph"
+            app:destination="@id/second_graph" />
+    </fragment>
 
 </navigation>

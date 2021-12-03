@@ -1,6 +1,7 @@
 package com.pipix.pipi.src.fragment.home
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,16 +25,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     private lateinit var updatedList2: MutableList<Old>
     private lateinit var recyclerView: ViewPager2
     private lateinit var recyclerView2: RecyclerView
+    val timer = Timer()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userName = ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedUserNameKey),"default")
+        //MainActivity의 전역변수가 정상적으로 사용 가능해지면 아래 코드 제거
+        val userName = ApplicationClass.prefs.userName
         binding.homeUserNameBar.text = "$userName 님"
         binding.homePlan.text = "오늘 방문 예정인 어르신"
         binding.homePlan2.text = "내일 방문 예정인 어르신"
         recyclerView = binding.homeRecyclerview
         recyclerView2 = binding.homeRecyclerview2
+
+
 
 
         val calendar = Calendar.getInstance()
@@ -48,6 +53,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         recyclerView.clipToPadding = false
         recyclerView.clipChildren = false
         recyclerView.offscreenPageLimit = 100
+
+
+        val timerTask: TimerTask = object : TimerTask() {
+            override fun run() {
+                if (updatedList.size >= 2) recyclerView.post(Runnable {
+                    recyclerView.setCurrentItem(( recyclerView.getCurrentItem() + 1) % updatedList.size) })
+            }
+        }
+        timer.schedule(timerTask, 3000, 5000)
+
 
         binding.homeLogout.setOnClickListener {
             CustomDialog3(context as MainActivity).show()
@@ -147,5 +162,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             Calendar.SUNDAY -> {for(old in homeList) if(!old.sun.isNullOrBlank()) list.add(old)
                 list.sortBy { it.sun }}
         }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.cancel()
     }
 }

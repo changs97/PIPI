@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:paddingHorizontal="10dp"
-        android:background="@color/amerald"
+        android:background="@drawable/custom_btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

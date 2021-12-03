@@ -1,6 +1,7 @@
 package com.pipix.pipi.src.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -12,6 +13,13 @@ import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult
 import com.pipix.pipi.databinding.ActivityMainBinding
 import com.pipix.pipi.testpackage.SoundController
+import androidx.annotation.NonNull
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemReselectedListener
+import com.pipix.pipi.config.ApplicationClass
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -40,7 +48,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
 
-        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
+        NavigationUI.setupWithNavController(bottomNavigationView,navController)
+        bottomNavigationView.setOnNavigationItemReselectedListener {
+
+        }
 
 
 

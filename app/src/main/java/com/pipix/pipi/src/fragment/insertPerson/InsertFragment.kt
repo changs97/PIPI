@@ -23,7 +23,17 @@ import android.widget.ToggleButton
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
-
+import com.pipix.pipi.config.ApplicationClass
+import com.pipix.pipi.data.Webservice
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertBody
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertResponse
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleBody
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleResponse
+import com.pipix.pipi.src.fragment.logged_out.login.model.LoginBody
+import com.pipix.pipi.src.fragment.logged_out.login.model.LoginResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding::bind, R.layout.fragment_insert) {
@@ -67,9 +77,11 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     lateinit var BtnSat : ToggleButton
     lateinit var BtnSun : ToggleButton
 
+    val userId = ApplicationClass.prefs.userId
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         storage= FirebaseStorage.getInstance()
 
@@ -145,7 +157,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             showLoadingDialog(context as MainActivity)
             if(name.text != null && age.text != null && genderType != null && address.text != null){
 
-                val imageUrl : String? = null
 
                 if(selectImage!=null) {
 
@@ -163,16 +174,12 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                         ref.downloadUrl
                     }.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Log.d("insert테스트","이미지 URL 호출 성공")
 
                             val downloadUri = task.result
-                            val oldData = Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), downloadUri.toString(),
-                                monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime)
 
-                            MainActivity.viewModel.addOld(oldData)
+                            tryPostInsert(InsertBody(address.text.toString(),age.text.toString(),
+                                downloadUri.toString(),name.text.toString(),genderType!!))
 
-                            //all clear
-                            dataClear()
                             Glide.with(this)
                                 .load(R.drawable.ic_basic_profile).centerCrop()
                                 .into(binding.insertCircleimageProfile)
@@ -187,11 +194,8 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
                 }
                 else{
-                    MainActivity.viewModel.addOld(
-                        Old(0, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), imageUrl,
-                            monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
-                    //all clear
-                    dataClear()
+                    tryPostInsert(InsertBody(address.text.toString(),age.text.toString(),null,name.text.toString(),genderType!!))
+
                     Glide.with(this)
                         .load(R.drawable.ic_basic_profile).centerCrop()
                         .into(binding.insertCircleimageProfile)
@@ -217,6 +221,57 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         complete.isEnabled = true
     }
 
+
+    fun tryPostInsert(body : InsertBody){
+        val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
+        UploadRetrofitInterface.postInsert(body, userId!!.toInt()).enqueue(object :
+            Callback<InsertResponse> {
+            override fun onResponse(
+                call: Call<InsertResponse>,
+                response: Response<InsertResponse>
+            ) { Log.d("tryPostInsert",response.body().toString())
+                val data = response.body() as InsertResponse
+
+
+                MainActivity.viewModel.addOld(
+                    Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
+                        monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
+
+                tryPutInsert(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
+                    tuesTime, wedTime), data.id)
+
+
+            }
+
+            override fun onFailure(call: Call<InsertResponse>, t: Throwable) {
+                Log.d("tryPostInsert",t.message ?:"통신 오류")
+            }
+        })
+    }
+
+
+    fun tryPutInsert(body : InsertScheduleBody, patientId : Int){
+        val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
+        UploadRetrofitInterface.putSchedule(body, patientId).enqueue(object :
+            Callback<InsertScheduleResponse> {
+            override fun onResponse(
+                call: Call<InsertScheduleResponse>,
+                response: Response<InsertScheduleResponse>
+            ) { Log.d("tryPostInsert",response.body().toString())
+                val data = response.body() as InsertScheduleResponse
+                //all clear
+                dataClear()
+
+            }
+
+            override fun onFailure(call: Call<InsertScheduleResponse>, t: Throwable) {
+                Log.d("tryPostInsert",t.message ?:"통신 오류")
+            }
+        })
+    }
+
+
+
     fun viewBind() {
         complete = binding.insertBtnComplate
         name = binding.insertEdittextName
@@ -233,7 +288,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
     }
 
     fun dataClear() {
-        Log.d("insert","초기화")
         dataList.clear()
         recyclerviewAdapter.notifyDataSetChanged()
         name.text = null

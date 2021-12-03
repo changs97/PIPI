@@ -53,14 +53,24 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
                 call: Call<SignUpResponse>,
                 response: Response<SignUpResponse>
             ) {
-                findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
-                showCustomToast("회원가입 성공")
 
+                if(response.isSuccessful()){ // 응답을 잘 받은 경우
+                    val data = response.body() as String
+                    Log.d("tryPostSignUp",data+"성공")
+                    findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
+                    showCustomToast("회원가입 성공")
+                } else {
+                    // 통신은 성공했지만 응답에 문제가 있는 경우
+                    Log.d("tryPostSignUp","응답에 문제")
+                }
             }
+
+
 
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 Log.d("TEST_tryPostSignUp",t.message ?:"통신 오류")
-                //통신 결과 성공인데 이 함수가 호출되는 이유를 알아봐야함
+                //통신 실패
+                //통신 결는 성공인데 이 함수가 호출되는 이유를 알아봐야함
                 showCustomToast("회원가입 실패")
                 findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
             }

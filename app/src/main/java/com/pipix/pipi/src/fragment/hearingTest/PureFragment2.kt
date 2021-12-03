@@ -14,15 +14,24 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.pipix.pipi.R
+import com.pipix.pipi.config.ApplicationClass
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.PRViewModel
 import com.pipix.pipi.data.PureResult
+import com.pipix.pipi.data.Webservice
 import com.pipix.pipi.databinding.FragmentPure2Binding
+import com.pipix.pipi.src.fragment.hearingTest.model.TestBody
+import com.pipix.pipi.src.fragment.hearingTest.model.TestResponse
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleBody
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleResponse
 import com.pipix.pipi.src.main.MainActivity
 import com.pipix.pipi.testpackage.PureTest2
 import com.pipix.pipi.testpackage.PureTest2ViewModel
 import com.pipix.pipi.testpackage.SoundController
 import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::bind, R.layout.fragment_pure2) {
@@ -38,6 +47,7 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
     private lateinit var scope: CoroutineScope
     private lateinit var dbText: TextView
     private  var isPause:Boolean = false
+    private lateinit var date : Date
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -90,17 +100,15 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
             if(pureTest.doTest(1) && pureTest.doTest(0)) {
                 result = pureTest.getResult()
                 val now = System.currentTimeMillis()
-                val date =  Date(now)
+                date =  Date(now)
 
-                val pr = PureResult(MainActivity.viewModel.currentOldID, date, pureTest.getTpa(1),pureTest.getTpa(0)
-                    , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
-                    , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
 
-                viewModel.addPureResult(pr)
-                activity?.runOnUiThread {
-                    isPause = true
-                    findNavController().popBackStack()
-                }
+
+                tryPostTestResult(TestBody(now,result[0][0],result[0][1],result[0][4],result[0][2],result[0][5],result[0][3],
+                    result[1][0],result[1][2],result[1][4],result[1][2],result[1][5],result[1][3],pureTest.getTpa(0),
+                    pureTest.getTpa(1) ), MainActivity.viewModel.currentOldID)
+
+
             }
         }
 
@@ -118,6 +126,35 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
             findNavController().popBackStack()
             showCustomToast("순음청력검사가 취소 되었습니다.")
         }
+    }
+
+    fun tryPostTestResult(body : TestBody, patientId : Int){
+        val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
+        UploadRetrofitInterface.postTestResult(body, patientId).enqueue(object :
+            Callback<TestResponse> {
+            override fun onResponse(
+                call: Call<TestResponse>,
+                response: Response<TestResponse>
+            ) { Log.d("tryPostTestResult",response.body().toString())
+                val data = response.body() as TestResponse
+
+
+                val pr = PureResult(MainActivity.viewModel.currentOldID, date, pureTest.getTpa(1),pureTest.getTpa(0)
+                    , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
+                    , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
+
+                viewModel.addPureResult(pr)
+                activity?.runOnUiThread {
+                    isPause = true
+                    findNavController().popBackStack()
+                }
+
+            }
+
+            override fun onFailure(call: Call<TestResponse>, t: Throwable) {
+                Log.d("tryPostTestResult",t.message ?:"통신 오류")
+            }
+        })
     }
 
     override fun onPause() {

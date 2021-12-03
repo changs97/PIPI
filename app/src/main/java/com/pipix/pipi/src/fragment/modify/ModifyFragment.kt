@@ -192,7 +192,6 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                                 .load(R.drawable.ic_basic_profile).centerCrop()
                                 .into(binding.modifyCircleimageProfile)
 
-                            findNavController().popBackStack()
                             dismissLoadingDialog()
 
                         } else {
@@ -212,7 +211,6 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                         .load(R.drawable.ic_basic_profile).centerCrop()
                         .into(binding.modifyCircleimageProfile)
 
-                    findNavController().popBackStack()
                     dismissLoadingDialog()
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
@@ -277,7 +275,9 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
             ) { Log.d("tryPutScheduleModify",response.body().toString())
                 val data = response.body() as InsertScheduleResponse
                 //all clear
+
                 dataClear()
+                findNavController().popBackStack()
 
             }
 

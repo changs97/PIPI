@@ -19,8 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.pipix.pipi.R
+import com.pipix.pipi.config.ApplicationClass
 import com.pipix.pipi.config.BaseFragment
 import com.pipix.pipi.data.Old
+import com.pipix.pipi.data.Webservice
 import com.pipix.pipi.databinding.FragmentModifyBinding
 import com.pipix.pipi.src.fragment.insertPerson.CustomDialog
 import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.dataList
@@ -40,7 +42,15 @@ import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.tuesliv
 import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.wedTime
 import com.pipix.pipi.src.fragment.insertPerson.InsertFragment.Companion.wedliveChecked
 import com.pipix.pipi.src.fragment.insertPerson.SetTime
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertBody
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleBody
+import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleResponse
+import com.pipix.pipi.src.fragment.modify.model.ModifyBody
+import com.pipix.pipi.src.fragment.modify.model.ModifyResponse
 import com.pipix.pipi.src.main.MainActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding::bind, R.layout.fragment_modify) {
@@ -173,20 +183,11 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                             Log.d("insert테스트","이미지 URL 호출 성공")
 
                             val downloadUri = task.result
-                            val oldData = Old(data.oldID, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), downloadUri.toString(),
-                                monTime,
-                                tuesTime,
-                                wedTime,
-                                thuTime,
-                                friTime,
-                                satTime,
-                                sunTime
-                            )
+                            tryPutModify(
+                                ModifyBody(address.text.toString(),age.text.toString(),
+                                downloadUri.toString(),name.text.toString(),genderType!!)
+                            ,data.oldID)
 
-                            MainActivity.viewModel.addOld(oldData)
-
-                            //all clear
-                            dataClear()
                             Glide.with(this)
                                 .load(R.drawable.ic_basic_profile).centerCrop()
                                 .into(binding.modifyCircleimageProfile)
@@ -201,18 +202,12 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                     }
                 }
                 else{
-                    MainActivity.viewModel.addOld(
-                        Old(data.oldID, "userID", name.text.toString(), age.text.toString().toInt(), genderType!! ,address.text.toString(), data.oldImage,
-                            monTime,
-                            tuesTime,
-                            wedTime,
-                            thuTime,
-                            friTime,
-                            satTime,
-                            sunTime
-                        ))
-                    //all clear
-                    dataClear()
+
+                    tryPutModify(
+                        ModifyBody(address.text.toString(),age.text.toString(),
+                           null,name.text.toString(),genderType!!)
+                        ,data.oldID)
+
                     Glide.with(this)
                         .load(R.drawable.ic_basic_profile).centerCrop()
                         .into(binding.modifyCircleimageProfile)
@@ -241,6 +236,55 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         }
 
 
+    }
+
+
+    fun tryPutModify(body : ModifyBody, patientId : Int){
+        val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
+        UploadRetrofitInterface.putUpdate(body, patientId).enqueue(object :
+            Callback<ModifyResponse> {
+            override fun onResponse(
+                call: Call<ModifyResponse>,
+                response: Response<ModifyResponse>
+            ) {
+                val data = response.body() as ModifyResponse
+
+                MainActivity.viewModel.addOld(
+                    Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
+                        monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
+
+                tryPutScheduleModify(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
+                    tuesTime, wedTime), data.id)
+
+
+
+
+            }
+
+            override fun onFailure(call: Call<ModifyResponse>, t: Throwable) {
+                Log.d("tryPutModify",t.message ?:"통신 오류")
+            }
+        })
+    }
+
+    fun tryPutScheduleModify(body : InsertScheduleBody, patientId : Int){
+        val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
+        UploadRetrofitInterface.putSchedule(body, patientId).enqueue(object :
+            Callback<InsertScheduleResponse> {
+            override fun onResponse(
+                call: Call<InsertScheduleResponse>,
+                response: Response<InsertScheduleResponse>
+            ) { Log.d("tryPutScheduleModify",response.body().toString())
+                val data = response.body() as InsertScheduleResponse
+                //all clear
+                dataClear()
+
+            }
+
+            override fun onFailure(call: Call<InsertScheduleResponse>, t: Throwable) {
+                Log.d("tryPutScheduleModify",t.message ?:"통신 오류")
+            }
+        })
     }
 
     fun viewBind() {

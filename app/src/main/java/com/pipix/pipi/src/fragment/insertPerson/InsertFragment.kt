@@ -177,7 +177,8 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
                             val downloadUri = task.result
 
-                            tryPostInsert(InsertBody(address.text.toString(),age.text.toString(),downloadUri.toString(),name.text.toString(),genderType!!))
+                            tryPostInsert(InsertBody(address.text.toString(),age.text.toString(),
+                                downloadUri.toString(),name.text.toString(),genderType!!))
 
                             Glide.with(this)
                                 .load(R.drawable.ic_basic_profile).centerCrop()
@@ -233,7 +234,6 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
 
                 MainActivity.viewModel.addOld(
-                    //userId 바꿔서 넣어주기
                     Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
                         monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
 
@@ -249,7 +249,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         })
     }
 
-   
+
     fun tryPutInsert(body : InsertScheduleBody, patientId : Int){
         val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
         UploadRetrofitInterface.putSchedule(body, patientId).enqueue(object :

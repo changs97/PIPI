@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.annotation.RequiresApi
+import com.pipix.pipi.config.ApplicationClass
 import com.pipix.pipi.databinding.DialogLogoutBinding
 
 import java.util.*
@@ -38,7 +39,9 @@ class CustomDialog3(context: Context) : Dialog(context) {
             dismiss()
         }
         delete.setOnClickListener {
-            //로그아웃 코드
+            //룸 데이터베이스 초기화 시켜야 함
+            ApplicationClass.prefs.userName = null
+            ApplicationClass.prefs.userId = null
             dismiss()
 
         }

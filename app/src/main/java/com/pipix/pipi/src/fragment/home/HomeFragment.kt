@@ -30,12 +30,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userName = ApplicationClass.sSharedPreferences.getString(getString(R.string.sharedUserNameKey),"default")
+        //MainActivity의 전역변수가 정상적으로 사용 가능해지면 아래 코드 제거
+        val userName = ApplicationClass.prefs.userName
         binding.homeUserNameBar.text = "$userName 님"
         binding.homePlan.text = "오늘 방문 예정인 어르신"
         binding.homePlan2.text = "내일 방문 예정인 어르신"
         recyclerView = binding.homeRecyclerview
         recyclerView2 = binding.homeRecyclerview2
+
+
 
 
         val calendar = Calendar.getInstance()
@@ -54,10 +57,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         val timerTask: TimerTask = object : TimerTask() {
             override fun run() {
-                recyclerView.post(Runnable {  recyclerView.setCurrentItem(( recyclerView.getCurrentItem() + 1) % updatedList.size) })
+                if (updatedList.size >= 2) recyclerView.post(Runnable {
+                    recyclerView.setCurrentItem(( recyclerView.getCurrentItem() + 1) % updatedList.size) })
             }
         }
-        timer.schedule(timerTask, 500, 3000)
+        timer.schedule(timerTask, 3000, 5000)
 
 
         binding.homeLogout.setOnClickListener {

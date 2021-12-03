@@ -10,22 +10,15 @@ import java.util.concurrent.TimeUnit
 
 // 앱이 실행될때 1번만 실행이 됩니다.
 class ApplicationClass : Application() {
-    //서버 준비되면 URL 변경
-    val API_URL = "http://api.test.com"
 
-    // 테스트 서버 주소
-    // ex) val API_URL = "http://dev-api.test.com/"
+    val API_URL = "http://www.coline.tk:8080/"
 
-    // 실 서버 주소
-    // ex) val API_URL = "http://api.test.com/"
 
     // 코틀린의 전역변수 문법
     companion object {
         // 만들어져있는 SharedPreferences 를 사용해야합니다. 재생성하지 않도록 유념해주세요
-        lateinit var sSharedPreferences: SharedPreferences
+        lateinit var prefs : Prefs
 
-        // JWT Token Header 키 값
-        val X_ACCESS_TOKEN = "X-ACCESS-TOKEN"
 
         // Retrofit 인스턴스, 앱 실행시 한번만 생성하여 사용합니다.
         lateinit var sRetrofit: Retrofit
@@ -34,8 +27,7 @@ class ApplicationClass : Application() {
     // 앱이 처음 생성되는 순간, SP를 새로 만들어주고, 레트로핏 인스턴스를 생성합니다.
     override fun onCreate() {
         super.onCreate()
-        sSharedPreferences =
-            applicationContext.getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
+        prefs = Prefs(applicationContext)
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
     }
@@ -48,7 +40,6 @@ class ApplicationClass : Application() {
             .connectTimeout(5000, TimeUnit.MILLISECONDS)
             // 로그캣에 okhttp.OkHttpClient로 검색하면 http 통신 내용을 보여줍니다.
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .addNetworkInterceptor(XAccessTokenInterceptor()) // JWT 자동 헤더 전송
             .build()
 
         // sRetrofit 이라는 전역변수에 API url, 인터셉터, Gson을 넣어주고 빌드해주는 코드

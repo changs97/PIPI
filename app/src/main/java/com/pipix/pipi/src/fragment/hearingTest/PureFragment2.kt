@@ -4,6 +4,7 @@ import android.icu.text.SimpleDateFormat
 import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -94,6 +95,7 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
                 val pr = PureResult(MainActivity.viewModel.currentOldID, date, pureTest.getTpa(1),pureTest.getTpa(0)
                     , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
                     , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
+
                 viewModel.addPureResult(pr)
                 activity?.runOnUiThread {
                     isPause = true

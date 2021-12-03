@@ -20,5 +20,5 @@ data class ModifyResponse(
     @SerializedName("sex")
     val sex: String,
     @SerializedName("testResults")
-    val testResults: List<TestResult>
+    val testResults: List<TestResult>?
 )

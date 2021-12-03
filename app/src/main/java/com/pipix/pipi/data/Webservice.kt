@@ -8,6 +8,8 @@ import com.pipix.pipi.src.fragment.logged_out.join.register_step2.model.SignUpBo
 import com.pipix.pipi.src.fragment.logged_out.join.register_step2.model.SignUpResponse
 import com.pipix.pipi.src.fragment.logged_out.login.model.LoginBody
 import com.pipix.pipi.src.fragment.logged_out.login.model.LoginResponse
+import com.pipix.pipi.src.fragment.modify.model.ModifyBody
+import com.pipix.pipi.src.fragment.modify.model.ModifyResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -25,5 +27,7 @@ interface Webservice {
     @PUT("/api/patient/updateSchedule/{patientId}")
     fun putSchedule(@Body params: InsertScheduleBody, @Path("patientId") patientId : Int ): Call<InsertScheduleResponse>
 
+    @PUT("/api/patient/update/{patientId}")
+    fun putUpdate(@Body params: ModifyBody, @Path("patientId") patientId : Int ): Call<ModifyResponse>
 
 }

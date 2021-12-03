@@ -249,7 +249,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
         })
     }
 
-    //요일 서버에 업데이트
+   
     fun tryPutInsert(body : InsertScheduleBody, patientId : Int){
         val UploadRetrofitInterface = ApplicationClass.sRetrofit.create(Webservice::class.java)
         UploadRetrofitInterface.putSchedule(body, patientId).enqueue(object :

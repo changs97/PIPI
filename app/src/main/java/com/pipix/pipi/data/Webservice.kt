@@ -1,5 +1,7 @@
 package com.pipix.pipi.data
 
+import com.pipix.pipi.src.fragment.hearingTest.model.TestBody
+import com.pipix.pipi.src.fragment.hearingTest.model.TestResponse
 import com.pipix.pipi.src.fragment.insertPerson.model.InsertBody
 import com.pipix.pipi.src.fragment.insertPerson.model.InsertResponse
 import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleBody
@@ -23,6 +25,10 @@ interface Webservice {
 
     @POST("/api/patient/create/{userId}")
     fun postInsert(@Body params: InsertBody, @Path("userId") userId : Int ): Call<InsertResponse>
+
+    @POST("/api/testResult/create/{patientId}")
+    fun postTestResult(@Body params: TestBody, @Path("patientId") patientId : Int ): Call<TestResponse>
+
 
     @PUT("/api/patient/updateSchedule/{patientId}")
     fun putSchedule(@Body params: InsertScheduleBody, @Path("patientId") patientId : Int ): Call<InsertScheduleResponse>

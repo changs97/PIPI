@@ -154,8 +154,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
         complete.setOnClickListener {
             complete.isEnabled = false
-            showLoadingDialog(context as MainActivity)
+
             if(name.text != null && age.text != null && genderType != null && address.text != null){
+                showLoadingDialog(context as MainActivity)
 
 
                 if(selectImage!=null) {
@@ -201,7 +202,10 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                         .into(binding.insertCircleimageProfile)
                     dismissLoadingDialog()
                 }
-            }else { showCustomToast("필수 항목을 모두 입력하세요") }
+
+            }else {
+                showCustomToast("필수 항목을 모두 입력하세요") }
+            complete.isEnabled = true
         }
 
         val recyclerView = binding.insertRecyclerview
@@ -218,7 +222,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             intent.type="image/*"
             startActivityForResult(intent,IMAGE_PICK)
         }
-        complete.isEnabled = true
+
     }
 
 
@@ -229,16 +233,20 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             override fun onResponse(
                 call: Call<InsertResponse>,
                 response: Response<InsertResponse>
-            ) { Log.d("tryPostInsert",response.body().toString())
-                val data = response.body() as InsertResponse
+            ) {
+                if(response.isSuccessful()){
+                    // 응답을 잘 받은 경우
+                    Log.d("tryPostInsert",response.body().toString())
+                    val data = response.body() as InsertResponse
 
+                    MainActivity.viewModel.addOld(
+                        Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
+                            monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
 
-                MainActivity.viewModel.addOld(
-                    Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
-                        monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
+                    tryPutInsert(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
+                        tuesTime, wedTime), data.id)
 
-                tryPutInsert(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
-                    tuesTime, wedTime), data.id)
+                }
 
 
             }
@@ -257,10 +265,18 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             override fun onResponse(
                 call: Call<InsertScheduleResponse>,
                 response: Response<InsertScheduleResponse>
-            ) { Log.d("tryPostInsert",response.body().toString())
-                val data = response.body() as InsertScheduleResponse
-                //all clear
-                dataClear()
+            ) {
+                if(response.isSuccessful()){
+                    // 응답을 잘 받은 경우
+                    Log.d("tryPostInsert",response.body().toString())
+                    val data = response.body() as InsertScheduleResponse
+                    //all clear
+                    dataClear()
+                }
+                else{
+                   //응답 실패 시 코드
+                }
+
 
             }
 

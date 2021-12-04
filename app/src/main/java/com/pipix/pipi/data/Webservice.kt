@@ -7,7 +7,6 @@ import com.pipix.pipi.src.fragment.insertPerson.model.InsertResponse
 import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleBody
 import com.pipix.pipi.src.fragment.insertPerson.model.InsertScheduleResponse
 import com.pipix.pipi.src.fragment.logged_out.join.register_step2.model.SignUpBody
-import com.pipix.pipi.src.fragment.logged_out.join.register_step2.model.SignUpResponse
 import com.pipix.pipi.src.fragment.logged_out.login.model.LoginBody
 import com.pipix.pipi.src.fragment.logged_out.login.model.LoginResponse
 import com.pipix.pipi.src.fragment.modify.model.ModifyBody

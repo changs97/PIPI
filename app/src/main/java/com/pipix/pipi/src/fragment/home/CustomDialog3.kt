@@ -8,6 +8,11 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.annotation.RequiresApi
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
+import com.pipix.pipi.R
 import com.pipix.pipi.config.ApplicationClass
 import com.pipix.pipi.databinding.DialogLogoutBinding
 import com.pipix.pipi.src.main.MainActivity
@@ -15,7 +20,7 @@ import com.pipix.pipi.src.main.MainActivity
 import java.util.*
 
 
-class CustomDialog3(context: Context) : Dialog(context) {
+class CustomDialog3(context: Context, val view : HomeFragment) : Dialog(context) {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +50,10 @@ class CustomDialog3(context: Context) : Dialog(context) {
             ApplicationClass.prefs.userId = null
             MainActivity.viewModel.deleteAllPureResult()
             MainActivity.viewModel.deleteAllOld()
+
+            view.findNavController().navigate(R.id.action_global_start)
+
+
             dismiss()
         }
 

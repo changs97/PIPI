@@ -201,7 +201,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                         .into(binding.insertCircleimageProfile)
                     dismissLoadingDialog()
                 }
+
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
+            complete.isEnabled = false
         }
 
         val recyclerView = binding.insertRecyclerview
@@ -218,7 +220,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             intent.type="image/*"
             startActivityForResult(intent,IMAGE_PICK)
         }
-        complete.isEnabled = true
+
     }
 
 

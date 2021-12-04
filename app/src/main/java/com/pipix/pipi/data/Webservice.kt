@@ -21,7 +21,7 @@ interface Webservice {
     fun postLogin(@Body params: LoginBody): Call<LoginResponse>
 
     @POST("/api/user/signUp")
-    fun postSignUp(@Body params: SignUpBody): Call<SignUpResponse>
+    fun postSignUp(@Body params: SignUpBody): Call<String>
 
     @POST("/api/patient/create/{userId}")
     fun postInsert(@Body params: InsertBody, @Path("userId") userId : Int ): Call<InsertResponse>

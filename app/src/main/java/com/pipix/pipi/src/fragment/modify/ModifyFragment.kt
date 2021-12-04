@@ -245,14 +245,20 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                 call: Call<ModifyResponse>,
                 response: Response<ModifyResponse>
             ) {
-                val data = response.body() as ModifyResponse
+                if(response.isSuccessful()){
+                    // 응답을 잘 받은 경우
+                    val data = response.body() as ModifyResponse
 
-                MainActivity.viewModel.addOld(
-                    Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
-                        monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
+                    MainActivity.viewModel.addOld(
+                        Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
+                            monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
 
-                tryPutScheduleModify(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
-                    tuesTime, wedTime), data.id)
+                    tryPutScheduleModify(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
+                        tuesTime, wedTime), data.id)
+                }else{
+                    //응답 실패 시 코드
+                }
+
 
 
 
@@ -272,12 +278,16 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
             override fun onResponse(
                 call: Call<InsertScheduleResponse>,
                 response: Response<InsertScheduleResponse>
-            ) { Log.d("tryPutScheduleModify",response.body().toString())
-                val data = response.body() as InsertScheduleResponse
-                //all clear
+            ) {
+                if(response.isSuccessful()){
+                    Log.d("tryPutScheduleModify",response.body().toString())
+                    val data = response.body() as InsertScheduleResponse
+                    //all clear
 
-                dataClear()
-                findNavController().popBackStack()
+                    dataClear()
+                    findNavController().popBackStack()
+                }
+
 
             }
 

@@ -229,16 +229,20 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             override fun onResponse(
                 call: Call<InsertResponse>,
                 response: Response<InsertResponse>
-            ) { Log.d("tryPostInsert",response.body().toString())
-                val data = response.body() as InsertResponse
+            ) {
+                if(response.isSuccessful()){
+                    // 응답을 잘 받은 경우
+                    Log.d("tryPostInsert",response.body().toString())
+                    val data = response.body() as InsertResponse
 
+                    MainActivity.viewModel.addOld(
+                        Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
+                            monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
 
-                MainActivity.viewModel.addOld(
-                    Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
-                        monTime, tuesTime, wedTime, thuTime, friTime, satTime, sunTime))
+                    tryPutInsert(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
+                        tuesTime, wedTime), data.id)
 
-                tryPutInsert(InsertScheduleBody(friTime, monTime, satTime, sunTime, thuTime,
-                    tuesTime, wedTime), data.id)
+                }
 
 
             }
@@ -257,8 +261,10 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
             override fun onResponse(
                 call: Call<InsertScheduleResponse>,
                 response: Response<InsertScheduleResponse>
-            ) { Log.d("tryPostInsert",response.body().toString())
-                if(response.isSuccessful()){ // 응답을 잘 받은 경우
+            ) {
+                if(response.isSuccessful()){
+                    // 응답을 잘 받은 경우
+                    Log.d("tryPostInsert",response.body().toString())
                     val data = response.body() as InsertScheduleResponse
                     //all clear
                     dataClear()

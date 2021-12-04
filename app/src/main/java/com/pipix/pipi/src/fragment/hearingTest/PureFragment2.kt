@@ -135,19 +135,23 @@ class PureFragment2  : BaseFragment<FragmentPure2Binding>(FragmentPure2Binding::
             override fun onResponse(
                 call: Call<TestResponse>,
                 response: Response<TestResponse>
-            ) { Log.d("tryPostTestResult",response.body().toString())
-                val data = response.body() as TestResponse
+            ) {
+                if(response.isSuccessful()){
+                    Log.d("tryPostTestResult",response.body().toString())
+                    val data = response.body() as TestResponse
 
 
-                val pr = PureResult(MainActivity.viewModel.currentOldID, date, pureTest.getTpa(1),pureTest.getTpa(0)
-                    , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
-                    , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
+                    val pr = PureResult(MainActivity.viewModel.currentOldID, date, pureTest.getTpa(1),pureTest.getTpa(0)
+                        , result[1][4], result[1][5], result[1][0],result[1][1],result[1][2],result[1][3]
+                        , result[0][4], result[0][5], result[0][0],result[0][1],result[0][2],result[0][3])
 
-                viewModel.addPureResult(pr)
-                activity?.runOnUiThread {
-                    isPause = true
-                    findNavController().popBackStack()
+                    viewModel.addPureResult(pr)
+                    activity?.runOnUiThread {
+                        isPause = true
+                        findNavController().popBackStack()
+                    }
                 }
+
 
             }
 

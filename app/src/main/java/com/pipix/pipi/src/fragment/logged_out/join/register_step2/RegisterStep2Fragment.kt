@@ -66,7 +66,6 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
             }
 
 
-
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 Log.d("TEST_tryPostSignUp",t.message ?:"통신 오류")
                 //통신 실패

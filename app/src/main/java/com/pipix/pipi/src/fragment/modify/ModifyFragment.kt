@@ -119,10 +119,17 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.insert_man -> genderType = 0
-                R.id.insert_woman -> genderType = 1
+                R.id.modify_man -> {
+                    genderType = 0
+                    Log.d("성별","R.id.insert_man" + genderType.toString())
+                }
+                R.id.modify_woman -> {
+                    genderType = 1
+                    Log.d("성별","R.id.insert_woman" + genderType.toString())}
             }
         }
+
+
 
         BtnMon.setOnClickListener{
             if(BtnMon.isChecked) {
@@ -202,6 +209,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                 }
                 else{
 
+                    Log.d("성별",genderType!!.toString())
                     tryPutModify(
                         ModifyBody(address.text.toString(),age.text.toString(),
                            null,name.text.toString(),genderType!!)
@@ -213,7 +221,8 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
 
                     dismissLoadingDialog()
                 }
-            }else { showCustomToast("필수 항목을 모두 입력하세요") }
+            }else {
+                showCustomToast("필수 항목을 모두 입력하세요") }
 
             complete.isEnabled = true
         }
@@ -248,6 +257,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                 if(response.isSuccessful()){
                     // 응답을 잘 받은 경우
                     val data = response.body() as ModifyResponse
+
 
                     MainActivity.viewModel.addOld(
                         Old( data.id, data.caregiverId.toString(), data.name, data.age, body.sex ,data.address, data.imageURL,
@@ -314,6 +324,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         binding.modifyEdittextName.setText(old.oldName)
         binding.modifyEdittextAddress.setText(old.oldAddress)
         binding.modifyEdittextAge.setText(old.oldAge.toString())
+        
 
         if (old.oldImage == null){
             binding.modifyCircleimageProfile.setImageResource(R.drawable.ic_basic_profile)}
@@ -324,9 +335,11 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
         when(old.oldSex){
             0 -> {
                 binding.modifyMan.isChecked = true
+                binding.modifyWoman.isChecked = false
                 genderType = 0}
             1 -> {
                 binding.modifyWoman.isChecked = true
+                binding.modifyMan.isChecked = false
                 genderType = 1}
         }
 

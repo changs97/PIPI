@@ -215,7 +215,7 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                 }
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
 
-            complete.isEnabled = false
+            complete.isEnabled = true
         }
 
         val recyclerView = binding.modifyRecyclerview
@@ -258,9 +258,6 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                 }else{
                     //응답 실패 시 코드
                 }
-
-
-
 
 
             }

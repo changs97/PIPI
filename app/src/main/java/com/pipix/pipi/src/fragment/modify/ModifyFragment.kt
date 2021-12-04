@@ -119,8 +119,8 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.insert_man -> genderType = 1
-                R.id.insert_woman -> genderType = 2
+                R.id.insert_man -> genderType = 0
+                R.id.insert_woman -> genderType = 1
             }
         }
 
@@ -315,12 +315,12 @@ class ModifyFragment : BaseFragment<FragmentModifyBinding>(FragmentModifyBinding
                 .load(old.oldImage.toString()).centerCrop()
                 .into(binding.modifyCircleimageProfile) }
         when(old.oldSex){
-            1 -> {
+            0 -> {
                 binding.modifyMan.isChecked = true
-                genderType = 1}
-            2 -> {
+                genderType = 0}
+            1 -> {
                 binding.modifyWoman.isChecked = true
-                genderType = 2}
+                genderType = 1}
         }
 
 

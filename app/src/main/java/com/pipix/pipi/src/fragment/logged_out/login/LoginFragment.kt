@@ -32,7 +32,11 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
         val t = binding.loginBtnLogin
         t.setOnClickListener {
 
+            t.isEnabled = false
+
             tryGetLogin(LoginBody(userID.text.toString(), password.text.toString()))
+
+            t.isEnabled = true
 
         }
 

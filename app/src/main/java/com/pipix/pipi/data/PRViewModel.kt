@@ -42,6 +42,12 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
         }
     }
 
+    fun deleteAllPureResult(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteAllPureData()
+        }
+    }
+
     fun getAllPureData(): MutableList<PureResult>{
         return repository.getAllPureData()
     }
@@ -56,6 +62,12 @@ class PRViewModel(applications: Application): AndroidViewModel(applications) {
     fun deleteOld(old: Old){
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteOld(old)
+        }
+    }
+
+    fun deleteAllOld(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteAllOld()
         }
     }
 

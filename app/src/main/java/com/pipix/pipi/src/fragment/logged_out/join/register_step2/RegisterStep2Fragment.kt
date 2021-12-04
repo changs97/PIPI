@@ -35,7 +35,11 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
         val t = binding.registerStep2BtnJoin
         t.setOnClickListener {
 
+            t.isEnabled = false
+
             tryPostSignUp(SignUpBody(userId,userName.text.toString(),password))
+
+            t.isEnabled = true
 
 
 
@@ -63,6 +67,7 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
                     // 통신은 성공했지만 응답에 문제가 있는 경우
                     Log.d("tryPostSignUp","응답에 문제")
                 }
+
             }
 
 
@@ -71,7 +76,7 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
                 //통신 실패
                 //통신 결는 성공인데 이 함수가 호출되는 이유를 알아봐야함
                 showCustomToast("회원가입 실패")
-               
+
             }
         })
     }

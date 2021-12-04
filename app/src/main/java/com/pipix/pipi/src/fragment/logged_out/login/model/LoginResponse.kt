@@ -10,5 +10,5 @@ data class LoginResponse (
     @SerializedName("name")
     val name: String,
     @SerializedName("patients")
-    val patients: List<Any>
+    val patients: List<TestResult>?
         )

@@ -16,7 +16,7 @@ data class InsertResponse(
     @SerializedName("name")
     val name: String,
     @SerializedName("schedule")
-    val schedule: Schedule,
+    val schedule: Schedule?,
     @SerializedName("sex")
     val sex: String,
     @SerializedName("testResults")

@@ -1,4 +1,4 @@
-package com.pipix.pipi.src.fragment.insertPerson.model
+package com.pipix.pipi.src.fragment.logged_out.login.model
 
 data class Schedule(
     val fri: String?,

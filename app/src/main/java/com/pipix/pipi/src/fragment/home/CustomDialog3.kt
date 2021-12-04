@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import androidx.annotation.RequiresApi
 import com.pipix.pipi.config.ApplicationClass
 import com.pipix.pipi.databinding.DialogLogoutBinding
+import com.pipix.pipi.src.main.MainActivity
 
 import java.util.*
 
@@ -42,8 +43,9 @@ class CustomDialog3(context: Context) : Dialog(context) {
             //룸 데이터베이스 초기화 시켜야 함
             ApplicationClass.prefs.userName = null
             ApplicationClass.prefs.userId = null
+            MainActivity.viewModel.deleteAllPureResult()
+            MainActivity.viewModel.deleteAllOld()
             dismiss()
-
         }
 
 

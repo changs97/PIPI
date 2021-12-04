@@ -258,9 +258,15 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                 call: Call<InsertScheduleResponse>,
                 response: Response<InsertScheduleResponse>
             ) { Log.d("tryPostInsert",response.body().toString())
-                val data = response.body() as InsertScheduleResponse
-                //all clear
-                dataClear()
+                if(response.isSuccessful()){ // 응답을 잘 받은 경우
+                    val data = response.body() as InsertScheduleResponse
+                    //all clear
+                    dataClear()
+                }
+                else{
+                   //응답 실패 시 코드
+                }
+
 
             }
 

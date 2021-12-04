@@ -113,8 +113,8 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.insert_man -> genderType = 1
-                R.id.insert_woman -> genderType = 2
+                R.id.insert_man -> genderType = 0
+                R.id.insert_woman -> genderType = 1
             }
         }
 

@@ -54,9 +54,11 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
                 response: Response<SignUpResponse>
             ) {
 
-                if(response.isSuccessful()){ // 응답을 잘 받은 경우
-                    val data = response.body() as String
-                    Log.d("tryPostSignUp",data+"성공")
+                if(response.isSuccessful())
+                {
+                    // 응답을 잘 받은 경우
+                    val data = response.body()
+                    Log.d("tryPostSignUp",data.toString()+"성공")
                     findNavController().navigate(R.id.action_registerStep2Fragment_to_loginFragment)
                     showCustomToast("회원가입 성공")
                 } else {

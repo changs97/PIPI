@@ -154,8 +154,9 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
 
         complete.setOnClickListener {
             complete.isEnabled = false
-            showLoadingDialog(context as MainActivity)
+
             if(name.text != null && age.text != null && genderType != null && address.text != null){
+                showLoadingDialog(context as MainActivity)
 
 
                 if(selectImage!=null) {
@@ -203,7 +204,7 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                 }
 
             }else { showCustomToast("필수 항목을 모두 입력하세요") }
-            complete.isEnabled = false
+            complete.isEnabled = true
         }
 
         val recyclerView = binding.insertRecyclerview

@@ -36,6 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
 
 
+
         viewModel = ViewModelProvider(this).get(PRViewModel::class.java)
         viewModel.readAllOld.observe(this ,{
             oldList = it
@@ -69,5 +70,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         SoundController.init(applicationContext)
 
     }
+
+
 
 }

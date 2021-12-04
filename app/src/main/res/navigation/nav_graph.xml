@@ -55,6 +55,7 @@
     </fragment>
 
     <include app:graph="@navigation/second_graph" />
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.pipix.pipi.src.fragment.splash.SplashFragment"
@@ -71,5 +72,10 @@
             android:id="@+id/action_splashFragment_to_second_graph"
             app:destination="@id/second_graph" />
     </fragment>
+    <action
+        android:id="@+id/action_global_start"
+        app:popUpToInclusive="true"
+        app:popUpTo="@navigation/second_graph"
+        app:destination="@id/loggedOutFragment" />
 
 </navigation>

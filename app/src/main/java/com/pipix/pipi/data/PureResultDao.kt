@@ -12,6 +12,9 @@ interface PureResultDao {
     @Delete
     suspend fun deletePureResult(pr: PureResult)
 
+    @Query("DELETE FROM pure_result_table")
+    suspend fun deleteAllPureResult()
+
     @Query("SELECT * FROM pure_result_table ORDER BY date ASC")
     fun readAllPureData(): LiveData<List<PureResult>>
 
@@ -25,6 +28,9 @@ interface PureResultDao {
 
     @Delete
     suspend fun deleteOld(old: Old)
+
+    @Query("DELETE FROM old_table")
+    suspend fun deleteAllOld()
 
     @Query("SELECT * FROM old_table ORDER BY oldID ASC")
     fun readAllOld(): LiveData<List<Old>>

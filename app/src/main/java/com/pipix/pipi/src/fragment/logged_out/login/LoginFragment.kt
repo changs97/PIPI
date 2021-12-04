@@ -37,7 +37,11 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
         val t = binding.loginBtnLogin
         t.setOnClickListener {
 
+            t.isEnabled = false
+
             tryGetLogin(LoginBody(userID.text.toString(), password.text.toString()))
+
+            t.isEnabled = true
 
         }
 
@@ -52,13 +56,6 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
             override fun onResponse(
                 call: Call<LoginResponse>,
                 response: Response<LoginResponse>
-            ) { Log.d("TEST_tryGetLogin",response.body().toString())
-                val data = response.body() as LoginResponse
-                /*환자 테이블을 반환 받습니다.
-                  여기서 로그아웃 또는 앱을 지우고 새로 로그인할 때 서버에서 저장된 데이터를 룸에 저장*/
-
-                findNavController().navigate(R.id.action_loginFragment_to_second_graph)
-                findNavController().graph.startDestination = R.id.second_graph
 
             }
 

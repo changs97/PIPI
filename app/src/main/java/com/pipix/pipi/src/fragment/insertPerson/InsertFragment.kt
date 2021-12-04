@@ -203,7 +203,8 @@ class InsertFragment : BaseFragment<FragmentInsertBinding>(FragmentInsertBinding
                     dismissLoadingDialog()
                 }
 
-            }else { showCustomToast("필수 항목을 모두 입력하세요") }
+            }else {
+                showCustomToast("필수 항목을 모두 입력하세요") }
             complete.isEnabled = true
         }
 

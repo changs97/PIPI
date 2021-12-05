@@ -19,7 +19,7 @@ class RegisterStep1Fragment : BaseFragment<FragmentRegisterStep1Binding>(Fragmen
 
         val nextBtn = binding.registerStep1BtnNext
         val back = binding.registerStep1ImgbtnBack
-
+        val regex = "^(.+)@(.+)$".toRegex()
 
 
         back.setOnClickListener {
@@ -29,10 +29,16 @@ class RegisterStep1Fragment : BaseFragment<FragmentRegisterStep1Binding>(Fragmen
         nextBtn.setOnClickListener {
             val userId = binding.registerStep1EdittextId.text.toString()
             val password = binding.registerStep1Password.text.toString()
-            val action = RegisterStep1FragmentDirections.actionRegisterStep1FragmentToRegisterStep2Fragment(
-                RegisterArg(userId, password)
-            )
-            Navigation.findNavController(view).navigate(action)
+
+            // matches email regex
+            if(!userId.matches(regex)){
+                showCustomToast("이메일 형식이 올바르지 않습니다")
+            }else{
+                val action = RegisterStep1FragmentDirections.actionRegisterStep1FragmentToRegisterStep2Fragment(
+                    RegisterArg(userId, password)
+                )
+                Navigation.findNavController(view).navigate(action)
+            }
 
         }
     }

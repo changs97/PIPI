@@ -114,6 +114,8 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
                     findNavController().navigate(R.id.action_loginFragment_to_second_graph)
                     findNavController().graph.startDestination = R.id.second_graph
 
+                }else{
+                    showCustomToast("로그인 실패")
                 }
             }
 

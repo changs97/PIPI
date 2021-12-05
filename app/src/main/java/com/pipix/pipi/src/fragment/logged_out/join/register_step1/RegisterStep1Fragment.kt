@@ -33,6 +33,7 @@ class RegisterStep1Fragment : BaseFragment<FragmentRegisterStep1Binding>(Fragmen
                 RegisterArg(userId, password)
             )
             Navigation.findNavController(view).navigate(action)
+
         }
     }
 }

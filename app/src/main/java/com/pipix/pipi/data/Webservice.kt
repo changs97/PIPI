@@ -28,11 +28,13 @@ interface Webservice {
     @POST("/api/testResult/create/{patientId}")
     fun postTestResult(@Body params: TestBody, @Path("patientId") patientId : Int ): Call<TestResponse>
 
-
     @PUT("/api/patient/updateSchedule/{patientId}")
     fun putSchedule(@Body params: InsertScheduleBody, @Path("patientId") patientId : Int ): Call<InsertScheduleResponse>
 
     @PUT("/api/patient/update/{patientId}")
     fun putUpdate(@Body params: ModifyBody, @Path("patientId") patientId : Int ): Call<ModifyResponse>
+
+    @DELETE("/api/testResult/delete/{patientId}")
+    fun deleteTestResult(@Path("patientId") patientId : Int ,@Query("date") date : Long) : Call<String>
 
 }

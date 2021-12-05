@@ -56,29 +56,65 @@ class LoginFragment  : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::
             override fun onResponse(
                 call: Call<LoginResponse>,
                 response: Response<LoginResponse>
-            ) { Log.d("TEST_tryGetLogin",response.body().toString())
-                val data = response.body() as LoginResponse
-                /*환자 테이블을 반환 받습니다.
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("TEST_tryGetLogin", response.body().toString())
+                    val data = response.body() as LoginResponse
+                    /*환자 테이블을 반환 받습니다.
                   여기서 로그아웃 또는 앱을 지우고 새로 로그인할 때 서버에서 저장된 데이터를 룸에 저장*/
 
 
-                ApplicationClass.prefs.userId = data.id.toString()
-                ApplicationClass.prefs.userName = data.name
-                val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-                for(patient in data.patients!!){
-                    MainActivity.viewModel.addOld(Old(patient.id, ApplicationClass.prefs.userId!!, patient.name, patient.age,
-                        if(patient.sex == "MALE")0 else 1, patient.address, patient.imageURL, patient.schedule!!.mon, patient.schedule!!.tue,
-                        patient.schedule!!.wed, patient.schedule!!.thu, patient.schedule!!.fri, patient.schedule!!.sat, patient.schedule!!.sun))
-                    for(result in patient.testResults){
-                        MainActivity.viewModel.addPureResult(PureResult(patient.id, df.parse(result.date), result.tpaRight, result.tpaLeft,
-                            result.r_250,result.r_500, result.r_1000, result.r_2000, result.r_4000, result.r_8000, result.l_250, result.l_500,
-                            result.l_1000, result.l_2000, result.l_4000, result.l_8000))
+                    ApplicationClass.prefs.userId = data.id.toString()
+                    ApplicationClass.prefs.userName = data.name
+                    val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+
+                    for (patient in data.patients!!) {
+                        MainActivity.viewModel.addOld(
+                            Old(
+                                patient.id,
+                                ApplicationClass.prefs.userId!!,
+                                patient.name,
+                                patient.age,
+                                if (patient.sex == "MALE") 0 else 1,
+                                patient.address,
+                                patient.imageURL,
+                                patient.schedule!!.mon,
+                                patient.schedule!!.tue,
+                                patient.schedule!!.wed,
+                                patient.schedule!!.thu,
+                                patient.schedule!!.fri,
+                                patient.schedule!!.sat,
+                                patient.schedule!!.sun
+                            )
+                        )
+                        for (result in patient.testResults) {
+                            MainActivity.viewModel.addPureResult(
+                                PureResult(
+                                    patient.id,
+                                    df.parse(result.date),
+                                    result.tpaRight,
+                                    result.tpaLeft,
+                                    result.r_250,
+                                    result.r_500,
+                                    result.r_1000,
+                                    result.r_2000,
+                                    result.r_4000,
+                                    result.r_8000,
+                                    result.l_250,
+                                    result.l_500,
+                                    result.l_1000,
+                                    result.l_2000,
+                                    result.l_4000,
+                                    result.l_8000
+                                )
+                            )
+                        }
                     }
+
+                    findNavController().navigate(R.id.action_loginFragment_to_second_graph)
+                    findNavController().graph.startDestination = R.id.second_graph
+
                 }
-
-                findNavController().navigate(R.id.action_loginFragment_to_second_graph)
-                findNavController().graph.startDestination = R.id.second_graph
-
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {

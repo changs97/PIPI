@@ -55,7 +55,6 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
                 call: Call<String>,
                 response: Response<String>
             ) {
-
                 if(response.isSuccessful())
                 {
                     // 응답을 잘 받은 경우
@@ -73,8 +72,6 @@ class RegisterStep2Fragment : BaseFragment<FragmentRegisterStep2Binding>(
 
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Log.d("TEST_tryPostSignUp",t.message ?:"통신 오류")
-                //통신 실패
-                //통신 결는 성공인데 이 함수가 호출되는 이유를 알아봐야함
                 showCustomToast("회원가입 실패")
 
             }
